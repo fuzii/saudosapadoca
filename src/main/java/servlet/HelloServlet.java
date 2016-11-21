@@ -19,7 +19,7 @@ public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
-        out.write("hello Saudosa Padoca Servlet".getBytes());
+        out.write("Olá Saudosa Padoca!!!".getBytes());
         out.flush();
         out.close();
     }
