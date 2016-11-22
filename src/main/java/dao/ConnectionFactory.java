@@ -5,12 +5,15 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import org.postgresql.Driver;
 
 public class ConnectionFactory {
 	
 	public Connection getConnection(){
 
 		try{
+			
+			Class.forName("org.postgresql.Driver");
 			
 			URI dbUri = new URI(System.getenv("DATABASE_URL"));
 			
@@ -24,6 +27,9 @@ public class ConnectionFactory {
 			throw new RuntimeException(e);
 			
 		} catch (URISyntaxException e) {
+			throw new RuntimeException(e);
+			
+		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
 	}
