@@ -19,10 +19,11 @@ public class ConnectionFactory {
 			
 		    String username = dbUri.getUserInfo().split(":")[0];
 		    String password = dbUri.getUserInfo().split(":")[1];
-		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-		
+		    
+		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+		    
 		    return DriverManager.getConnection(dbUrl, username, password);
-		
+			
 		} catch(SQLException e){
 			throw new RuntimeException(e);
 			
