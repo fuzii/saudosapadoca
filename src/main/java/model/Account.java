@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class Account {
 
@@ -8,7 +9,20 @@ public class Account {
 	private String name;
 	private String email;
 	private Calendar created_on;
-
+	private List<Address> address;
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public void setAddress(List<Address> address) {
+		this.address = address;
+	}
+	public List<Address> getAddress() {
+		return address;
+	}
+	public void addAddress(Address address) {
+		this.address.add(address);
+	}	
 	public String getName() {
 		return name;
 	}
