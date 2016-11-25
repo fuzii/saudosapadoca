@@ -16,7 +16,7 @@
   <dependencies>
     <dependency>
         <groupId>com.sendgrid</groupId>
-        <artifactId>java-http-client</artifactId>
+        <artifactId>sendgrid-java</artifactId>
         <version>3.0.9</version>
     </dependency>
     <dependency>
