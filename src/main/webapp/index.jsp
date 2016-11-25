@@ -27,6 +27,15 @@
 		value: <input type="text" name="value"/><br />
       <input type="submit" value="getAccount" />
     </form>
-    
+    <br/>
+    <br/>
+     <form action="sendGrid">
+		from: <input type="text" name="from"/><br />
+		subject: <input type="text" subject="subject"/><br />
+		to: <input type="text" subject="to"/><br />
+		content: <input type="text" subject="content"/><br />
+      <input type="submit" value="sendGrid" />
+    </form>
+	
 </body>
 </html>
