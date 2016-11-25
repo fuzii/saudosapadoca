@@ -1,4 +1,4 @@
-package geo;
+package servlet;
 
 import com.sendgrid.*;
 import java.io.IOException;
