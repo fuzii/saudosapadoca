@@ -31,9 +31,9 @@
     <br/>
      <form action="sendGrid">
 		from: <input type="text" name="from"/><br />
-		subject: <input type="text" subject="subject"/><br />
-		to: <input type="text" subject="to"/><br />
-		content: <input type="text" subject="content"/><br />
+		subject: <input type="text" name="subject"/><br />
+		to: <input type="text" name="to"/><br />
+		content: <input type="text" name="content"/><br />
       <input type="submit" value="sendGrid" />
     </form>
 	
