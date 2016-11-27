@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import model.Account;
 import model.Address;
 
 public class AddressDao {

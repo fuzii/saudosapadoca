@@ -1,4 +1,4 @@
-package servlet;
+package util;
 
 import com.sendgrid.*;
 import java.io.IOException;

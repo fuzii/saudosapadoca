@@ -29,7 +29,7 @@
     </form>
     <br/>
     <br/>
-    <form action="sendGrid_">
+    <form action="sendGrid">
 		from: <input type="text" name="from"/><br />
 		subject: <input type="text" name="subject"/><br />
 		to: <input type="text" name="to"/><br />
