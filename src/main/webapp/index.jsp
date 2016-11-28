@@ -1,15 +1,8 @@
 <html>
 <body>
-    <form action="addAccount">
-      Nome: <input type="text" name="name" /><br />
-      E-mail: <input type="text" name="email" /><br />
-      <input type="submit" value="addAccount" />
-    </form>
-    <br/>
-    <br/>
-     <form action="addAddress">
-		accountId: <input type="text" name="accountId"/><br />
-		establishmentId: <input type="text" name="establishmentId"/><br />
+	<form action="addAccount">
+		name: <input type="text" name="name" /><br />
+		email: <input type="text" name="email" /><br />
 		zipCode: <input type="text" name="zipCode"/><br />
 		street: <input type="text" name="street"/><br />
 		city: <input type="text" name="city"/><br />
@@ -19,9 +12,8 @@
 		country: <input type="text" name="country"/><br />
 		latitude: <input type="text" name="latitude"/><br />
 		longitude: <input type="text" name="longitude"/><br />
-	     	radius: <input type="text" name="radius"/><br />
-      <input type="submit" value="addAddress" />
-    </form>
+		<input type="submit" value="Tela1-CadastroConta" />
+	</form>
     <br/>
     <br/>
      <form action="getEstablishmentByLocation">
