@@ -19,6 +19,7 @@
 		country: <input type="text" name="country"/><br />
 		latitude: <input type="text" name="latitude"/><br />
 		longitude: <input type="text" name="longitude"/><br />
+	     	radius: <input type="text" name="radius"/><br />
       <input type="submit" value="addAddress" />
     </form>
     <br/>
