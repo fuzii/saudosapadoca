@@ -179,7 +179,7 @@ public class EstablishmentDao {
 					a.setCountry(rs.getString("country"));
 					a.setLatitude(rs.getDouble("latitude"));
 					a.setLongitude(rs.getDouble("longitude"));
-					a.setAccountId(rs.getLong("establishment_id"));
+					a.setEstablishmentId(rs.getLong("establishment_id"));
 									
 					// created on
 					Calendar data = Calendar.getInstance();
