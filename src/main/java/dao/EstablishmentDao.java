@@ -224,6 +224,7 @@ public class EstablishmentDao {
 				address.setCity(rs.getString("city"));
 				address.setState(rs.getString("state"));
 				address.setNumber(rs.getInt("number"));
+				address.setRadius(rs.getInt("radius"));
 				address.setPremise(rs.getString("premise"));
 				address.setCountry(rs.getString("country"));
 				address.setLatitude(rs.getDouble("latitude"));
