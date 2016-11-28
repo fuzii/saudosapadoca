@@ -9,6 +9,7 @@
     <br/>
      <form action="addAddress">
 		accountId: <input type="text" name="accountId"/><br />
+		establishmentId: <input type="text" name="establishmentId"/><br />
 		zipCode: <input type="text" name="zipCode"/><br />
 		street: <input type="text" name="street"/><br />
 		city: <input type="text" name="city"/><br />
@@ -39,7 +40,6 @@
      <form action="getAccounts">
      <input type="submit" value="getAccounts"/>
     </form>    
-    <br/>
     <br/>
      <form action="getEstablishments">
      <input type="submit" value="getEstablishments"/>
