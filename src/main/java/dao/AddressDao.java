@@ -17,7 +17,7 @@ public class AddressDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude,created_on,establishment_id,radius) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude,created_on,establishment_id,radius) values (?,?,?,?,?,?,?,?,?,?,?,?)");
 
 			stmt.setLong(1,address.getAccountId());
 			stmt.setString(2,address.getZipCode());
