@@ -173,7 +173,7 @@ public class AddressDao {
 				address.setCountry(rs.getString("country"));
 				address.setLatitude(rs.getDouble("latitude"));
 				address.setLongitude(rs.getDouble("longitude"));
-				address.setAccountId(rs.getLong("establishment_id"));
+				address.setEstablishmentId(rs.getLong("establishment_id"));
 								
 				// created on
 				Calendar data = Calendar.getInstance();
@@ -221,7 +221,7 @@ public class AddressDao {
 			address.setCountry(rs.getString("country"));
 			address.setLatitude(rs.getDouble("latitude"));
 			address.setLongitude(rs.getDouble("longitude"));
-			address.setAccountId(rs.getLong("establishment_id"));
+			address.setEstablishmentId(rs.getLong("establishment_id"));
 							
 			// created on
 			Calendar data = Calendar.getInstance();
