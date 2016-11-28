@@ -31,8 +31,11 @@ public class AccountDao {
 			if(rs.next())
 			    account.setId(rs.getLong(1));
 	
-			for(Address address: account.getAddress())
-				InsertAccountAddress(account, address);
+			for(Address address: account.getAddress()){
+				address.setAccountId(account.getId());
+				AddressDao.InsertByAccount(address);
+			}
+				
 			
 			rs.close();
 			stmt.close();
@@ -186,11 +189,4 @@ public class AccountDao {
 
 	}
 
-	public static void InsertAccountAddress(Account account, Address address){
-		
-		address.setAccountId(account.getId());
-		AddressDao.Insert(address);
-		
-	}
-	
 }
