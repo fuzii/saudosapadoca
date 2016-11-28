@@ -22,20 +22,27 @@
     </form>
     <br/>
     <br/>
-     <form action="getAccount">
-		param: <input type="text" name="param"/><br />
-		value: <input type="text" name="value"/><br />
-      <input type="submit" value="getAccount" />
+     <form action="getEstablishmentByLocation">
+		addressId: <input type="text" name="id"/><br />
+      <input type="submit" value="getEstablishmentByLocation" />
     </form>
     <br/>
     <br/>
-    <form action="sendGrid">
-		from: <input type="text" name="from"/><br />
-		subject: <input type="text" name="subject"/><br />
-		to: <input type="text" name="to"/><br />
-		content: <input type="text" name="content"/><br />
-      <input type="submit" value="sendGrid" />
-    </form>
-	
+     <form action="addEstablishment">
+		name: <input type="text" name="name"/><br />
+		alias: <input type="text" name="alias"/><br />
+		registerNumber: <input type="text" name="registerNumber"/><br />
+      <input type="submit" value="addEstablishment"/>
+    </form>	
+    <br/>
+    <br/>
+     <form action="getAccounts">
+     <input type="submit" value="getAccounts"/>
+    </form>    
+    <br/>
+    <br/>
+     <form action="getEstablishments">
+     <input type="submit" value="getEstablishments"/>
+    </form>    
 </body>
 </html>

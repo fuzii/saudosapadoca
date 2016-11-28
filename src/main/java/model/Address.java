@@ -6,6 +6,7 @@ public class Address {
 
 	private Long id;
 	private Long accountId;
+	private Long establishmentId;
 	private String zipCode;
 	private String street;
 	private String city;
@@ -15,13 +16,27 @@ public class Address {
 	private String country;
 	private Double latitude;
 	private Double longitude;
+	private int radius;
 	private Calendar created_on;
 	
+	
+	public int getRadius() {
+		return radius;
+	}
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
 	public Double getLatitude() {
 		return latitude;
 	}
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
+	}
+	public Long getEstablishmentId() {
+		return establishmentId;
+	}
+	public void setEstablishmentId(Long establishmentId) {
+		this.establishmentId = establishmentId;
 	}
 	public Double getLongitude() {
 		return longitude;

@@ -17,7 +17,7 @@ public class AddressDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude,created_on) values (?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude,created_on,establishment_id,radius) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 			stmt.setLong(1,address.getAccountId());
 			stmt.setString(2,address.getZipCode());
@@ -30,6 +30,8 @@ public class AddressDao {
 			stmt.setDouble(9,address.getLatitude());
 			stmt.setDouble(10,address.getLongitude());
 			stmt.setDate(11, new Date(Calendar.getInstance().getTimeInMillis()));
+			stmt.setLong(12,address.getEstablishmentId());
+			stmt.setInt(13,address.getRadius());
 			stmt.execute();
 			
 			stmt.close();
@@ -46,7 +48,7 @@ public class AddressDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("UPDATE address SET account_id=?,zipCode=?,street=?,city=?,state=?,number=?,premise=?,country=?,latitude=?,longitude=? where id=?");
+			PreparedStatement stmt = connection.prepareStatement("UPDATE address SET account_id=?,zipCode=?,street=?,city=?,state=?,number=?,premise=?,country=?,latitude=?,longitude=?,establishment_id=?,radius=? where id=?");
 
 			stmt.setLong(1,address.getAccountId());
 			stmt.setString(2,address.getZipCode());
@@ -58,7 +60,9 @@ public class AddressDao {
 			stmt.setString(8,address.getCountry());
 			stmt.setDouble(9,address.getLatitude());
 			stmt.setDouble(10,address.getLongitude());
-			stmt.setLong(11, address.getId());
+			stmt.setLong(11, address.getEstablishmentId());
+			stmt.setInt(12,address.getRadius());
+			stmt.setLong(13, address.getId());
 			stmt.execute();
 			
 			stmt.close();
@@ -105,12 +109,14 @@ public class AddressDao {
 				address.setCity(rs.getString("city"));
 				address.setState(rs.getString("state"));
 				address.setNumber(rs.getInt("number"));
+				address.setRadius(rs.getInt("radius"));
 				address.setPremise(rs.getString("premise"));
 				address.setCountry(rs.getString("country"));
 				address.setLatitude(rs.getDouble("latitude"));
 				address.setLongitude(rs.getDouble("longitude"));
+				address.setAccountId(rs.getLong("establishment_id"));
 								
-				// montando a data através do Calendar
+				// created on
 				Calendar data = Calendar.getInstance();
 				data.setTime(rs.getDate("created_on"));
 				address.setCreated_on(data);
@@ -129,6 +135,50 @@ public class AddressDao {
 		}
 
 	}
+
+
+	public static Address GetAddressById(Long id) {
+	     
+		try {
+		
+			Connection connection = new ConnectionFactory().getConnection();
+	    	PreparedStatement stmt = connection.prepareStatement("select * from address where id=?");
+			stmt.setLong(1,id);
+			ResultSet rs = stmt.executeQuery();
+
+			if(!rs.next())
+				return null;			
+
+			Address address = new Address();
+			address.setId(rs.getLong("id"));
+			address.setAccountId(rs.getLong("account_id"));
+			address.setZipCode(rs.getString("zipCode"));
+			address.setStreet(rs.getString("street"));
+			address.setCity(rs.getString("city"));
+			address.setState(rs.getString("state"));
+			address.setNumber(rs.getInt("number"));
+			address.setRadius(rs.getInt("radius"));
+			address.setPremise(rs.getString("premise"));
+			address.setCountry(rs.getString("country"));
+			address.setLatitude(rs.getDouble("latitude"));
+			address.setLongitude(rs.getDouble("longitude"));
+			address.setAccountId(rs.getLong("establishment_id"));
+							
+			// created on
+			Calendar data = Calendar.getInstance();
+			data.setTime(rs.getDate("created_on"));
+			address.setCreated_on(data);
+			
+			rs.close();
+			stmt.close();
+			connection.close();
+			return address;
 	
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
 	
 }

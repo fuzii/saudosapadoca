@@ -11,28 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.AccountDao;
 import model.Account;
+import util.SendGridEmail;
 
 @WebServlet("/addAccount")
 public class AddAccountServlet extends HttpServlet{
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		// busca o writer
-		PrintWriter out = response.getWriter();
-
-		// buscando os parâmetros no request
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		
-		// monta um objeto account
+		// request
 		Account account = new Account();
-		account.setName(name);
-		account.setEmail(email);
-		
-		// salva account
+		account.setName(request.getParameter("name"));
+		account.setEmail(request.getParameter("email"));
 		AccountDao.Insert(account);
 
-		// imprime o nome do contato que foi adicionado
+		// send confirmation mail
+		String from = "contato@saudosapadoca.com.br";
+		String subject = "[Saudosa Padoca] - Confirmacao de cadastro";
+		String content = "Obrigado por se cadastrar no...";
+		String to = account.getEmail();
+		SendGridEmail.Send(from, to, subject, content);
+
+		// response		
+		PrintWriter out = response.getWriter();
 		out.println("<html>");
 		out.println("<body>");
 		out.println("Conta " + account.getName() + " adicionada com sucesso");

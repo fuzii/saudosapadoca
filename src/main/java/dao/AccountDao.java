@@ -101,37 +101,33 @@ public class AccountDao {
 		
 	}
 
-	public static List<Account> GetAccountsByParameter(String param, String value) {
+	public static Account GetAccountsById(Long id) {
 	     
 		try {
 			
-			List<Account> accounts = new ArrayList<Account>();
 			Connection connection = new ConnectionFactory().getConnection();
-	    	PreparedStatement stmt = connection.prepareStatement("select * from account where "+param+"=?");
-	    	stmt.setString(1,value);
+	    	PreparedStatement stmt = connection.prepareStatement("select * from account where id=?");
+	    	stmt.setLong(1,id);
 	    	ResultSet rs = stmt.executeQuery();
 
-			while(rs.next()) {
+			if(!rs.next())
+				return null;
 
-				Account account = new Account();
-				account.setId(rs.getLong("id"));
-				account.setName(rs.getString("name"));
-				account.setEmail(rs.getString("email"));
-				account.setAddress(GetAccountAddresses(account));
-												
-				// montando a data através do Calendar
-				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("created_on"));
-				account.setCreated_on(data);
-
-				accounts.add(account);
-				
-			}
+			Account account = new Account();
+			account.setId(rs.getLong("id"));
+			account.setName(rs.getString("name"));
+			account.setEmail(rs.getString("email"));
+			account.setAddress(GetAccountAddresses(account));
+											
+			// montando a data através do Calendar
+			Calendar data = Calendar.getInstance();
+			data.setTime(rs.getDate("created_on"));
+			account.setCreated_on(data);
 			
 			rs.close();
 			stmt.close();
 			connection.close();
-			return accounts;
+			return account;
 	
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

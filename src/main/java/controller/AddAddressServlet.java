@@ -21,6 +21,7 @@ public class AddAddressServlet extends HttpServlet{
 		// request
 		Address address = new Address();
 		address.setAccountId(Long.parseLong(request.getParameter("accountId")));
+		address.setEstablishmentId(Long.parseLong(request.getParameter("establishmentId")));
 		address.setZipCode(request.getParameter("zipCode"));
 		address.setStreet(request.getParameter("street"));
 		address.setCity(request.getParameter("city"));

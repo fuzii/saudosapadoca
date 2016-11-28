@@ -9,27 +9,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.SendGridEmail;
+import dao.EstablishmentDao;
+import model.Establishment;
 
-@WebServlet("/sendGrid")
-public class SendGridServlet extends HttpServlet{
+@WebServlet("/addEstablishment")
+public class AddEstablishmentServlet extends HttpServlet{
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+
 		// request
-		String from = request.getParameter("from");
-		String subject = request.getParameter("subject");
-		String to = request.getParameter("to");
-		String content = request.getParameter("content");
-		SendGridEmail.Send(from, to, subject, content);
+		Establishment establishment = new Establishment();		
+		establishment.setName(request.getParameter("name"));
+		establishment.setAlias(request.getParameter("alias"));
+		establishment.setRegisterNumber(Long.parseLong(request.getParameter("registerNumber")));
+		EstablishmentDao.Insert(establishment);
 
 		// response
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
 		out.println("<body>");
-		out.println("Email enviado com sucesso");
+		out.println("Empresa adicionada com sucesso");
 		out.println("</body>");
 		out.println("</html>");
-		
 	}
 }

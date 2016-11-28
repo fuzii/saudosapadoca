@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,23 +14,15 @@ import dao.AccountDao;
 import model.Account;
 import model.Address;
 
-@WebServlet("/getAccount")
-public class GetAccountServlet extends HttpServlet{
+@WebServlet("/getAccounts")
+public class GetAccountsServlet extends HttpServlet{
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		// request
-		List<Account> accounts = new ArrayList<Account>();
-		String param = request.getParameter("param");
-		String value = request.getParameter("value");
-	
-		if(param!=null && param!="")
-			accounts = AccountDao.GetAccountsByParameter(param, value);
-		else
-			accounts = AccountDao.GetAccounts();
+		List<Account> accounts = AccountDao.GetAccounts();
 		
 		// response
-		
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
 		out.println("<body>");
@@ -59,8 +50,6 @@ public class GetAccountServlet extends HttpServlet{
 			out.println("<br/>");
 			
 		}
-		
-		
 		out.println("</body>");
 		out.println("</html>");
 	}
