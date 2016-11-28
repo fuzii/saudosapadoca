@@ -96,7 +96,7 @@ public class AddressDao {
 		
 			List<Address> addresses = new ArrayList<Address>();
 			Connection connection = new ConnectionFactory().getConnection();
-	    	PreparedStatement stmt = connection.prepareStatement("select * from address");
+			PreparedStatement stmt = connection.prepareStatement("select * from address");
 			ResultSet rs = stmt.executeQuery();
 
 			while(rs.next()) {
@@ -142,12 +142,12 @@ public class AddressDao {
 		try {
 		
 			Connection connection = new ConnectionFactory().getConnection();
-	    	PreparedStatement stmt = connection.prepareStatement("select * from address where id=?");
+			PreparedStatement stmt = connection.prepareStatement("select * from address where id=?");
 			stmt.setLong(1,id);
 			ResultSet rs = stmt.executeQuery();
 
 			if(!rs.next())
-				return null;			
+				return null;
 
 			Address address = new Address();
 			address.setId(rs.getLong("id"));
