@@ -72,6 +72,36 @@ public class AddressDao {
 		
 	}
 	
+	public static void InsertByEstablishment(Address address) {	
+		
+		try {
+			
+			Connection connection = new ConnectionFactory().getConnection();
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(establishment_id,zipCode,street,city,state,number,premise,country,latitude,longitude,created_on,radius) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+			stmt.setLong(1,address.getEstablishmentId());
+			stmt.setString(2,address.getZipCode());
+			stmt.setString(3,address.getStreet());
+			stmt.setString(4,address.getCity());
+			stmt.setString(5,address.getState());
+			stmt.setInt(6,address.getNumber());
+			stmt.setString(7,address.getPremise());
+			stmt.setString(8,address.getCountry());
+			stmt.setDouble(9,address.getLatitude());
+			stmt.setDouble(10,address.getLongitude());
+			stmt.setDate(11, new Date(Calendar.getInstance().getTimeInMillis()));
+			stmt.setInt(12,address.getRadius());
+			stmt.execute();
+			
+			stmt.close();
+			connection.close();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+
 	public static void Update(Address address) {	
 		
 		try {
@@ -208,5 +238,6 @@ public class AddressDao {
 		}
 
 	}
+
 	
 }
