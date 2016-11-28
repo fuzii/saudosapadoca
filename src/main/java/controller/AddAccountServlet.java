@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +21,7 @@ public class AddAccountServlet extends HttpServlet{
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		// request
+		// create address object
 		Address address = new Address();
 		address.setZipCode(request.getParameter("zipCode"));
 		address.setStreet(request.getParameter("street"));
@@ -30,11 +32,16 @@ public class AddAccountServlet extends HttpServlet{
 		address.setCountry(request.getParameter("country"));
 		address.setLatitude(Double.parseDouble(request.getParameter("latitude")));
 		address.setLongitude(Double.parseDouble(request.getParameter("longitude")));
-
+		
+		// create address list
+		List<Address> addresses = new ArrayList<Address>();
+		addresses.add(address);
+		
+		// create account object and insert
 		Account account = new Account();
 		account.setName(request.getParameter("name"));
 		account.setEmail(request.getParameter("email"));
-		account.addAddress(address);				
+		account.setAddress(addresses);
 		AccountDao.Insert(account);
 
 		// send confirmation mail
