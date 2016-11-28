@@ -154,7 +154,7 @@ public class EstablishmentDao {
 			
 			List<Address> addresses = new ArrayList<Address>();
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("select * from address where establishment_id is not null and id<>?");
+			PreparedStatement stmt = connection.prepareStatement("select * from address where establishment_id IS NOT NULL AND id <> ?");
 			stmt.setLong(1,address.getId());
 			ResultSet rs = stmt.executeQuery();
 
@@ -186,7 +186,7 @@ public class EstablishmentDao {
 					data.setTime(rs.getDate("created_on"));
 					a.setCreated_on(data);
 
-					addresses.add(address);
+					addresses.add(a);
 					
 				}
 				
