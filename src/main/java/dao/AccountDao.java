@@ -26,10 +26,15 @@ public class AccountDao {
 			stmt.setDate(3, new Date(Calendar.getInstance().getTimeInMillis()));
 			stmt.execute();
 			
+			ResultSet rs = stmt.getGeneratedKeys();
+			if(rs.next())
+			    account.setId(rs.getLong(1));
+			
 			for(Address address: account.getAddress()){
 				AddressDao.Insert(address);
 			}
 			
+			rs.close();
 			stmt.close();
 			connection.close();
 			
