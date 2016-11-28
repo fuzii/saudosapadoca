@@ -30,15 +30,14 @@ public class AccountDao {
 			ResultSet rs = stmt.getGeneratedKeys();
 			if(rs.next())
 			    account.setId(rs.getLong(1));
-			
-			for(Address address: account.getAddress()){
-				AddressDao.Insert(address);
-			}
+	
+			for(Address address: account.getAddress())
+				InsertAccountAddress(account, address);
 			
 			rs.close();
 			stmt.close();
 			connection.close();
-			
+						
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
