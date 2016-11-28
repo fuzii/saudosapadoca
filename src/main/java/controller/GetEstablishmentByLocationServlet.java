@@ -35,16 +35,16 @@ public class GetEstablishmentByLocationServlet extends HttpServlet{
 			
 			for(Address a : addresses){
 				
-				Establishment establishment = EstablishmentDao.GetEstablishmentsById(a.getEstablishmentId());
+				//Establishment establishment = EstablishmentDao.GetEstablishmentsById(a.getEstablishmentId());
 				
 				JSONObject json = new JSONObject();
 				
-				// establishment
+				/* establishment
 				json.put("id",establishment.getId());
 				json.put("name",establishment.getName());
 				json.put("alias",establishment.getAlias());
 				json.put("registerNumber",establishment.getRegisterNumber());
-				
+				*/
 				// address
 				json.put("id",a.getId());
 				json.put("accountId",a.getAccountId());
@@ -59,7 +59,6 @@ public class GetEstablishmentByLocationServlet extends HttpServlet{
 				json.put("latitude",a.getLatitude());
 				json.put("longitude",a.getLongitude());
 				json.put("radius",a.getRadius());
-				//json.put("created_on",a.getCreated_on());
 				out.println(json.toString());
 				
 			}
