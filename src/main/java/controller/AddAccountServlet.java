@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.AccountDao;
 import model.Account;
+import model.Address;
 import util.SendGridEmail;
 
 @WebServlet("/addAccount")
@@ -19,9 +20,21 @@ public class AddAccountServlet extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		// request
+		Address address = new Address();
+		address.setZipCode(request.getParameter("zipCode"));
+		address.setStreet(request.getParameter("street"));
+		address.setCity(request.getParameter("city"));
+		address.setState(request.getParameter("state"));
+		address.setNumber(Integer.parseInt(request.getParameter("number"))); 
+		address.setPremise(request.getParameter("premise"));
+		address.setCountry(request.getParameter("country"));
+		address.setLatitude(Double.parseDouble(request.getParameter("latitude")));
+		address.setLongitude(Double.parseDouble(request.getParameter("longitude")));
+
 		Account account = new Account();
 		account.setName(request.getParameter("name"));
 		account.setEmail(request.getParameter("email"));
+		account.addAddress(address);				
 		AccountDao.Insert(account);
 
 		// send confirmation mail
