@@ -27,6 +27,7 @@ public class AddAddressServlet extends HttpServlet{
 		address.setCity(request.getParameter("city"));
 		address.setState(request.getParameter("state"));
 		address.setNumber(Integer.parseInt(request.getParameter("number"))); 
+		address.setRadius(Integer.parseInt(request.getParameter("radius"))); 
 		address.setPremise(request.getParameter("premise"));
 		address.setCountry(request.getParameter("country"));
 		address.setLatitude(Double.parseDouble(request.getParameter("latitude")));
