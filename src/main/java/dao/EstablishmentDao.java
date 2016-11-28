@@ -72,7 +72,7 @@ public class EstablishmentDao {
 			
 			List<Establishment> establishments = new ArrayList<Establishment>();
 			Connection connection = new ConnectionFactory().getConnection();
-	    	PreparedStatement stmt = connection.prepareStatement("select * from establishment");
+			PreparedStatement stmt = connection.prepareStatement("select * from establishment");
 			ResultSet rs = stmt.executeQuery();
 
 			while(rs.next()) {
@@ -109,9 +109,9 @@ public class EstablishmentDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-	    	PreparedStatement stmt = connection.prepareStatement("select * from establishment where id=?");
-	    	stmt.setLong(1,id);
-	    	ResultSet rs = stmt.executeQuery();
+			PreparedStatement stmt = connection.prepareStatement("select * from establishment where id=?");
+			stmt.setLong(1,id);
+			ResultSet rs = stmt.executeQuery();
 
 			if(!rs.next())
 				return null;
@@ -146,8 +146,8 @@ public class EstablishmentDao {
 			
 			List<Address> addresses = new ArrayList<Address>();
 			Connection connection = new ConnectionFactory().getConnection();
-	    	PreparedStatement stmt = connection.prepareStatement("select * from address where establishment_id is not null");
-	    	ResultSet rs = stmt.executeQuery();
+			PreparedStatement stmt = connection.prepareStatement("select * from address where establishment_id is not null");
+			ResultSet rs = stmt.executeQuery();
 
 			while(rs.next()) {
 
