@@ -36,6 +36,7 @@ public class GetEstablishmentsServlet extends HttpServlet{
 			
 			for(Address address : establishment.getAddress()){
 				out.println("<br/>Address<br/>");
+				out.print("Id:"+address.getId()+";");
 				out.print("EstablishmentId:"+address.getEstablishmentId()+";");
 				out.print("ZipCode:"+address.getZipCode()+";");
 				out.print("Street:"+address.getStreet()+";");
