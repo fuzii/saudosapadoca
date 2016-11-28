@@ -27,9 +27,10 @@ public class EstablishmentDao {
 			stmt.setDate(4, new Date(Calendar.getInstance().getTimeInMillis()));
 			stmt.execute();
 			
-			for(Address address: establishment.getAddress()){
-				AddressDao.Insert(address);
-			}
+			if(establishment.getAddress() != null)
+				for(Address address: establishment.getAddress())
+					AddressDao.Insert(address);
+			
 			
 			stmt.close();
 			connection.close();
