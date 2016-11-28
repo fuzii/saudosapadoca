@@ -28,15 +28,13 @@ public class GetEstablishmentsServlet extends HttpServlet{
 		
 		for(Establishment establishment : establishments){
 			
-			out.println("<br/>Establishment<br/>");
-			out.print("Id:"+establishment.getId()+";");
+			out.print("<br/><br/>EstablishmentId:"+establishment.getId()+";");
 			out.print("Name:"+establishment.getName()+";");
 			out.print("Alias:"+establishment.getAlias()+";");
 			out.print("RegisterNumber:"+establishment.getRegisterNumber()+";");
 			
 			for(Address address : establishment.getAddress()){
-				out.println("<br/>Address<br/>");
-				out.print("Id:"+address.getId()+";");
+				out.print("<br/>AddressId:"+address.getId()+";");
 				out.print("EstablishmentId:"+address.getEstablishmentId()+";");
 				out.print("ZipCode:"+address.getZipCode()+";");
 				out.print("Street:"+address.getStreet()+";");
@@ -46,10 +44,9 @@ public class GetEstablishmentsServlet extends HttpServlet{
 				out.print("Premise:"+address.getPremise()+";");
 				out.print("Country:"+address.getCountry()+";");
 				out.print("Latitude:"+address.getLatitude()+";");
-				out.print("Longitude:"+address.getLongitude()+";<br/>");
+				out.print("Longitude:"+address.getLongitude()+";");
 				out.print("Radius:"+address.getRadius()+";");
 			}
-			out.println("<br/>");
 			
 		}
 		out.println("</body>");
