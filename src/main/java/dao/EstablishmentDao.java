@@ -147,7 +147,6 @@ public class EstablishmentDao {
 		}
 		
 	}
-
 	
 	public static List<Address> GetEstablishmentsAddressesByLocation(Address address) {
 	     
@@ -155,7 +154,8 @@ public class EstablishmentDao {
 			
 			List<Address> addresses = new ArrayList<Address>();
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("select * from address where establishment_id is not null");
+			PreparedStatement stmt = connection.prepareStatement("select * from address where establishment_id is not null and id<>?");
+			stmt.setLong(1,address.getId());
 			ResultSet rs = stmt.executeQuery();
 
 			while(rs.next()) {
