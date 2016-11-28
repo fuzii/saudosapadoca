@@ -19,7 +19,7 @@ public class AccountDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO account(name,email,created_on) values (?,?,?)");
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO account(name,email,created_on) values (?,?,?)",Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setString(1,account.getName());
 			stmt.setString(2,account.getEmail());
