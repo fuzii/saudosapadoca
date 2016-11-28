@@ -35,30 +35,30 @@ public class GetEstablishmentByLocationServlet extends HttpServlet{
 			
 			for(Address a : addresses){
 				
-				//Establishment establishment = EstablishmentDao.GetEstablishmentsById(a.getEstablishmentId());
+				Establishment establishment = EstablishmentDao.GetEstablishmentsById(a.getEstablishmentId());
 				
 				JSONObject json = new JSONObject();
 				
-				/* establishment
-				json.put("id",establishment.getId());
-				json.put("name",establishment.getName());
-				json.put("alias",establishment.getAlias());
-				json.put("registerNumber",establishment.getRegisterNumber());
-				*/
+				// establishment
+				json.put("establishmentId",establishment.getId());
+				json.put("establishmentName",establishment.getName());
+				json.put("establishmentAlias",establishment.getAlias());
+				json.put("establishmentRegisterNumber",establishment.getRegisterNumber());
+				
 				// address
-				json.put("id",a.getId());
-				json.put("accountId",a.getAccountId());
-				json.put("establishmentId",a.getEstablishmentId());
-				json.put("zipCode",a.getZipCode());
-				json.put("street",a.getStreet());
-				json.put("city",a.getCity());
-				json.put("state",a.getState());
-				json.put("number;",a.getNumber()); 
-				json.put("premise",a.getPremise());
-				json.put("country",a.getCountry());
-				json.put("latitude",a.getLatitude());
-				json.put("longitude",a.getLongitude());
-				json.put("radius",a.getRadius());
+				json.put("addressId",a.getId());
+				json.put("addressAccountId",a.getAccountId());
+				json.put("addressEstablishmentId",a.getEstablishmentId());
+				json.put("addressZipCode",a.getZipCode());
+				json.put("addressStreet",a.getStreet());
+				json.put("addressCity",a.getCity());
+				json.put("addressState",a.getState());
+				json.put("addressNumber;",a.getNumber()); 
+				json.put("addressPremise",a.getPremise());
+				json.put("addressCountry",a.getCountry());
+				json.put("addressLatitude",a.getLatitude());
+				json.put("addressLongitude",a.getLongitude());
+				json.put("addressRadius",a.getRadius());
 				out.println(json.toString());
 				
 			}
