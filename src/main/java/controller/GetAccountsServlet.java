@@ -36,6 +36,7 @@ public class GetAccountsServlet extends HttpServlet{
 			
 			for(Address address : account.getAddress()){
 				out.println("<br/>Address<br/>");
+				out.print("Id:"+address.getId()+";");
 				out.print("AccountId:"+address.getAccountId()+";");
 				out.print("ZipCode:"+address.getZipCode()+";");
 				out.print("Street:"+address.getStreet()+";");
