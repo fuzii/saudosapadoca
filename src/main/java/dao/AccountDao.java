@@ -19,24 +19,25 @@ public class AccountDao {
 		
 		try {
 			
+			// insert account
 			Connection connection = new ConnectionFactory().getConnection();
 			PreparedStatement stmt = connection.prepareStatement("INSERT INTO account(name,email,created_on) values (?,?,?)",Statement.RETURN_GENERATED_KEYS);
-
 			stmt.setString(1,account.getName());
 			stmt.setString(2,account.getEmail());
 			stmt.setDate(3, new Date(Calendar.getInstance().getTimeInMillis()));
 			stmt.execute();
-			
+
+			// get generated account id
 			ResultSet rs = stmt.getGeneratedKeys();
 			if(rs.next())
 			    account.setId(rs.getLong(1));
 	
+			// insert address
 			for(Address address: account.getAddress()){
 				address.setAccountId(account.getId());
 				AddressDao.InsertByAccount(address);
 			}
 				
-			
 			rs.close();
 			stmt.close();
 			connection.close();
