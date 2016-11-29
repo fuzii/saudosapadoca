@@ -42,21 +42,19 @@ public class AddAccountServlet extends HttpServlet{
 		account.setName(request.getParameter("name"));
 		account.setEmail(request.getParameter("email"));
 		account.setAddress(addresses);
-		AccountDao.Insert(account);
+		account = AccountDao.Insert(account);
 
 		// send confirmation mail
-		String from = "contato@saudosapadoca.com.br";
-		String subject = "[Saudosa Padoca] - Confirmacao de cadastro";
-		String content = "Obrigado por se cadastrar no...";
-		String to = account.getEmail();
-		SendGridEmail.Send(from, to, subject, content);
+		if(System.getenv("SENDGRID_ACTIVE")=="On"){
+			String from = System.getenv("SENDGRID_FROM");
+			String subject = "[Saudosa Padoca] - Confirmacao de cadastro";
+			String content = "Obrigado por se cadastrar no...";
+			String to = account.getEmail();
+			SendGridEmail.Send(from, to, subject, content);
+		}
 
-		// response		
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("Conta " + account.getName() + " adicionada com sucesso");
-		out.println("</body>");
-		out.println("</html>");
+		// response
+		response.sendRedirect("getEstablishmentByLocation?id="+address.getId());
+		
 	}
 }

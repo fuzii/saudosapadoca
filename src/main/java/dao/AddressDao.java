@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -43,12 +44,12 @@ public class AddressDao {
 		
 	}
 
-	public static void InsertByAccount(Address address) {	
+	public static Address InsertByAccount(Address address) {	
 		
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude,created_on) values (?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude,created_on) values (?,?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setLong(1,address.getAccountId());
 			stmt.setString(2,address.getZipCode());
@@ -62,9 +63,17 @@ public class AddressDao {
 			stmt.setDouble(10,address.getLongitude());
 			stmt.setDate(11, new Date(Calendar.getInstance().getTimeInMillis()));
 			stmt.execute();
-			
+
+			// get generated address id
+			ResultSet rs = stmt.getGeneratedKeys();
+			if(rs.next())
+			    address.setId(rs.getLong(1));
+
+			rs.close();
 			stmt.close();
 			connection.close();
+			
+			return address;
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

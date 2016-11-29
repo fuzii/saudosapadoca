@@ -15,7 +15,7 @@ import model.Address;
 
 public class AccountDao {
 	
-	public static void Insert(Account account) {	
+	public static Account Insert(Account account) {	
 		
 		try {
 			
@@ -35,12 +35,14 @@ public class AccountDao {
 			// insert address
 			for(Address address: account.getAddress()){
 				address.setAccountId(account.getId());
-				AddressDao.InsertByAccount(address);
+				address = AddressDao.InsertByAccount(address);
 			}
 				
 			rs.close();
 			stmt.close();
 			connection.close();
+			
+			return account;
 						
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
