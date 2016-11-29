@@ -10,6 +10,8 @@ import java.nio.charset.Charset;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import model.Address;
+
 public class Foursquare{
 	
     private static String readAll(Reader rd) throws IOException {
@@ -21,8 +23,11 @@ public class Foursquare{
         return sb.toString();
     }
     
-	public static JSONObject GetFoursquareJSON (String latitude, String longitude) throws IOException {
+	public static JSONObject GetFoursquareJSON (Address address) throws IOException {
 
+		String latitude = String.valueOf(address.getLatitude());
+		String longitude = String.valueOf(address.getLongitude());
+		
     	String url = "https://api.foursquare.com/v2/venues/search?client_id=" + System.getenv("FOURSQUARE_CLIENT_ID") + "&client_secret=" + System.getenv("FOURSQUARE_CLIENT_SECRET") + "&ll=" + latitude + "," + longitude + "&radius=100&section=food&query=padaria&v=20161123";
     	InputStream is = null;
     	JSONObject json = null;
