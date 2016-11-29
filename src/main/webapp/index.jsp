@@ -46,6 +46,10 @@
     <br/>
      <form action="getEstablishments">
      <input type="submit" value="getEstablishments"/>
+    </form>
+    <br/>
+     <form action="Teste">
+     <input type="submit" value="Teste"/>
     </form>    
 </body>
 </html>
