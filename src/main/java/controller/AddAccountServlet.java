@@ -54,7 +54,7 @@ public class AddAccountServlet extends HttpServlet{
 		}
 
 		// response
-		response.addHeader("Access-Control-Allow-Origin", "*");
+		//response.addHeader("Access-Control-Allow-Origin", "*");
 		response.sendRedirect("getEstablishmentByLocation?id="+address.getId());
 		
 	}
