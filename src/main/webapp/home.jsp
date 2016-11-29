@@ -1,6 +1,6 @@
-<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<!-- %@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %-->
 
-<link href="../../Content/Card.css" type="text/css" rel="Stylesheet" />
+<!-- link href="../../Content/Card.css" type="text/css" rel="Stylesheet" /-->
 <style type="text/css">
 	#map
 	{
