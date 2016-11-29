@@ -55,6 +55,9 @@ public class AddAccountServlet extends HttpServlet{
 
 		// response
 		response.addHeader("Access-Control-Allow-Origin","*");
+		response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
+	    	response.addHeader("Access-Control-Max-Age","3600");
+	    	response.addHeader("Access-Control-Allow-Headers","x-requested-with");
 		response.sendRedirect("getEstablishmentByLocation?id="+address.getId());
 		
 	}
