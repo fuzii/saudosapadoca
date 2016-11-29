@@ -28,7 +28,7 @@ public class Foursquare{
 		String latitude = String.valueOf(address.getLatitude());
 		String longitude = String.valueOf(address.getLongitude());
 		
-    	String url = "https://api.foursquare.com/v2/venues/search?client_id=" + System.getenv("FOURSQUARE_CLIENT_ID") + "&client_secret=" + System.getenv("FOURSQUARE_CLIENT_SECRET") + "&ll=" + latitude + "," + longitude + "&radius=100&section=food&query=padaria&v=20161123";
+    	String url = "https://api.foursquare.com/v2/venues/search?client_id=" + System.getenv("FOURSQUARE_CLIENT_ID") + "&client_secret=" + System.getenv("FOURSQUARE_CLIENT_SECRET") + "&ll=" + latitude + "," + longitude + "&radius=" + System.getenv("FOURSQUARE_RADIUS") + "&section=food&query=padaria&v=20161123";
     	InputStream is = null;
     	JSONObject json = null;
     	
