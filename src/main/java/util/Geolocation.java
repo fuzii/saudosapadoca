@@ -4,7 +4,10 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import dao.AccountDao;
 import dao.EstablishmentDao;
+import model.Account;
 import model.Address;
 import model.Establishment;
 
@@ -30,24 +33,24 @@ public class Geolocation {
 		return (deg * Math.PI / 180.0);
 	}
 	
-	public static JSONObject GetEstablishmentsJSON (Address address){
+	public static JSONObject GetEstablishmentsJSON (Address accountAddress){
 		
-		List<Address> addresses2 = EstablishmentDao.GetEstablishmentsAddressesByLocation(address);
+		List<Address> addresses = EstablishmentDao.GetEstablishmentsAddressesByLocation(accountAddress);
 		JSONArray jsonArrayEstablishment = new JSONArray();
 		JSONObject jsonMain = null;
 		
 		try {
 
-			for(Address a : addresses2){
+			for(Address a : addresses){
 
 				Establishment establishment = EstablishmentDao.GetEstablishmentsById(a.getEstablishmentId());
-
+				JSONObject jsonEstablishment = new JSONObject();
+				
 				// establishment
-				JSONObject jsonProfile = new JSONObject();
-				jsonProfile.put("Id",establishment.getId());
-				jsonProfile.put("Name",establishment.getName());
-				jsonProfile.put("Alias",establishment.getAlias());
-				jsonProfile.put("RegisterNumber",establishment.getRegisterNumber());
+				jsonEstablishment.put("Id",establishment.getId());
+				jsonEstablishment.put("Name",establishment.getName());
+				jsonEstablishment.put("Alias",establishment.getAlias());
+				jsonEstablishment.put("RegisterNumber",establishment.getRegisterNumber());
 
 				// address
 				JSONObject jsonAddress = new JSONObject();
@@ -65,10 +68,7 @@ public class Geolocation {
 				jsonAddress.put("Longitude",a.getLongitude());
 				jsonAddress.put("Radius",a.getRadius());
 
-				JSONObject jsonEstablishment = new JSONObject();
 				jsonEstablishment.put("address", jsonAddress);
-				jsonEstablishment.put("profile", jsonProfile);
-
 				jsonArrayEstablishment.put(jsonEstablishment);
 
 			}
@@ -78,6 +78,60 @@ public class Geolocation {
 
 			jsonMain = new JSONObject();
 			jsonMain.put("establishments", jsonEstablishments);
+
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return jsonMain;
+
+	}
+
+	public static JSONObject GetAccountsJSON (Address establishmentAddress){
+		
+		List<Address> addresses = AccountDao.GetAccountsAddressesByLocation(establishmentAddress);
+		JSONArray jsonArrayAccount = new JSONArray();
+		JSONObject jsonMain = null;
+		
+		try {
+
+			for(Address a : addresses){
+
+				Account account = AccountDao.GetAccountsById(a.getAccountId());
+				JSONObject jsonAccount = new JSONObject();
+				
+				// establishment
+				jsonAccount.put("Id",account.getId());
+				jsonAccount.put("Name",account.getName());
+				jsonAccount.put("Email",account.getEmail());				
+				
+				// address
+				JSONObject jsonAddress = new JSONObject();
+				jsonAddress.put("Id",a.getId());
+				jsonAddress.put("AccountId",a.getAccountId());
+				jsonAddress.put("EstablishmentId",a.getEstablishmentId());
+				jsonAddress.put("ZipCode",a.getZipCode());
+				jsonAddress.put("Street",a.getStreet());
+				jsonAddress.put("City",a.getCity());
+				jsonAddress.put("State",a.getState());
+				jsonAddress.put("Number;",a.getNumber()); 
+				jsonAddress.put("Premise",a.getPremise());
+				jsonAddress.put("Country",a.getCountry());
+				jsonAddress.put("Latitude",a.getLatitude());
+				jsonAddress.put("Longitude",a.getLongitude());
+				jsonAddress.put("Radius",a.getRadius());
+				
+				jsonAccount.put("address", jsonAddress);
+				jsonArrayAccount.put(jsonAccount);
+
+			}
+
+			JSONObject jsonAccounts = new JSONObject();
+			jsonAccounts.put("account", jsonArrayAccount);
+
+			jsonMain = new JSONObject();
+			jsonMain.put("accounts", jsonAccounts);
 
 
 		} catch (JSONException e) {
