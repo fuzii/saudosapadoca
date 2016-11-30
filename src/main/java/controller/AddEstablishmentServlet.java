@@ -9,14 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import dao.EstablishmentDao;
 import model.Address;
 import model.Establishment;
-import util.Foursquare;
 import util.Geolocation;
 
 @WebServlet("/addEstablishment")
