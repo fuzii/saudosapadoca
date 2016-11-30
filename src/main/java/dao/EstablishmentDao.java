@@ -156,8 +156,7 @@ public class EstablishmentDao {
 			
 			List<Address> addresses = new ArrayList<Address>();
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("select * from address where establishment_id IS NOT NULL AND id <> ?");
-			stmt.setLong(1,address.getId());
+			PreparedStatement stmt = connection.prepareStatement("select * from address where establishment_id IS NOT NULL");
 			ResultSet rs = stmt.executeQuery();
 
 			while(rs.next()) {
