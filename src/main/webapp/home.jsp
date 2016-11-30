@@ -77,14 +77,14 @@
 			<form id="form_register" action="https://saudosapadoca.herokuapp.com/addAccount">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h2>Complete seu endereÃ§o!</h2>
+					<h2>Complete seu endereço!</h2>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px">
 					<div class="form-group">
 						<input type="text" class="form-control" id="uf" placeholder="UF" disabled style="width:25%; display:inline"/>
 						<input type="text" class="form-control" id="cidade" placeholder="Cidade" disabled style="width:74%; display:inline" />
 						<input type="text" class="form-control" id="logradouro" placeholder="Rua, Avenida, etc" disabled style="width:74%; display:inline" />
-						<input type="text" class="form-control" id="numero" placeholder="NÂº" style="width:25%; display:inline" />
+						<input type="text" class="form-control" id="numero" placeholder="Nº" style="width:25%; display:inline" />
 					</div>
 					<div class="form-group">
 						<label for="name">

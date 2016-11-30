@@ -23,7 +23,7 @@
                         <label class="checkbox-inline"><input type="checkbox" value="" onclick="selected(this);" />Segunda</label>
                         <input type="text" class="form-control" placeholder="Quantidade" disabled />
                         <div class="btn-group" style="width:100%">
-                            <button id="Horario_Segunda" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>HorÃ¡rio<span class="caret"></span></button>
+                            <button id="Horario_Segunda" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li>08:00</li>
                                 <li>09:00</li>
@@ -31,10 +31,10 @@
                         </div>
                     </div>
                     <div class="card-day">
-                        <label class="checkbox-inline"><input type="checkbox" value="" onclick="selected(this);" />TerÃ§a</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="" onclick="selected(this);" />Terça</label>
                         <input type="text" class="form-control" placeholder="Quantidade" disabled />
                         <div class="btn-group" style="width:100%">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>HorÃ¡rio<span class="caret"></span></button>
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li>08:00</li>
                                 <li>08:00</li>
@@ -45,7 +45,7 @@
                         <label class="checkbox-inline"><input type="checkbox" value="" onclick="selected(this);" />Quarta</label>
                         <input type="text" class="form-control" placeholder="Quantidade" disabled />
                         <div class="btn-group" style="width:100%">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>HorÃ¡rio<span class="caret"></span></button>
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li>08:00</li>
                                 <li>08:00</li>
@@ -56,7 +56,7 @@
                         <label class="checkbox-inline"><input type="checkbox" value="" onclick="selected(this);" />Quinta</label>
                         <input type="text" class="form-control" placeholder="Quantidade" disabled />
                         <div class="btn-group" style="width:100%">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>HorÃ¡rio<span class="caret"></span></button>
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li>08:00</li>
                                 <li>08:00</li>
@@ -67,7 +67,7 @@
                         <label class="checkbox-inline"><input type="checkbox" value="" onclick="selected(this);" />Sexta</label>
                         <input type="text" class="form-control" placeholder="Quantidade" disabled />
                         <div class="btn-group" style="width:100%">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>HorÃ¡rio<span class="caret"></span></button>
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li>08:00</li>
                                 <li>08:00</li>
@@ -75,10 +75,10 @@
                         </div>
                     </div>
                     <div class="card-day">
-                        <label class="checkbox-inline"><input type="checkbox" value="" onclick="selected(this);" />SÃ¡bado</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="" onclick="selected(this);" />Sábado</label>
                         <input type="text" class="form-control" placeholder="Quantidade" disabled />
                         <div class="btn-group" style="width:100%">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>HorÃ¡rio<span class="caret"></span></button>
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li>08:00</li>
                                 <li>08:00</li>
@@ -89,7 +89,7 @@
                         <label class="checkbox-inline"><input type="checkbox" value="" onclick="selected(this);" />Domingo</label>
                         <input type="text" class="form-control" placeholder="Quantidade" disabled />
                         <div class="btn-group" style="width:100%">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>HorÃ¡rio<span class="caret"></span></button>
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li>08:00</li>
                                 <li>08:00</li>
@@ -103,7 +103,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h4>PÃ£o</h4>
+                                <h4>Pão</h4>
                             </div>
                             <div class="col-sm-4">
                                 Frequencia
@@ -112,12 +112,12 @@
                         
                     </li>
                     <li class="list-group-item">
-                        <h4>PÃ£o 2</h4>
+                        <h4>Pão 2</h4>
                         <div>
                         </div>
                     </li>
                     <li class="list-group-item">
-                        <h4>PÃ£o 3</h4>
+                        <h4>Pão 3</h4>
                         <div>
                         </div>
                     </li>
