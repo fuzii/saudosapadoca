@@ -9,9 +9,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import dao.EstablishmentDao;
 import model.Address;
 import model.Establishment;
+import util.Foursquare;
+import util.Geolocation;
 
 @WebServlet("/addEstablishment")
 public class AddEstablishmentServlet extends HttpServlet{
@@ -41,16 +47,20 @@ public class AddEstablishmentServlet extends HttpServlet{
 		establishment.setAlias(request.getParameter("alias"));
 		establishment.setRegisterNumber(Long.parseLong(request.getParameter("registerNumber")));
 		establishment.setAddress(addresses);
-		EstablishmentDao.Insert(establishment);
+		establishment = EstablishmentDao.Insert(establishment);
 		
 		// response
+		response.addHeader("Access-Control-Allow-Origin","*");
+		response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
+	    response.addHeader("Access-Control-Max-Age","3600");
+	    response.addHeader("Access-Control-Allow-Headers","x-requested-with");
+	    response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+
 		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("Empresa adicionada com sucesso");
-		out.println("</body>");
-		out.println("</html>");
+		out.print(Geolocation.GetAccountsJSON(address));
 		
+
 	}
 	
 }
