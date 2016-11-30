@@ -15,7 +15,7 @@ import model.Address;
 
 public class EstablishmentDao {
 	
-	public static void Insert(Establishment establishment) {	
+	public static Establishment Insert(Establishment establishment) {	
 		
 		try {
 			
@@ -42,6 +42,8 @@ public class EstablishmentDao {
 			rs.close();
 			stmt.close();
 			connection.close();
+			
+			return establishment;
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
