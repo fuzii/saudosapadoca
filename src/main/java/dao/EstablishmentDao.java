@@ -36,7 +36,7 @@ public class EstablishmentDao {
 			// insert address
 			for(Address address: establishment.getAddress()){
 				address.setEstablishmentId(establishment.getId());
-				AddressDao.InsertByEstablishment(address);
+				address = AddressDao.InsertByEstablishment(address);
 			}
 			
 			rs.close();
