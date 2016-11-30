@@ -1,7 +1,7 @@
 <html>
 <body>
 	teste repositorio
-	<form action="addAccount">
+	<form action="addAccount"> 
 		name: <input type="text" name="name" /><br />
 		email: <input type="text" name="email" /><br />
 		zipCode: <input type="text" name="zipCode"/><br />
