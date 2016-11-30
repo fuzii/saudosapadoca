@@ -35,9 +35,10 @@
     </form>	
     <br/>
     <br/>
-     <form action="getEstablishmentByLocation">
-		addressId: <input type="text" name="id"/><br />
-      <input type="submit" value="getEstablishmentByLocation" />
+     <form action="getFoursquareServlet">
+		latitude: <input type="text" name="latitude"/><br />
+      	longitude: <input type="text" name="longitude"/><br />
+      <input type="submit" value="Foursquare" />
     </form>
     <br/>
     <br/>
