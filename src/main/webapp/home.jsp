@@ -119,7 +119,6 @@
 	
 		function searchCEP(address) {
 			var locationReturn = null;
-			
 			$.each(markers, function (i, marker) {
 				marker.setMap(null);
 			});
@@ -191,23 +190,20 @@
 				      '<h3 id="firstHeading" class="firstHeading">' + venue.name + '</h3>'+
 				      '<div id="bodyContent">'+
 				      '<p>' + venue.location.address + '</p>'+
-				      '<p><b><a href= "#" onclick="$(&quothtml,body&quot).animate({scrollTop: $(&quot#' + venue.id + '&quot).offset().top}, &quotslow&quot);">Selecione</a></b>'
+				      '<b><a href="#" onclick="$(&quot html,body&quot).animate({scrollTop: $(&quot#' + venue.id + '&quot).offset().top}, &quot slow&quot);">Selecione</a></b>'
 				      '</div>'+
 				      '</div>';
 					var infoWindow = new google.maps.InfoWindow({
 							content: contentString
 						});
 					
+					
 					mrk.addListener('click', function (e) {
 						infoWindow.open(map, mrk);
-						//$('html,body').animate({
-						//	scrollTop: $('#' + venue.id).offset().top
-						//}, 'slow');
-	
 					});
 					infoWindows.push(infoWindow);
 					markers.push(mrk);
-					$('#row_' + rowCount).append(createCard(venue.name, venue.location.address));
+					$('#row_' + rowCount).append(createCard(venue.id, venue.name, venue.location.address));
 					if((i + 1) % 2 == 0){
 						rowCount++;
 						$('#listresult').append('<div id="row_' + rowCount + '" class="row"></div>');
@@ -216,8 +212,8 @@
 			});
 		}
 	
-		function createCard(title, description) {
-			return '<div class="col-sm-6"><div class="card"><div class="card-image"><img src="./Images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
+		function createCard(id, title, description) {
+			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./Images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
 		}
 	
 		function register() {
@@ -253,8 +249,4 @@
 		//        });
 	</script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNr74pDGCK8gERm_i_o0TsVtiZIrtjj7Y&callback=initMap"></script>
-	<div id="main">
-            <div id="footer">
-            </div>
-        </div>
 </body>

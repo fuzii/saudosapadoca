@@ -1,32 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <head>
-    <style type="text/css">
-        ul#menu
-        {
-            /*border-bottom: 1px #5C87B2 solid;
-            padding: 0 0 2px;
-            position: relative;
-            margin: 0;*/
-            text-align: right;
-        }
-
-        ul#menu li
-        {
-            display: inline;
-        }
-        .page
-        {
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #menucontainer
-        {
-            margin-top:40px;
-            padding-right: 30px
-        }
-        
-    </style>
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.min.js" type="text/jscript"></script>
