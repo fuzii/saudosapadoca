@@ -12,6 +12,7 @@ import java.util.List;
 
 import model.Account;
 import model.Address;
+import util.Geolocation;
 
 public class AccountDao {
 	
@@ -192,4 +193,59 @@ public class AccountDao {
 
 	}
 
+	public static List<Address> GetAccountsAddressesByLocation(Address address) {
+	     
+		try {
+			
+			List<Address> addresses = new ArrayList<Address>();
+			Connection connection = new ConnectionFactory().getConnection();
+			PreparedStatement stmt = connection.prepareStatement("select * from address where account_id IS NOT NULL");
+			ResultSet rs = stmt.executeQuery();
+
+			while(rs.next()) {
+
+				int radius = address.getRadius();
+				int distance = Geolocation.Distance(address.getLatitude(), address.getLongitude(), rs.getDouble("latitude"), rs.getDouble("longitude"));
+				
+				if(radius >= distance){
+					
+					// Add address
+					Address a = new Address();
+					a.setId(rs.getLong("id"));
+					a.setAccountId(rs.getLong("account_id"));
+					a.setZipCode(rs.getString("zipCode"));
+					a.setStreet(rs.getString("street"));
+					a.setCity(rs.getString("city"));
+					a.setState(rs.getString("state"));
+					a.setNumber(rs.getInt("number"));
+					a.setRadius(rs.getInt("radius"));
+					a.setPremise(rs.getString("premise"));
+					a.setCountry(rs.getString("country"));
+					a.setLatitude(rs.getDouble("latitude"));
+					a.setLongitude(rs.getDouble("longitude"));
+					a.setEstablishmentId(rs.getLong("establishment_id"));
+									
+					// created on
+					Calendar data = Calendar.getInstance();
+					data.setTime(rs.getDate("created_on"));
+					a.setCreated_on(data);
+
+					addresses.add(a);
+					
+				}
+				
+			}
+			
+			rs.close();
+			stmt.close();
+			connection.close();
+			return addresses;
+	
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+	
+	
 }
