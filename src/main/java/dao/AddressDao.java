@@ -81,7 +81,7 @@ public class AddressDao {
 		
 	}
 	
-	public static void InsertByEstablishment(Address address) {	
+	public static Address InsertByEstablishment(Address address) {	
 		
 		try {
 			
@@ -102,8 +102,16 @@ public class AddressDao {
 			stmt.setInt(12,address.getRadius());
 			stmt.execute();
 			
+			// get generated address id
+			ResultSet rs = stmt.getGeneratedKeys();
+			if(rs.next())
+				address.setId(rs.getLong(1));
+
+			rs.close();
 			stmt.close();
 			connection.close();
+			
+			return address;
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
