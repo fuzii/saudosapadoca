@@ -1,4 +1,4 @@
-﻿.card-details {
+.card-details {
   margin-top: 10px;
   box-sizing: border-box;
   border-radius: 2px;
@@ -55,7 +55,7 @@
     transition: background-color 0.2s ease-in-out;
     min-width: 120px;
     margin: 5px;
-    width:13%;
+    width:20%;
     padding: 10px;
 }
 .card-day-container .card-day-selected
@@ -71,7 +71,7 @@
     transition: background-color 0.2s ease-in-out;
     min-width: 120px;
     margin: 5px;
-    width:13%;
+    width:20%;
     padding: 10px;
 }
 .card-day-container .card-day-selected li

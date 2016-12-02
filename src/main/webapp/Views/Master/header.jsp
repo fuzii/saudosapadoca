@@ -27,8 +27,8 @@
 <div id="header">
     <div id="menucontainer">
         <ul id="menu">              
-            <li><a href="../home.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="../home.jsp" class="btn btn-info"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+            <li><a href="../signup.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> Cadastrar</a></li>
+            <li><a href="../login.jsp" class="btn btn-info"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
         </ul>
     </div>
 </div>
