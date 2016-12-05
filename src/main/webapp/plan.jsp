@@ -1,7 +1,7 @@
-<%@ include file="./Views/Master/master.jsp" %>
-<%@ include file="./Views/Master/header.jsp" %>
+<!-- <%@ include file="./Views/Master/master.jsp" %> -->
+<!-- <%@ include file="./Views/Master/header.jsp" %> -->
 <link href="./CSS/card-details.css" type="text/css" rel="Stylesheet" />
-<div class="container">
+<!-- <div class="container"> -->
         <div class="col-sm-9">
             <div class="card-details">
                 <div class="card-details-image">
@@ -152,7 +152,7 @@
             		</div>
             	</div>
             </div>
-</div>
+<!-- </div> -->
 <script type="text/javascript">
     function selected(ctl) {
         if ($(ctl).is(':checked')) {
