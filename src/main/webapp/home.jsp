@@ -1,109 +1,116 @@
-<%@ include file="./Views/Master/master.jsp" %>
+<%@ include file="./views/master/master.jsp" %>
 <body>
-	<%@ include file="./Views/Master/header.jsp" %>
-	<link href="./CSS/Card.css" type="text/css" rel="Stylesheet" >
-    <style type="text/css">
-		#map
-		{
-			margin: auto;
-			max-width: 90%;
-			min-width: 400px;
-			min-height: 500px;
-			margin-left: 50px;
-			margin-right: 50px;
-		}
-		#listresult
-		{
-			max-width: 100%;
-		}
-		#listresult li
-		{
-			margin-bottom: 20px;
-		}
-	</style>
-	<form onsubmit="$('#myModal').modal('show'); searchCEP(); return false;">
-		<div class="form-inline" style="text-align: center; padding-bottom: 15px">
-			<label for="CEP">
-				CEP:</label>
-			<input type="text" class="form-control" id="CEP" placeholder="Enter CEP" maxlength="9" />
-			<button type="submit" title="Pesquisar" id="btn_pesquisar" class="btn" data-toggle="modal"
-				data-target="#myModal">
-				Pesquisar</button>
-			<%--<button type="button" title="Pesquisar" id="btn_pesquisar" class="btn" onclick="searchCEP();">
-					Pesquisar</button>--%>
+	<%@ include file="./views/master/topmenu.jsp" %>
+	<div class="container">
+		<link href="./css/card.css" type="text/css" rel="Stylesheet" >
+	    <style type="text/css">
+			#map
+			{
+				margin: auto;
+				max-width: 90%;
+				min-width: 300px;
+				min-height: 500px;
+				margin-left: 50px;
+				margin-right: 50px;
+			}
+			#listresult
+			{
+				max-width: 100%;
+			}
+			#listresult li
+			{
+				margin-bottom: 20px;
+			}
+		</style>
+		<form onsubmit="$('#myModal').modal('show'); searchCEP(); return false;">
+			<div class="form-inline" style="text-align: center; padding-bottom: 15px">
+				<label for="CEP">
+					CEP:</label>
+				<input type="text" class="form-control" id="CEP" placeholder="Enter CEP" maxlength="9" />
+				<button type="submit" title="Pesquisar" id="btn_pesquisar" class="btn" data-toggle="modal"
+					data-target="#myModal">
+					Pesquisar</button>
+				<%--<button type="button" title="Pesquisar" id="btn_pesquisar" class="btn" onclick="searchCEP();">
+						Pesquisar</button>--%>
+			</div>
+		</form>
+		<br />
+		<button class="btn btn-default" data-toggle="collapse" data-target="#mapContainer">Mapa</button>
+		<div id="mapContainer" class="collapse in">
+			<div id="map"></div>
 		</div>
-	</form>
-	<br />
-	<!-- nav tab bar -->
-	<button class="btn btn-default" data-toggle="collapse" data-target="#mapContainer">Mapa</button>
-	<div id="mapContainer" class="collapse in">
-		<div id="map"></div>
-	</div>
-	<ul class="nav nav-tabs nav-justified">
-		<li class="active"><a data-toggle="tab" href="#estab">Estabelecimentos</a></li>
-		<li><a data-toggle="tab" href="#prod">Produtos</a></li>
-	</ul>
-	<div class="tab-content">
-		<div id="estab" class="tab-pane fade in active">
-			<div id="listresult" class="container">
-				<%--<div class="row">
-					<div class="col-sm-4">
-						<div class="card">
-							<div class="card-image">
-								<img src="../../Content/Images/images.jpg" style="width:122px; height:122px" />
-							</div>
-							<div class="card-content">
-								<h3>TITLE</h3>
-								<p>TESTE de card</p>
-								<p>3 paragrafo</p>
-							</div>
-							<div class="card-action">
-								<a href="#">LINK</a>
-							</div>
+		<!-- nav tab bar -->
+		<div class="panel panel-default panel-fade">
+			<div class="panel-heading" style="padding-bottom: 0px;">
+				<ul class="panel-title nav nav-tabs nav-justified">
+					<li class="active"><a data-toggle="tab" href="#estab" style="border-bottom-style: none;">Estabelecimentos</a></li>
+					<li><a data-toggle="tab" href="#prod" style="border-bottom-style: none;">Produtos</a></li>
+				</ul>
+			</div>
+			<div class="panel-body">
+				<div class="tab-content">
+					<div id="estab" class="tab-pane fade in active">
+						<div id="listresult">
+							<%--<div class="row">
+								<div class="col-sm-4">
+									<div class="card">
+										<div class="card-image">
+											<img src="../../Content/Images/images.jpg" style="width:122px; height:122px" />
+										</div>
+										<div class="card-content">
+											<h3>TITLE</h3>
+											<p>TESTE de card</p>
+											<p>3 paragrafo</p>
+										</div>
+										<div class="card-action">
+											<a href="#">LINK</a>
+										</div>
+									</div>
+								</div>
+							</div>--%>
+							<div class="row" id="row_1"></div>
 						</div>
 					</div>
-				</div>--%>
-				<div class="row" id="row_1"></div>
+					<div id="prod" class="tab-pane fade">
+						PRODUTOS
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="prod" class="tab-pane fade">
-			PRODUTOS
-		</div>
-	</div>
-	
-	<!-- modal -->
-	<div class="modal fade" id="myModal" role="dialog" data-backdrop="static">
-		<div class="modal-dialog">
-			<form id="form_register" action="https://saudosapadoca.herokuapp.com/addAccount">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h2>Complete seu endereço!</h2>
-				</div>
-				<div class="modal-body" style="padding: 40px 50px">
-					<div class="form-group">
-						<input type="text" class="form-control" id="uf" placeholder="UF" disabled style="width:25%; display:inline"/>
-						<input type="text" class="form-control" id="cidade" placeholder="Cidade" disabled style="width:74%; display:inline" />
-						<input type="text" class="form-control" id="logradouro" placeholder="Rua, Avenida, etc" disabled style="width:74%; display:inline" />
-						<input type="text" class="form-control" id="numero" placeholder="Nº" style="width:25%; display:inline" />
+		<!-- modal -->
+		<div class="modal fade" id="myModal" role="dialog" data-backdrop="static">
+			<div class="modal-dialog">
+				<form id="form_register" action="https://saudosapadoca.herokuapp.com/addAccount">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h2>Complete seu endereço!</h2>
 					</div>
-					<div class="form-group">
-						<label for="name">
-							<span class="glyphicon glyphicon-user"></span> Nome</label>
-						<input type="text" class="form-control" id="name" placeholder="Nome" />
+					<div class="modal-body" style="padding: 40px 50px">
+						<div class="form-group">
+							<input type="text" class="form-control" id="uf" placeholder="UF" disabled style="width:25%; display:inline"/>
+							<input type="text" class="form-control" id="cidade" placeholder="Cidade" disabled style="width:74%; display:inline" />
+							<input type="text" class="form-control" id="logradouro" placeholder="Rua, Avenida, etc" disabled style="width:74%; display:inline" />
+							<input type="text" class="form-control" id="numero" placeholder="Nº" style="width:25%; display:inline" />
+						</div>
+						<div class="form-group">
+							<label for="name">
+								<span class="glyphicon glyphicon-user"></span> Nome</label>
+							<input type="text" class="form-control" id="name" placeholder="Nome" />
+						</div>
+						<div class="form-group">
+							<label for="email">
+								<span class="glyphicon glyphicon-envelope"></span> Email</label>
+							<input type="text" class="form-control" id="email" placeholder="Email" required />
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="email">
-							<span class="glyphicon glyphicon-envelope"></span> Email</label>
-						<input type="text" class="form-control" id="email" placeholder="Email" required />
+					<div class="modal-footer">
+						<%--<input type="submit" class="btn btn-success" data-dismiss="modal" value="Salvar"></input>--%>
+						<button type="button" class="btn" data-dismiss="modal" onclick="register();">
+							Pesquisar</button>
 					</div>
 				</div>
-				<div class="modal-footer">
-					<%--<input type="submit" class="btn btn-success" data-dismiss="modal" value="Salvar"></input>--%>
-					<button type="button" class="btn" data-dismiss="modal" onclick="register();">
-						Pesquisar</button>
-				</div>
+				</form>
 			</div>
-			</form>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -213,7 +220,7 @@
 		}
 	
 		function createCard(id, title, description) {
-			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./Images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
+			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
 		}
 	
 		function register() {

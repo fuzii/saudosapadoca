@@ -1,6 +1,6 @@
-<%@ include file="./Views/Master/master.jsp" %>
-<%@ include file="./Views/Master/header.jsp" %>
+<%@ include file="./views/master/master.jsp" %>
 <body>
+	<%@ include file="./views/master/topmenu.jsp" %>
 	<div class="container">
 		<div class="panel panel-default panel-fade">
 			<div class="panel-heading" style="padding-bottom: 0px;">
@@ -13,13 +13,13 @@
 			<div class="panel-body">
 				<div class="tab-content">
 					<div id="plan" class="tab-pane fade in active">
-						<%@ include file="./plan.jsp" %>
+						<%@ include file="./views/controls/plancontrol.jsp" %>
 					</div>
 					<div id="signup" class="tab-pane fade" style="margin-top: 20px">
-						<%@ include file="./Views/Controls/accountcontrol.jsp" %>
+						<%@ include file="./views/controls/accountcontrol.jsp" %>
 					</div>
 					<div id="orders" class="tab-pane fade" style="margin-top: 20px">
-						<%@ include file="./orders.jsp" %>
+						<%@ include file="./views/controls/orderscontrol.jsp" %>
 					</div>
 				</div>
 			</div>

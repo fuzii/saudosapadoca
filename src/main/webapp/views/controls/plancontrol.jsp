@@ -1,5 +1,3 @@
-<!-- <%@ include file="./Views/Master/master.jsp" %> -->
-<!-- <%@ include file="./Views/Master/header.jsp" %> -->
 <link href="./CSS/card-details.css" type="text/css" rel="Stylesheet" />
 <!-- <div class="container"> -->
         <div class="col-sm-9">
