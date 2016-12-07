@@ -1,4 +1,4 @@
-<%@ include file="./Views/Master/Master.jsp" %>
+<%@ include file="./views/master/master.jsp" %>
 <body>
 	<style type="text/css">
 		.form-login
@@ -27,7 +27,7 @@
 							Manter-me conectado</label>
 						</div>
 						<div class="form-group col-sm-6" style="margin-top: 10px">
-							<a href="#">Esqueci minha senha</a>
+							<a href="forgotpwd.jsp">Esqueci minha senha</a>
 						</div>
 					</form>
 				</div>

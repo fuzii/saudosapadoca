@@ -7,11 +7,11 @@
 			#map
 			{
 				margin: auto;
-				max-width: 90%;
-				min-width: 300px;
-				min-height: 500px;
-				margin-left: 50px;
-				margin-right: 50px;
+				max-width: 100%;
+				min-width: 200px;
+				min-height: 400px;
+				margin-top: 10px;
+				margin-bottom: 10px;
 			}
 			#listresult
 			{
@@ -21,21 +21,31 @@
 			{
 				margin-bottom: 20px;
 			}
+			@media screen and (max-width: 768px)
+			{
+				h1 
+				{
+					font-size: 1.5em;
+				}
+				#btn_pesquisar 
+				{
+					width: 100%;
+				}
+			}
 		</style>
 		<form onsubmit="$('#myModal').modal('show'); searchCEP(); return false;">
-			<div class="form-inline" style="text-align: center; padding-bottom: 15px">
-				<label for="CEP">
-					CEP:</label>
-				<input type="text" class="form-control" id="CEP" placeholder="Enter CEP" maxlength="9" />
-				<button type="submit" title="Pesquisar" id="btn_pesquisar" class="btn" data-toggle="modal"
-					data-target="#myModal">
-					Pesquisar</button>
-				<%--<button type="button" title="Pesquisar" id="btn_pesquisar" class="btn" onclick="searchCEP();">
-						Pesquisar</button>--%>
+			<div class="form-inline" style="text-align: center; padding-bottom: 15px; max-width: 70%; margin: auto">
+				<h1>Seu controle diário de padaria!</h1>
+				<div class="form-group">
+					<input type="text" class="form-control" id="CEP" placeholder="digite seu CEP" maxlength="9" />
+				</div>
+				<div class="form-group">
+					<button type="submit" title="Pesquisar" id="btn_pesquisar" class="btn" data-toggle="modal"
+						data-target="#myModal"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>
+				</div>
 			</div>
 		</form>
-		<br />
-		<button class="btn btn-default" data-toggle="collapse" data-target="#mapContainer">Mapa</button>
+		<button class="btn btn-default" data-toggle="collapse" value="exibir mapa" data-target="#mapContainer" style="margin-bottom: 5px"><span class="glyphicon glyphicon-map-marker"></span> Mapa</button>
 		<div id="mapContainer" class="collapse in">
 			<div id="map"></div>
 		</div>
@@ -50,24 +60,7 @@
 			<div class="panel-body">
 				<div class="tab-content">
 					<div id="estab" class="tab-pane fade in active">
-						<div id="listresult">
-							<%--<div class="row">
-								<div class="col-sm-4">
-									<div class="card">
-										<div class="card-image">
-											<img src="../../Content/Images/images.jpg" style="width:122px; height:122px" />
-										</div>
-										<div class="card-content">
-											<h3>TITLE</h3>
-											<p>TESTE de card</p>
-											<p>3 paragrafo</p>
-										</div>
-										<div class="card-action">
-											<a href="#">LINK</a>
-										</div>
-									</div>
-								</div>
-							</div>--%>
+						<div id="listresult">							
 							<div class="row" id="row_1"></div>
 						</div>
 					</div>
@@ -220,7 +213,8 @@
 		}
 	
 		function createCard(id, title, description) {
-			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
+			//return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
+			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p><span class="tag-price">10,00 R$/kg</span></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom e fer: 8:00 - 12:00</p></div></div></div>'
 		}
 	
 		function register() {

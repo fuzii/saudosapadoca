@@ -17,6 +17,7 @@
 					</div>
 					<div id="signup" class="tab-pane fade" style="margin-top: 20px">
 						<%@ include file="./views/controls/accountcontrol.jsp" %>
+						<%@ include file="./views/controls/accountaddresscontrol.jsp" %>
 					</div>
 					<div id="orders" class="tab-pane fade" style="margin-top: 20px">
 						<%@ include file="./views/controls/orderscontrol.jsp" %>

@@ -9,7 +9,7 @@
 .card-details .card-details-image {
   position: relative;
   float: left;
-  width: 40%;
+  width: 30%;
   overflow: hidden;
   display: inline;
 }
@@ -26,7 +26,7 @@
   background-clip: padding-box;
   box-sizing: border-box;
   display: inline-block;
-  width: 60%;
+  width: 70%;
 }
 .card-details .card-details-content p {
   margin: 0;
