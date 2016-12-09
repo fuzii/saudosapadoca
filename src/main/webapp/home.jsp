@@ -80,7 +80,7 @@
 		<!-- modal -->
 		<div class="modal fade" id="myModal" role="dialog" data-backdrop="static">
 			<div class="modal-dialog">
-				<form id="form_register" action="https://saudosapadoca.herokuapp.com/addAccount">
+				<form id="form_register" onsubmit="register(); return false;">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h2>Complete seu endereço!</h2>
@@ -91,6 +91,8 @@
 							<input type="text" class="form-control" id="cidade" placeholder="Cidade" disabled style="width:74%; display:inline" />
 							<input type="text" class="form-control" id="logradouro" placeholder="Rua, Avenida, etc" disabled style="width:74%; display:inline" />
 							<input type="text" class="form-control" id="numero" placeholder="Nº" style="width:25%; display:inline" />
+                                                        <input id="latitude" type="hidden" />
+                                                        <input id="longitude" type="hidden" />
 						</div>
 						<div class="form-group">
 							<label for="name">
@@ -105,8 +107,8 @@
 					</div>
 					<div class="modal-footer">
 						<%--<input type="submit" class="btn btn-success" data-dismiss="modal" value="Salvar"></input>--%>
-						<button type="button" class="btn" data-dismiss="modal" onclick="register();">
-							Pesquisar</button>
+						<button type="submit" class="btn" data-dismiss="modal" onclick="register(); return false;">
+                                                    <span class="glyphicon glyphicon-search"></span> Pesquisar</button>
 					</div>
 				</div>
 				</form>
@@ -148,6 +150,9 @@
 					//                    }
 					map.setZoom(15);
 					fetchFoursquare("https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + "&ll=" + results[0].geometry.location.lat() + "," + results[0].geometry.location.lng() + "&radius=1000&section=food&query=padaria&v=20161123");
+                                        //set lat and lng
+                                        $('#latitude').val(results[0].geometry.location.lat());
+                                        $('#longitude').val(results[0].geometry.location.lng());
 				}
 				else
 					alert('Geocode error: ' + status);
@@ -211,7 +216,7 @@
 					infoWindows.push(infoWindow);
 					markers.push(mrk);
 					$('#row_' + rowCount).append(createCard(venue.id, venue.name, venue.location.address));
-					if((i + 1) % 2 == 0){
+					if((i + 1) % 2 === 0){
 						rowCount++;
 						$('#listresult').append('<div id="row_' + rowCount + '" class="row"></div>');
 					}
@@ -226,11 +231,24 @@
 	
 		function register() {
 			searchCEP($('#logradouro').val() + '+' + $('#numero').val() + '+' + $('#uf').val() + '+' + $('#cidade').val());
-			var urlCall = 'https://saudosapadoca.herokuapp.com/addAccount?name=' + $("#name").val() + '&email=' + $("#email").val() + '&number=' + $('#numero').val() + '&latitude=12&longitude=12&zipCode=' + $('#CEP').val();
+			//var urlCall = 'https://saudosapadoca.herokuapp.com/addAccount?name=' + $("#name").val() + '&email=' + $("#email").val() + '&number=' + $('#numero').val() + '&latitude=12&longitude=12&zipCode=' + $('#CEP').val();
 			//url: "https://saudosapadoca.herokuapp.com/addAccount?name=" + $("#name").val() + "&email=" + $("#email").val(),
+                        var urlCall = "/addLead";
 			$.ajax({				
 				type: "GET",
 				url: urlCall,
+                                data: {
+                                    name: $('#name').val(),
+                                    email: $('#email').val(),
+                                    zipCode: $('#CEP').val(),
+                                    street: $('#logradouro').val(),
+                                    city: $('#cidade').val(),
+                                    state: $('#uf').val(),
+                                    number: $('#numero').val(),
+                                    country: 'Brasil',
+                                    latitude: $('#latitude').val(),
+                                    longitude: $('#longitude').val()
+                                },
 				dataType: 'json',
 				success: function (data) { alert("OK " + data.statusText); },
 				error: function (data) { alert("ERROR " + data.statusText); }
