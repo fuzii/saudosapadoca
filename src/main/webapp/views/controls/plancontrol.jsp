@@ -256,7 +256,7 @@
         		$(ctl).attr('style','background-color: green');
        		}
         	else{
-        		$(ctl).attr('style','background-color: green');
+        		$(ctl).attr('style','background-color: white');
         	}	
     	});
         $(".dropdown-menu").on('click', 'li', function(){
