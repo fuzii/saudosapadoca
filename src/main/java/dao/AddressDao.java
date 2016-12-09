@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -12,29 +13,56 @@ import model.Address;
 
 public class AddressDao {
 
-	public static void Insert(Address address) {	
+	public static Address Insert(Address address) {	
 		
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude,establishment_id,radius) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,establishment_id,premise,country,latitude,longitude,radius,number) values (?,?,?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 
-			stmt.setLong(1,address.getAccountId());
+			if(address.getAccountId()!=null)
+				stmt.setLong(1,address.getAccountId());
+			else
+				stmt.setNull(1, Types.INTEGER);
+				
 			stmt.setString(2,address.getZipCode());
 			stmt.setString(3,address.getStreet());
 			stmt.setString(4,address.getCity());
 			stmt.setString(5,address.getState());
-			stmt.setInt(6,address.getNumber());
+
+			if(address.getEstablishmentId()!=null)
+				stmt.setLong(6,address.getEstablishmentId());
+			else
+				stmt.setNull(6, Types.INTEGER);
+			
 			stmt.setString(7,address.getPremise());
 			stmt.setString(8,address.getCountry());
-			stmt.setDouble(9,address.getLatitude());
-			stmt.setDouble(10,address.getLongitude());
-			stmt.setLong(11,address.getEstablishmentId());
-			stmt.setInt(12,address.getRadius());
-			stmt.execute();
 			
+			if(address.getLatitude()!=null)
+				stmt.setDouble(9,address.getLatitude());
+			else
+				stmt.setNull(9, Types.DOUBLE);
+			
+			if(address.getLongitude()!=null)
+				stmt.setDouble(10,address.getLongitude());
+			else
+				stmt.setNull(10, Types.DOUBLE);
+			
+			stmt.setInt(11,address.getRadius());
+			stmt.setInt(12,address.getNumber());
+			
+			stmt.execute();
+
+			// get generated address id
+			ResultSet rs = stmt.getGeneratedKeys();
+			if(rs.next())
+			    address.setId(rs.getLong(1));
+
+			rs.close();
 			stmt.close();
 			connection.close();
+			
+			return address;
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
