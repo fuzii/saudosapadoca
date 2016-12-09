@@ -235,7 +235,7 @@
 			//url: "https://saudosapadoca.herokuapp.com/addAccount?name=" + $("#name").val() + "&email=" + $("#email").val(),
                         var urlCall = "/addLead";
 			$.ajax({				
-				type: "GET",
+				type: "POST",
 				url: urlCall,
                                 data: {
                                     name: $('#name').val(),
@@ -249,8 +249,8 @@
                                     latitude: $('#latitude').val(),
                                     longitude: $('#longitude').val()
                                 },
-				dataType: 'json',
-				success: function (data) { alert("OK " + data.statusText); },
+				dataType: 'html',
+				success: function (data) { },
 				error: function (data) { alert("ERROR " + data.statusText); }
 			});
 			return true;
