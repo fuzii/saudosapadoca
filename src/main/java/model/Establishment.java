@@ -11,7 +11,7 @@ public class Establishment {
 	private Long registerNumber;
 	private Calendar created;
 	private List<Address> address;
-
+ 
 	public Long getId() {
 		return id;
 	}
