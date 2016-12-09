@@ -32,6 +32,13 @@
 					width: 100%;
 				}
 			}
+			@media screen and (max-width: 375px)
+			{
+				h1
+				{
+					font-size: 1.2em;
+				}
+			}
 		</style>
 		<form onsubmit="$('#myModal').modal('show'); searchCEP(); return false;">
 			<div class="form-inline" style="text-align: center; padding-bottom: 15px; max-width: 70%; margin: auto">
@@ -214,7 +221,7 @@
 	
 		function createCard(id, title, description) {
 			//return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
-			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p><span class="tag-price">10,00 R$/kg</span></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom e fer: 8:00 - 12:00</p></div></div></div>'
+			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p></div><div class="card-content-info"><p>5 KM - <span class="tag-price">10,00 R$/kg</span></p></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom e fer: 8:00 - 12:00</p></div></div></div>'
 		}
 	
 		function register() {

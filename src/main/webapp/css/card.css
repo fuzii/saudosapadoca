@@ -31,6 +31,15 @@
   text-align: center;
   vertical-align: middle;
 }
+.card .card-image img {
+  border-radius: 2px 2px 0 0;
+  background-clip: padding-box;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  margin: auto;
+  
+}
 .card .card-content
 {
   padding: 5px 5px 2px 16px;
@@ -62,7 +71,6 @@
 	overflow: hidden;
   	text-overflow: ellipsis;
   	white-space: nowrap;
-  	width: 70%;
 }
 .card .card-content .card-content-info span.tag-price
 {
@@ -71,13 +79,12 @@
 	padding-right: 5px;
 	white-space: nowrap;
 	display: inline-block;
-	font-size: 14px;
-	width: 30%;
 }
 .card .card-content .card-content-func
 {
 	border-left: 1px solid rgba(160, 160, 160, 0.2);
 	font-size: 11px;
+	color: #adadad;
 	overflow: hidden;
 	padding-left: 5px;
 	display:inline-block;
@@ -118,6 +125,18 @@
   color: #ffd8a6;
   text-decoration: none;
 }
+@media screen and (max-width: 576px)
+{
+	.card .card-image
+	{
+		width: 100px;
+		height: 100px;
+	}
+	.card .card-content
+	{
+	  	width: calc(100% - 100px)
+	}
+}
 @media screen and (max-width: 375px)
 {
 	.card .card-image
@@ -129,15 +148,16 @@
 	{
 	  	width: calc(100% - 75px)
 	}
+	.card .card-content h1,h2,h3,h4,h5.card-title 
+	{
+		font-size: 1.1em;
+	}
 	.card .card-content .card-content-func
 	{
 		display: none;
 	}
-}
-.card .card-image img {
-  border-radius: 2px 2px 0 0;
-  background-clip: padding-box;
-  position: relative;
-  max-width: 100%;
-  max-height: 100%;
+	.card .card-content .card-content-info p
+	{
+		font-size: 11px;
+	}
 }
