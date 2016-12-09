@@ -14,7 +14,7 @@ import model.Address;
 import util.SendGridEmail;
 
 @WebServlet("/addAccount")
-public class AddAccountServlet extends HttpServlet{
+public class AddAccountServlet extends HttpServlet{ 
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 

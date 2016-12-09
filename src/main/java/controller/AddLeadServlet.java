@@ -21,7 +21,7 @@ public class AddLeadServlet extends HttpServlet{
 			// address
 			Address address = new Address();
 			address.setZipCode(request.getParameter("zipCode"));
-			 
+			
 			if(!Util.isEmpty(request.getParameter("street")))
 				address.setStreet(request.getParameter("street"));
 			

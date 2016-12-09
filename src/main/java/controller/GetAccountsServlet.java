@@ -26,7 +26,7 @@ public class GetAccountsServlet extends HttpServlet{
 		PrintWriter out = response.getWriter(); 
 		out.println("<html>");
 		out.println("<body>");
-		
+		 
 		for(Account account : accounts){
 			
 			out.println("<br/>Account<br/>");

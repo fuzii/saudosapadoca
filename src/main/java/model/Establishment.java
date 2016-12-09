@@ -10,7 +10,7 @@ public class Establishment {
 	private String alias;
 	private Long registerNumber;
 	private Calendar created;
-	private List<Address> address;
+	private List<Address> address; 
  
 	public Long getId() {
 		return id;

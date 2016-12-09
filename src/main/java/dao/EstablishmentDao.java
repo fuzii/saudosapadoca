@@ -17,7 +17,7 @@ public class EstablishmentDao {
 	
 	public static Establishment Insert(Establishment establishment) {	
 		
-		try {
+		try { 
 			
 			// insert establishment
 			Connection connection = new ConnectionFactory().getConnection();

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import model.Address;
 import model.Lead;
-
+ 
 public class LeadDao {
 
 	public static Lead Insert(Lead lead) {	
