@@ -19,7 +19,7 @@ public class Lead extends User{
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	public Address getAddress() {
+	public Address getAddress() { 
 		return address;
 	}
 	public String getName() {

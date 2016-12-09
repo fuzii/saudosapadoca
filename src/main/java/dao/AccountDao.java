@@ -13,7 +13,7 @@ import model.Account;
 import model.Address;
 import util.Geolocation;
 
-public class AccountDao {
+public class AccountDao { 
 	
 	public static Account Insert(Account account) {	
 		

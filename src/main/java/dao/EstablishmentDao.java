@@ -13,7 +13,7 @@ import model.Establishment;
 import util.Geolocation;
 import model.Address;
 
-public class EstablishmentDao {
+public class EstablishmentDao { 
 	
 	public static Establishment Insert(Establishment establishment) {	
 		

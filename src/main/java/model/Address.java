@@ -3,7 +3,7 @@ package model;
 import java.util.Calendar;
 
 public class Address {
-
+ 
 	private Long id;
 	private Long accountId;
 	private Long establishmentId;

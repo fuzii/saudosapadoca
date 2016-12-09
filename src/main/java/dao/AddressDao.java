@@ -14,7 +14,7 @@ import model.Address;
 public class AddressDao {
 
 	public static Address Insert(Address address) {	
-		
+
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
@@ -22,7 +22,7 @@ public class AddressDao {
 
 			if(address.getAccountId()!=null)
 				stmt.setLong(1,address.getAccountId());
-			else
+			else 
 				stmt.setNull(1, Types.INTEGER);
 				
 			stmt.setString(2,address.getZipCode());

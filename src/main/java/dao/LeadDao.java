@@ -14,7 +14,7 @@ public class LeadDao {
 		
 		try {
 			
-			// insert address
+			// insert address 
 			Address address = AddressDao.Insert(lead.getAddress());
 			
 			// insert account

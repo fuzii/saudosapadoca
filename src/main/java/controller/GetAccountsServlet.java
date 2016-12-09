@@ -23,7 +23,7 @@ public class GetAccountsServlet extends HttpServlet{
 		List<Account> accounts = AccountDao.GetAccounts();
 		
 		// response
-		PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter(); 
 		out.println("<html>");
 		out.println("<body>");
 		

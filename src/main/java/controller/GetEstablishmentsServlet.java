@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Address;
 import util.Geolocation;
 
-@WebServlet("/getEstablishments")
+@WebServlet("/getEstablishments") 
 public class GetEstablishmentsServlet extends HttpServlet{
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

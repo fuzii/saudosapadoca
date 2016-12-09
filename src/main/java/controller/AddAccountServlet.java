@@ -35,7 +35,7 @@ public class AddAccountServlet extends HttpServlet{
 			addresses.add(address);
 			
 			// account
-			Account account = new Account();
+			Account account = new Account(); 
 			account.setName(request.getParameter("name"));
 			account.setEmail(request.getParameter("email"));
 			account.setAddress(addresses);

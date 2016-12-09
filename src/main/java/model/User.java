@@ -1,7 +1,7 @@
 package model;
 
 import java.util.Calendar;
-
+ 
 public class User {
 
 	protected Long userId;
