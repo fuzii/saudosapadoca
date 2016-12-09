@@ -157,7 +157,7 @@
 				else
 					alert('Geocode error: ' + status);
 			});
-			$.getJSON('http://api.postmon.com.br/v1/cep/' + $('#CEP').val(), function (data) {
+			$.getJSON('https://api.postmon.com.br/v1/cep/' + $('#CEP').val(), function (data) {
 				$('#uf').val(data.estado);
 				$('#cidade').val(data.cidade);
 				$('#logradouro').val(data.logradouro);
