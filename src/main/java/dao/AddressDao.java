@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +17,7 @@ public class AddressDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude,created_on,establishment_id,radius) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude,establishment_id,radius) values (?,?,?,?,?,?,?,?,?,?,?,?)");
 
 			stmt.setLong(1,address.getAccountId());
 			stmt.setString(2,address.getZipCode());
@@ -30,9 +29,8 @@ public class AddressDao {
 			stmt.setString(8,address.getCountry());
 			stmt.setDouble(9,address.getLatitude());
 			stmt.setDouble(10,address.getLongitude());
-			stmt.setDate(11, new Date(Calendar.getInstance().getTimeInMillis()));
-			stmt.setLong(12,address.getEstablishmentId());
-			stmt.setInt(13,address.getRadius());
+			stmt.setLong(11,address.getEstablishmentId());
+			stmt.setInt(12,address.getRadius());
 			stmt.execute();
 			
 			stmt.close();
@@ -49,7 +47,7 @@ public class AddressDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude,created_on) values (?,?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,number,premise,country,latitude,longitude) values (?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setLong(1,address.getAccountId());
 			stmt.setString(2,address.getZipCode());
@@ -61,7 +59,6 @@ public class AddressDao {
 			stmt.setString(8,address.getCountry());
 			stmt.setDouble(9,address.getLatitude());
 			stmt.setDouble(10,address.getLongitude());
-			stmt.setDate(11, new Date(Calendar.getInstance().getTimeInMillis()));
 			stmt.execute();
 
 			// get generated address id
@@ -86,7 +83,7 @@ public class AddressDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(establishment_id,zipCode,street,city,state,number,premise,country,latitude,longitude,created_on,radius) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(establishment_id,zipCode,street,city,state,number,premise,country,latitude,longitude,radius) values (?,?,?,?,?,?,?,?,?,?,?)");
 
 			stmt.setLong(1,address.getEstablishmentId());
 			stmt.setString(2,address.getZipCode());
@@ -98,8 +95,7 @@ public class AddressDao {
 			stmt.setString(8,address.getCountry());
 			stmt.setDouble(9,address.getLatitude());
 			stmt.setDouble(10,address.getLongitude());
-			stmt.setDate(11, new Date(Calendar.getInstance().getTimeInMillis()));
-			stmt.setInt(12,address.getRadius());
+			stmt.setInt(11,address.getRadius());
 			stmt.execute();
 			
 			// get generated address id
@@ -192,10 +188,10 @@ public class AddressDao {
 				address.setLongitude(rs.getDouble("longitude"));
 				address.setEstablishmentId(rs.getLong("establishment_id"));
 								
-				// created on
+				// created
 				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("created_on"));
-				address.setCreated_on(data);
+				data.setTime(rs.getDate("created"));
+				address.setCreated(data);
 
 				addresses.add(address);
 				
@@ -240,10 +236,10 @@ public class AddressDao {
 			address.setLongitude(rs.getDouble("longitude"));
 			address.setEstablishmentId(rs.getLong("establishment_id"));
 							
-			// created on
+			// created
 			Calendar data = Calendar.getInstance();
-			data.setTime(rs.getDate("created_on"));
-			address.setCreated_on(data);
+			data.setTime(rs.getDate("created"));
+			address.setCreated(data);
 			
 			rs.close();
 			stmt.close();

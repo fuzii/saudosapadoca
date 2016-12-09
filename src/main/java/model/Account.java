@@ -3,13 +3,16 @@ package model;
 import java.util.Calendar;
 import java.util.List;
 
-public class Account {
+public class Account extends User{
 
 	private Long id;
 	private String name;
 	private String email;
-	private Calendar created_on;
+	private String phone;
+	private String type;
+	private Calendar created;
 	private List<Address> address;
+	
 	
 	public void setId(Long id) {
 		this.id = id;
@@ -35,14 +38,26 @@ public class Account {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Calendar getCreated_on() {
-		return created_on;
+	public Calendar getCreated() {
+		return created;
 	}
-	public void setCreated_on(Calendar created_on) {
-		this.created_on = created_on;
+	public void setCreated(Calendar created) {
+		this.created = created;
 	}
 	public Long getId() {
 		return id;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }
