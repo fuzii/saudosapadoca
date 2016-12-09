@@ -9,7 +9,7 @@ public class Establishment {
 	private String name;
 	private String alias;
 	private Long registerNumber;
-	private Calendar created_on;
+	private Calendar created;
 	private List<Address> address;
 
 	public Long getId() {
@@ -36,11 +36,11 @@ public class Establishment {
 	public void setRegisterNumber(Long registerNumber) {
 		this.registerNumber = registerNumber;
 	}
-	public Calendar getCreated_on() {
-		return created_on;
+	public Calendar getCreated() {
+		return created;
 	}
-	public void setCreated_on(Calendar created_on) {
-		this.created_on = created_on;
+	public void setCreated(Calendar created) {
+		this.created = created;
 	}
 	public List<Address> getAddress() {
 		return address;

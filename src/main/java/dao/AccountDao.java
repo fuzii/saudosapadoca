@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,10 +21,9 @@ public class AccountDao {
 			
 			// insert account
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO account(name,email,created_on) values (?,?,?)",Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO account(name,email) values (?,?)",Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1,account.getName());
 			stmt.setString(2,account.getEmail());
-			stmt.setDate(3, new Date(Calendar.getInstance().getTimeInMillis()));
 			stmt.execute();
 
 			// get generated account id
@@ -95,8 +93,8 @@ public class AccountDao {
 												
 				// montando a data através do Calendar
 				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("created_on"));
-				account.setCreated_on(data);
+				data.setTime(rs.getDate("created"));
+				account.setCreated(data);
 
 				accounts.add(account);
 				
@@ -133,8 +131,8 @@ public class AccountDao {
 											
 			// montando a data através do Calendar
 			Calendar data = Calendar.getInstance();
-			data.setTime(rs.getDate("created_on"));
-			account.setCreated_on(data);
+			data.setTime(rs.getDate("created"));
+			account.setCreated(data);
 			
 			rs.close();
 			stmt.close();
@@ -175,8 +173,8 @@ public class AccountDao {
 								
 				// montando a data através do Calendar
 				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("created_on"));
-				address.setCreated_on(data);
+				data.setTime(rs.getDate("created"));
+				address.setCreated(data);
 
 				addresses.add(address);
 				
@@ -225,10 +223,10 @@ public class AccountDao {
 					a.setLongitude(rs.getDouble("longitude"));
 					a.setEstablishmentId(rs.getLong("establishment_id"));
 									
-					// created on
+					// created
 					Calendar data = Calendar.getInstance();
-					data.setTime(rs.getDate("created_on"));
-					a.setCreated_on(data);
+					data.setTime(rs.getDate("created"));
+					a.setCreated(data);
 
 					addresses.add(a);
 					

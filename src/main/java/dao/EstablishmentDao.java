@@ -98,7 +98,7 @@ public class EstablishmentDao {
 				// created on
 				Calendar data = Calendar.getInstance();
 				data.setTime(rs.getDate("created_on"));
-				establishment.setCreated_on(data);
+				establishment.setCreated(data);
 
 				establishments.add(establishment);
 				
@@ -137,7 +137,7 @@ public class EstablishmentDao {
 			// created on
 			Calendar data = Calendar.getInstance();
 			data.setTime(rs.getDate("created_on"));
-			establishment.setCreated_on(data);
+			establishment.setCreated(data);
 			
 			rs.close();
 			stmt.close();
@@ -185,7 +185,7 @@ public class EstablishmentDao {
 					// created on
 					Calendar data = Calendar.getInstance();
 					data.setTime(rs.getDate("created_on"));
-					a.setCreated_on(data);
+					a.setCreated(data);
 
 					addresses.add(a);
 					
@@ -234,7 +234,7 @@ public class EstablishmentDao {
 				// created
 				Calendar data = Calendar.getInstance();
 				data.setTime(rs.getDate("created_on"));
-				address.setCreated_on(data);
+				address.setCreated(data);
 
 				addresses.add(address);
 				

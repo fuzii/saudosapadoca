@@ -17,7 +17,7 @@ public class Address {
 	private Double latitude;
 	private Double longitude;
 	private int radius;
-	private Calendar created_on;
+	private Calendar created;
 	
 	
 	public int getRadius() {
@@ -44,11 +44,11 @@ public class Address {
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
-	public Calendar getCreated_on() {
-		return created_on;
+	public Calendar getCreated() {
+		return created;
 	}
-	public void setCreated_on(Calendar created_on) {
-		this.created_on = created_on;
+	public void setCreated(Calendar created) {
+		this.created = created;
 	}
 	public String getZipCode() {
 		return zipCode;
