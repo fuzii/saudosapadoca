@@ -32,6 +32,13 @@
 					width: 100%;
 				}
 			}
+			@media screen and (max-width: 375px)
+			{
+				h1
+				{
+					font-size: 1.2em;
+				}
+			}
 		</style>
 		<form onsubmit="$('#myModal').modal('show'); searchCEP(); return false;">
 			<div class="form-inline" style="text-align: center; padding-bottom: 15px; max-width: 70%; margin: auto">
@@ -73,7 +80,7 @@
 		<!-- modal -->
 		<div class="modal fade" id="myModal" role="dialog" data-backdrop="static">
 			<div class="modal-dialog">
-				<form id="form_register" action="https://saudosapadoca.herokuapp.com/addAccount">
+				<form id="form_register" onsubmit="register(); return false;">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h2>Complete seu endereço!</h2>
@@ -84,6 +91,8 @@
 							<input type="text" class="form-control" id="cidade" placeholder="Cidade" disabled style="width:74%; display:inline" />
 							<input type="text" class="form-control" id="logradouro" placeholder="Rua, Avenida, etc" disabled style="width:74%; display:inline" />
 							<input type="text" class="form-control" id="numero" placeholder="Nº" style="width:25%; display:inline" />
+                                                        <input id="latitude" type="hidden" />
+                                                        <input id="longitude" type="hidden" />
 						</div>
 						<div class="form-group">
 							<label for="name">
@@ -98,8 +107,8 @@
 					</div>
 					<div class="modal-footer">
 						<%--<input type="submit" class="btn btn-success" data-dismiss="modal" value="Salvar"></input>--%>
-						<button type="button" class="btn" data-dismiss="modal" onclick="register();">
-							Pesquisar</button>
+						<button type="submit" class="btn" data-dismiss="modal" onclick="register(); return false;">
+                                                    <span class="glyphicon glyphicon-search"></span> Pesquisar</button>
 					</div>
 				</div>
 				</form>
@@ -141,11 +150,14 @@
 					//                    }
 					map.setZoom(15);
 					fetchFoursquare("https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + "&ll=" + results[0].geometry.location.lat() + "," + results[0].geometry.location.lng() + "&radius=1000&section=food&query=padaria&v=20161123");
+                                        //set lat and lng
+                                        $('#latitude').val(results[0].geometry.location.lat());
+                                        $('#longitude').val(results[0].geometry.location.lng());
 				}
 				else
 					alert('Geocode error: ' + status);
 			});
-			$.getJSON('http://api.postmon.com.br/v1/cep/' + $('#CEP').val(), function (data) {
+			$.getJSON('https://api.postmon.com.br/v1/cep/' + $('#CEP').val(), function (data) {
 				$('#uf').val(data.estado);
 				$('#cidade').val(data.cidade);
 				$('#logradouro').val(data.logradouro);
@@ -204,7 +216,7 @@
 					infoWindows.push(infoWindow);
 					markers.push(mrk);
 					$('#row_' + rowCount).append(createCard(venue.id, venue.name, venue.location.address));
-					if((i + 1) % 2 == 0){
+					if((i + 1) % 2 === 0){
 						rowCount++;
 						$('#listresult').append('<div id="row_' + rowCount + '" class="row"></div>');
 					}
@@ -214,18 +226,31 @@
 	
 		function createCard(id, title, description) {
 			//return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
-			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p><span class="tag-price">10,00 R$/kg</span></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom e fer: 8:00 - 12:00</p></div></div></div>'
+			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p></div><div class="card-content-info"><p>5 KM - <span class="tag-price">10,00 R$/kg</span></p></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom e fer: 8:00 - 12:00</p></div></div></div>'
 		}
 	
 		function register() {
 			searchCEP($('#logradouro').val() + '+' + $('#numero').val() + '+' + $('#uf').val() + '+' + $('#cidade').val());
-			var urlCall = 'https://saudosapadoca.herokuapp.com/addAccount?name=' + $("#name").val() + '&email=' + $("#email").val() + '&number=' + $('#numero').val() + '&latitude=12&longitude=12&zipCode=' + $('#CEP').val();
+			//var urlCall = 'https://saudosapadoca.herokuapp.com/addAccount?name=' + $("#name").val() + '&email=' + $("#email").val() + '&number=' + $('#numero').val() + '&latitude=12&longitude=12&zipCode=' + $('#CEP').val();
 			//url: "https://saudosapadoca.herokuapp.com/addAccount?name=" + $("#name").val() + "&email=" + $("#email").val(),
+                        var urlCall = "/addLead";
 			$.ajax({				
-				type: "GET",
+				type: "POST",
 				url: urlCall,
-				dataType: 'json',
-				success: function (data) { alert("OK " + data.statusText); },
+                                data: {
+                                    name: $('#name').val(),
+                                    email: $('#email').val(),
+                                    zipCode: $('#CEP').val(),
+                                    street: $('#logradouro').val(),
+                                    city: $('#cidade').val(),
+                                    state: $('#uf').val(),
+                                    number: $('#numero').val(),
+                                    country: 'Brasil',
+                                    latitude: $('#latitude').val(),
+                                    longitude: $('#longitude').val()
+                                },
+				dataType: 'html',
+				success: function (data) { },
 				error: function (data) { alert("ERROR " + data.statusText); }
 			});
 			return true;
