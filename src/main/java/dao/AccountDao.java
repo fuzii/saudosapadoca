@@ -11,6 +11,7 @@ import java.util.List;
 
 import model.Account;
 import model.Address;
+import model.User;
 import util.Geolocation;
 
 public class AccountDao { 
@@ -19,11 +20,16 @@ public class AccountDao {
 		
 		try {
 			
+			// insert user
+			User user = UserDao.Insert(account);
+			
 			// insert account
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO account(name,email) values (?,?)",Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO account(name,email,phone,user_id) VALUES (?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1,account.getName());
 			stmt.setString(2,account.getEmail());
+			stmt.setString(3,account.getPhone());
+			stmt.setLong(4,user.getUserId());
 			stmt.execute();
 
 			// get generated account id
@@ -49,7 +55,7 @@ public class AccountDao {
 		
 	}
 	
-	public static void Update(Account account) {	
+/*	public static void Update(Account account) {	
 		
 		try {
 			
@@ -73,7 +79,7 @@ public class AccountDao {
 		}
 		
 	}
-	
+*/	
 	public static List<Account> GetAccounts() {
 	     
 		try {

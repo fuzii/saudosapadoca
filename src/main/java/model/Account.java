@@ -9,7 +9,6 @@ public class Account extends User{
 	private String name;
 	private String email;
 	private String phone;
-	private String type;
 	private Calendar created;
 	private List<Address> address;
 	
@@ -52,12 +51,6 @@ public class Account extends User{
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 	
 }

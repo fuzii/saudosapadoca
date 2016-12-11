@@ -3,6 +3,8 @@
 	<form action="addAccount"> 
 		name: <input type="text" name="name" /><br />
 		email: <input type="text" name="email" /><br />
+		password: <input type="password" name="password" /><br />
+		phone: <input type="text" name="phone" /><br />
 		zipCode: <input type="text" name="zipCode"/><br />
 		street: <input type="text" name="street"/><br />
 		city: <input type="text" name="city"/><br />
@@ -56,16 +58,11 @@
     </form>
     <br/>
     <br/>
-     <form action="getAccounts">
-     <input type="submit" value="getAccounts"/>
-    </form>    
-    <br/>
-     <form action="getEstablishments">
-     <input type="submit" value="getEstablishments"/>
-    </form>
-    <br/>
-     <form action="Teste">
-     <input type="submit" value="Teste"/>
-    </form>    
+	<form action="login"> 
+		login: <input type="text" name="login" /><br />
+		password: <input type="password" name="password" /><br />
+		<input type="submit" value="login" />
+	</form>
+    <br/> 
 </body>
 </html>
