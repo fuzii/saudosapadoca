@@ -5,6 +5,13 @@
 		email: <input type="text" name="email" /><br />
 		password: <input type="password" name="password" /><br />
 		phone: <input type="text" name="phone" /><br />
+		<input type="submit" value="Cadastro Conta" />
+	</form>
+    <br/>
+    <br/>
+	<form action="addAddress"> 
+		account_id: <input type="text" name="account_id" /><br />
+		establishment_id: <input type="text" name="establishment_id" /><br />
 		zipCode: <input type="text" name="zipCode"/><br />
 		street: <input type="text" name="street"/><br />
 		city: <input type="text" name="city"/><br />
@@ -14,7 +21,7 @@
 		country: <input type="text" name="country"/><br />
 		latitude: <input type="text" name="latitude"/><br />
 		longitude: <input type="text" name="longitude"/><br />
-		<input type="submit" value="CadastroConta" />
+		<input type="submit" value="Cadastro Endereço" />
 	</form>
     <br/>
     <br/>
@@ -29,7 +36,7 @@
 		country: <input type="text" name="country"/><br />
 		latitude: <input type="text" name="latitude"/><br />
 		longitude: <input type="text" name="longitude"/><br />
-		<input type="submit" value="CadastroLead" />
+		<input type="submit" value="Cadastro Lead" />
 	</form>
     <br/>
     <br/>
@@ -47,7 +54,7 @@
 		latitude: <input type="text" name="latitude"/><br />
 		longitude: <input type="text" name="longitude"/><br />
 		radius: <input type="text" name="radius"/><br />
-      <input type="submit" value="CadastroPadaria"/>
+      <input type="submit" value="Cadastro Padaria"/>
     </form>	
     <br/>
     <br/>

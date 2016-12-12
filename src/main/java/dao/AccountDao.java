@@ -13,9 +13,11 @@ import model.Account;
 import model.Address;
 import model.User;
 import util.Geolocation;
+import util.Util;
 
 public class AccountDao { 
 
+	@SuppressWarnings("unchecked")
 	public static Account Insert(Account account) {	
 		
 		try {
@@ -38,7 +40,7 @@ public class AccountDao {
 			    account.setId(rs.getLong(1));
 	
 			// insert address
-			for(Address address: account.getAddress()){
+			for(Address address: (List<Address>)Util.IsEmptyList(account.getAddress())){
 				address.setAccountId(account.getId());
 				address = AddressDao.InsertByAccount(address);
 			}

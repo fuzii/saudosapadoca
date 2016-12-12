@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import dao.AccountDao;
 import dao.EstablishmentDao;
+import json.AddressJSON;
 import model.Account;
 import model.Address;
 import model.Establishment;
@@ -47,28 +48,11 @@ public class Geolocation {
 				JSONObject jsonEstablishment = new JSONObject();
 				
 				// establishment
-				jsonEstablishment.put("Id",establishment.getId());
-				jsonEstablishment.put("Name",establishment.getName());
-				jsonEstablishment.put("Alias",establishment.getAlias());
-				jsonEstablishment.put("RegisterNumber",establishment.getRegisterNumber());
-
-				// address
-				JSONObject jsonAddress = new JSONObject();
-				jsonAddress.put("Id",a.getId());
-				jsonAddress.put("AccountId",a.getAccountId());
-				jsonAddress.put("EstablishmentId",a.getEstablishmentId());
-				jsonAddress.put("ZipCode",a.getZipCode());
-				jsonAddress.put("Street",a.getStreet());
-				jsonAddress.put("City",a.getCity());
-				jsonAddress.put("State",a.getState());
-				jsonAddress.put("Number;",a.getNumber()); 
-				jsonAddress.put("Premise",a.getPremise());
-				jsonAddress.put("Country",a.getCountry());
-				jsonAddress.put("Latitude",a.getLatitude());
-				jsonAddress.put("Longitude",a.getLongitude());
-				jsonAddress.put("Radius",a.getRadius());
-
-				jsonEstablishment.put("address", jsonAddress);
+				jsonEstablishment.put("id",establishment.getId());
+				jsonEstablishment.put("name",establishment.getName());
+				jsonEstablishment.put("alias",establishment.getAlias());
+				jsonEstablishment.put("registerNumber",establishment.getRegisterNumber());
+				jsonEstablishment.put("address", AddressJSON.GetAddressJSON(a));
 				jsonArrayEstablishment.put(jsonEstablishment);
 
 			}
@@ -88,6 +72,7 @@ public class Geolocation {
 
 	}
 
+	
 	public static JSONObject GetAccountsJSON (Address establishmentAddress){
 		
 		List<Address> addresses = AccountDao.GetAccountsAddressesByLocation(establishmentAddress);
@@ -102,27 +87,10 @@ public class Geolocation {
 				JSONObject jsonAccount = new JSONObject();
 				
 				// establishment
-				jsonAccount.put("Id",account.getId());
-				jsonAccount.put("Name",account.getName());
-				jsonAccount.put("Email",account.getEmail());				
-				
-				// address
-				JSONObject jsonAddress = new JSONObject();
-				jsonAddress.put("Id",a.getId());
-				jsonAddress.put("AccountId",a.getAccountId());
-				jsonAddress.put("EstablishmentId",a.getEstablishmentId());
-				jsonAddress.put("ZipCode",a.getZipCode());
-				jsonAddress.put("Street",a.getStreet());
-				jsonAddress.put("City",a.getCity());
-				jsonAddress.put("State",a.getState());
-				jsonAddress.put("Number;",a.getNumber()); 
-				jsonAddress.put("Premise",a.getPremise());
-				jsonAddress.put("Country",a.getCountry());
-				jsonAddress.put("Latitude",a.getLatitude());
-				jsonAddress.put("Longitude",a.getLongitude());
-				jsonAddress.put("Radius",a.getRadius());
-				
-				jsonAccount.put("address", jsonAddress);
+				jsonAccount.put("id",account.getId());
+				jsonAccount.put("name",account.getName());
+				jsonAccount.put("email",account.getEmail());				
+				jsonAccount.put("address", AddressJSON.GetAddressJSON(a));
 				jsonArrayAccount.put(jsonAccount);
 
 			}
