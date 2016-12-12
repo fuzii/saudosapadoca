@@ -14,14 +14,14 @@
     </div>
     <div id="planContainer" class="card-details">
         <h3 style="padding-left: 10px">Configure seu plano</h3>
-        <input type="hidden" id="monSelected" value="0" />
-        <input type="hidden" id="tueSelected" value="0" />
-        <input type="hidden" id="wedSelected" value="0" />
-        <input type="hidden" id="thuSelected" value="0" />
-        <input type="hidden" id="friSelected" value="0" />
-        <input type="hidden" id="satSelected" value="0" />
-        <input type="hidden" id="sunSelected" value="0" />
-        <!-- xs sm md lg -->
+        <input type="hidden" id="monSelected" value="1" />
+        <input type="hidden" id="tueSelected" value="1" />
+        <input type="hidden" id="wedSelected" value="1" />
+        <input type="hidden" id="thuSelected" value="1" />
+        <input type="hidden" id="friSelected" value="1" />
+        <input type="hidden" id="satSelected" value="1" />
+        <input type="hidden" id="sunSelected" value="1" />
+        <!-- xs sm md lg
         <div class="card-day-container hidden-xs hidden-sm">
         	<div class="row">
         		<div class="card-day">
@@ -104,22 +104,39 @@
                  </div>
              </div>
             </div>
-        </div>
+        </div> -->
         <!-- xs sm -->
-        <div class="hidden-md hidden-lg" style="margin: 10px">
+        <!-- <div class="hidden-md hidden-lg" style="margin: 10px"> -->
         	<div class="card-day-list-group">
         		<div class="card-day-list-item">
 	        		<div class="card-day-list-content">
-	        			<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
+	        			<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%"  />
 	        			<div class="btn-group" style="width: 50%; display: inline; float: right">
-	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
 	        				<ul class="dropdown-menu">
 	        					<li>8:00</li>
 	        					<li>9:00</li>
 	        				</ul>
 	        			</div>
 	        		</div>
-	        		<button id="btn_mon" class="card-day-list-button" onclick="btnSelectedList(this);">Segunda</button>
+	        		<div class="card-day-list-btn">
+	        			<button id="btn_mon" onclick="btnSelectedList(this);">Segunda</button>
+        			</div>
+        		</div>
+        		<div class="card-day-list-item">
+        			<div class="card-day-list-content">
+        				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
+	        			<div class="btn-group" style="width: 50%; display: inline; float: right">
+	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
+	        				<ul class="dropdown-menu">
+	        					<li>8:00</li>
+	        					<li>9:00</li>
+	        				</ul>
+	        			</div>
+        			</div>
+        			<div class="card-day-list-btn">
+        				<button id="btn_tue" onclick="btnSelectedList(this);">Terça</button>
+        			</div>
         		</div>
         		<div class="card-day-list-item">
         			<div class="card-day-list-content">
@@ -132,7 +149,9 @@
 	        				</ul>
 	        			</div>
         			</div>
-        			<button id="btn_tue" class="card-day-list-button">Terça</button>
+        			<div class="card-day-list-btn">
+        				<button id="btn_wed" onclick="btnSelectedList(this);">Quarta</button>
+        			</div>
         		</div>
         		<div class="card-day-list-item">
         			<div class="card-day-list-content">
@@ -145,7 +164,9 @@
 	        				</ul>
 	        			</div>
         			</div>
-        			<button id="btn_wed" class="card-day-list-button">Quarta</button>
+        			<div class="card-day-list-btn">
+        				<button id="btn_thu" onclick="btnSelectedList(this);">Quinta</button>
+       				</div>
         		</div>
         		<div class="card-day-list-item">
         			<div class="card-day-list-content">
@@ -158,7 +179,9 @@
 	        				</ul>
 	        			</div>
         			</div>
-        			<button id="btn_thu" class="card-day-list-button">Quinta</button>
+        			<div class="card-day-list-btn">
+        				<button id="btn_fri" onclick="btnSelectedList(this);">Sexta</button>
+        			</div>
         		</div>
         		<div class="card-day-list-item">
         			<div class="card-day-list-content">
@@ -171,7 +194,9 @@
 	        				</ul>
 	        			</div>
         			</div>
-        			<button id="btn_fri" class="card-day-list-button">Sexta</button>
+        			<div class="card-day-list-btn">
+        				<button id="btn_sat" onclick="btnSelectedList(this);">Sábado</button>
+        			</div>
         		</div>
         		<div class="card-day-list-item">
         			<div class="card-day-list-content">
@@ -184,24 +209,13 @@
 	        				</ul>
 	        			</div>
         			</div>
-        			<button id="btn_sat" class="card-day-list-button">Sábado</button>
-        		</div>
-        		<div class="card-day-list-item">
-        			<div class="card-day-list-content">
-        				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
-	        			<div class="btn-group" style="width: 50%; display: inline; float: right">
-	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-	        				<ul class="dropdown-menu">
-	        					<li>8:00</li>
-	        					<li>9:00</li>
-	        				</ul>
-	        			</div>
+        			<div class="card-day-list-btn">
+        				<button id="btn_sun" onclick="btnSelectedList(this);">Domingo</button>
         			</div>
-        			<button id="btn_sun" class="card-day-list-button">Domingo</button>
         		</div>
         	</div>
     	</div>
-   	</div>        
+   	<!-- </div> -->        
 </div>
 <div class="col-xs-3 hidden-xs">
     	<div class="panel panel-default" data-spy="affix" data-offset-top="300">
@@ -220,37 +234,41 @@
     	</div>
     </div>
 <script type="text/javascript">
-    function selected(ctl) {
-    	var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';
-        if ($(ctl).is(':checked')) {
-            $(ctl).parent().parent().attr('class', 'card-day-selected');
-            $(ctl).parent().parent().find(':input').removeAttr('disabled');
-            $('#planContainer').find('#' + selectedID).val('1');
-        }
-        else {
-            $(ctl).parent().parent().attr('class', 'card-day');
-            $(ctl).parent().parent().find(':input').attr('disabled', '');
-            $(ctl).removeAttr('disabled');
-            
-            $('#planContainer').find('#' + selectedID).val('0');
-        }
-    }
+    //function selected(ctl) {
+    //	var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';
+    //    if ($(ctl).is(':checked')) {
+    //        $(ctl).parent().parent().attr('class', 'card-day-selected');
+    //        $(ctl).parent().parent().find(':input').removeAttr('disabled');
+    //        $('#planContainer').find('#' + selectedID).val('1');
+    //    }
+    //    else {
+    //        $(ctl).parent().parent().attr('class', 'card-day');
+    //        $(ctl).parent().parent().find(':input').attr('disabled', '');
+    //        $(ctl).removeAttr('disabled');
+    //        $('#planContainer').find('#' + selectedID).val('0');
+    //    }
+    //}
     function btnSelectedList(ctl) {
     	var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';
     	if($('#planContainer').find('#' + selectedID).val() == '0') {
-    		$(ctl).attr('style','background-color: green');
-    		$(ctl).parent().attr('style','background-color: green');
-    		$('#planContainer').find('#' + selectedID).val('0');
+    		$(ctl).attr('style','color: #fff; background-color: #5cb85c');
+    		$(ctl).parent().parent().find('.card-day-list-content').attr('style','background-color: #5cb85c');
+    		$(ctl).parent().parent().find(':input').removeAttr('disabled');
+    		$('#planContainer').find('#' + selectedID).val('1');
    		}
     	else{
-    		$(ctl).attr('style','background-color: gray');
-    		$(ctl).parent().attr('style','background-color: white');
-    		$('#planContainer').find('#' + selectedID).val('1');
+    		$(ctl).attr('style','color: #000; background-color: rgba(230,230,230,0.5);');
+    		$(ctl).parent().attr('style','background-color: rgba(230,230,230,0.5);');
+    		$(ctl).parent().parent().find('.card-day-list-content').attr('style','background-color: #fff;');
+    		$(ctl).parent().parent().find('.card-day-list-content').find(':input').attr('disabled','');
+    		$(ctl).parent().parent().find('.card-day-list-content').find(':input[type=text]').val('');
+    		$(ctl).parent().parent().find('.card-day-list-content').find(':input[type=button]').html('Horário<span class="caret"></span>');
+    		$('#planContainer').find('#' + selectedID).val('0');
     	}
     		
     }
     $(function() {
-    	$('input[type=hidden]').each(i, function () {
+    	$('input[type=hidden]').each(function (i, ctl) {
     		var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';
         	if($('#planContainer').find(selectedID).val() == '1') {
         		$(ctl).attr('style','background-color: green');

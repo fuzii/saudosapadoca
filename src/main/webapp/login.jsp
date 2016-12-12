@@ -15,7 +15,7 @@
 					<h1>Login</h1>
 				</div>
 				<div class="panel-body">
-					<form class="form">
+					<form action="login" class="form">
 						<div class="form-group">
 							<input type="text" class="form-control form-group" id="email" placeholder="email" />
 							<input type="text" class="form-control form-group" id="pwd" placeholder="senha" />

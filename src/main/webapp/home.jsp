@@ -40,7 +40,7 @@
 				}
 			}
 		</style>
-		<form onsubmit="$('#myModal').modal('show'); searchCEP(); return false;">
+		<form id="searchAddress" onsubmit="$('#myModal').modal('show'); searchCEP(); return false;">
 			<div class="form-inline" style="text-align: center; padding-bottom: 15px; max-width: 70%; margin: auto">
 				<h1>Seu controle diário de padaria!</h1>
 				<div class="form-group">
@@ -123,8 +123,16 @@
 		var client_id = 'W4FHVCUFSIWDKKO4AS5VZ322DU1BMYNZMYCRAGCTKWXD5NTW';
 		var client_secret = 'UEZ2AWYSHAICCL4IGYPFOA3C511VW2UG4XCYZFHH0RLV1KIQ';
 		var near = "Sao%20Paulo";
+		
+		$(function () {
+			jQuery("#CEP").mask("99999-999");
+			if(localStorage.userInfo != null) {
+				$('#searchAddress').hide();
+				
+			}
+		});
 	
-		jQuery("#CEP").mask("99999-999");
+		
 	
 		function searchCEP(address) {
 			var locationReturn = null;
@@ -233,22 +241,24 @@
 			searchCEP($('#logradouro').val() + '+' + $('#numero').val() + '+' + $('#uf').val() + '+' + $('#cidade').val());
 			//var urlCall = 'https://saudosapadoca.herokuapp.com/addAccount?name=' + $("#name").val() + '&email=' + $("#email").val() + '&number=' + $('#numero').val() + '&latitude=12&longitude=12&zipCode=' + $('#CEP').val();
 			//url: "https://saudosapadoca.herokuapp.com/addAccount?name=" + $("#name").val() + "&email=" + $("#email").val(),
-                        var urlCall = "/addLead";
+            var urlCall = "/addLead";
+			var userInfo = {
+                    name: $('#name').val(),
+                    email: $('#email').val(),
+                    zipCode: $('#CEP').val(),
+                    street: $('#logradouro').val(),
+                    city: $('#cidade').val(),
+                    state: $('#uf').val(),
+                    number: $('#numero').val(),
+                    country: 'Brasil',
+                    latitude: $('#latitude').val(),
+                    longitude: $('#longitude').val()
+               	};
+			localStorage.setItem('userInfo', JSON.stringify(userInfo));
 			$.ajax({				
 				type: "POST",
 				url: urlCall,
-                                data: {
-                                    name: $('#name').val(),
-                                    email: $('#email').val(),
-                                    zipCode: $('#CEP').val(),
-                                    street: $('#logradouro').val(),
-                                    city: $('#cidade').val(),
-                                    state: $('#uf').val(),
-                                    number: $('#numero').val(),
-                                    country: 'Brasil',
-                                    latitude: $('#latitude').val(),
-                                    longitude: $('#longitude').val()
-                                },
+                data: userInfo,
 				dataType: 'html',
 				success: function (data) { },
 				error: function (data) { alert("ERROR " + data.statusText); }

@@ -1,5 +1,4 @@
-<h1 class="panel-title hidden">Cadasro de usuário</h1>
-<form class="form-horizontal panel panel-primary">
+<form action="addAccount" class="form-horizontal panel panel-primary">
 	<div class="panel-heading">
 		<h2 class="panel-title">Cadasro de usuário</h2>
 	</div>
@@ -10,6 +9,14 @@
 			</div>
 			<div class="col-sm-10">
 				<input id="name" class="form-control" type="text" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-2">
+				<label for="phone" class="control-label">Telefone: </label>
+			</div>
+			<div class="col-sm-10">
+				<input id="phone" class="form-control" type="text" />
 			</div>
 		</div>
 		<div class="form-group">

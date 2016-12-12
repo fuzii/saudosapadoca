@@ -90,6 +90,8 @@
 	$(function () {
 		$('#tbl_orders > tbody > tr').click(
 			function () {
+				$(this).siblings().removeAttr('class');
+				$(this).attr('class','active');
 				$('#order_details').hide();
 				$('#order_details').fadeIn('slow');
 			}
