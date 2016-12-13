@@ -1,8 +1,9 @@
 <%@ include file="./views/master/master.jsp" %>
 <body>
-	<%@ include file="./views/master/topmenu.jsp" %>
 	<div class="container">
-		<link href="./css/card.css" type="text/css" rel="Stylesheet" >
+		<%@ include file="./views/master/topmenu.jsp" %>
+		<link href="./css/site.css" type="text/css" rel="Stylesheet" />
+		<link href="./css/card.css" type="text/css" rel="Stylesheet" />
 	    <style type="text/css">
 			#map
 			{
@@ -23,20 +24,9 @@
 			}
 			@media screen and (max-width: 768px)
 			{
-				h1 
-				{
-					font-size: 1.5em;
-				}
 				#btn_pesquisar 
 				{
 					width: 100%;
-				}
-			}
-			@media screen and (max-width: 375px)
-			{
-				h1
-				{
-					font-size: 1.2em;
 				}
 			}
 		</style>
@@ -52,7 +42,7 @@
 				</div>
 			</div>
 		</form>
-		<button class="btn btn-default" data-toggle="collapse" value="exibir mapa" data-target="#mapContainer" style="margin-bottom: 5px"><span class="glyphicon glyphicon-map-marker"></span> Mapa</button>
+		<button class="btn btn-default" data-toggle="collapse" value="exibir mapa" data-target="#mapContainer" style="margin-bottom: 5px; clear: both;"><span class="glyphicon glyphicon-map-marker"></span> Mapa</button>
 		<div id="mapContainer" class="collapse in">
 			<div id="map"></div>
 		</div>
@@ -126,10 +116,6 @@
 		
 		$(function () {
 			jQuery("#CEP").mask("99999-999");
-			if(localStorage.userInfo != null) {
-				$('#searchAddress').hide();
-				
-			}
 		});
 	
 		
@@ -263,6 +249,14 @@
 				success: function (data) { },
 				error: function (data) { alert("ERROR " + data.statusText); }
 			});
+			
+			var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+			$('#signup').hide();
+			$('#userName').html('Olá ' + userInfo.name + '!');
+			$('#userAddress').show();
+			$('#userAddress').find('p').html('<span class="glyphicon glyphicon-map-marker"></span> ' + userInfo.street + ', ' + userInfo.number + ' - ' + userInfo.city);
+			$('#searchAddress').hide();
+			
 			return true;
 		}
 	
