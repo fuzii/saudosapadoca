@@ -21,7 +21,7 @@
 		country: <input type="text" name="country"/><br />
 		latitude: <input type="text" name="latitude"/><br />
 		longitude: <input type="text" name="longitude"/><br />
-		<input type="submit" value="Cadastro Endereço" />
+		<input type="submit" value="Cadastro EndereÃ§o" />
 	</form>
     <br/>
     <br/>
@@ -62,6 +62,13 @@
 		latitude: <input type="text" name="latitude"/><br />
       	longitude: <input type="text" name="longitude"/><br />
       <input type="submit" value="Foursquare" />
+    </form>
+    <br/>
+    <br/>
+     <form action="getEstablishments">
+		latitude: <input type="text" name="latitude"/><br />
+      	longitude: <input type="text" name="longitude"/><br />
+      <input type="submit" value="Base de dados" />
     </form>
     <br/>
     <br/>
