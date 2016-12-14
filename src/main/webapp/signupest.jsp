@@ -1,4 +1,4 @@
-<%@ include file="./Views/Master/Master.jsp" %>
+<%@ include file="./views/master/master.jsp" %>
 <body>
 	<div class="container">
 		<form class="form-horizontal panel panel-primary">

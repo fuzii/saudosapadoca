@@ -59,7 +59,6 @@
 	function showAddress() {
 		if(localStorage.getItem('userInfo') != null) {
 			var userInfo = localStorage.getObject('userInfo');
-			$('#signup').hide();
 			$('#userName').html('Olá ' + userInfo.name + '!');
 			$('#userAddress').show();
 			$('#userAddress').find('p').html('<span class="glyphicon glyphicon-map-marker"></span> ' + userInfo.street + ', ' + userInfo.number + ' - ' + userInfo.city);
