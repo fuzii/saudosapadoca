@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,22 +9,35 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import model.Establishment;
+import model.User;
 import util.Geolocation;
+import util.Util;
 import model.Address;
 
 public class EstablishmentDao { 
 	
+	@SuppressWarnings("unchecked")
 	public static Establishment Insert(Establishment establishment) {	
 		
 		try { 
 			
+			// insert user
+			User user = UserDao.Insert(establishment);
+
 			// insert establishment
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO establishment (name,alias,register_num,created_on) values (?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO establishment (name,alias,register_num,email,radius,responsible_name,responsible_email,responsible_phone,rate,phone,user_id) values (?,?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1,establishment.getName());
 			stmt.setString(2,establishment.getAlias());
 			stmt.setLong(3,establishment.getRegisterNumber());
-			stmt.setDate(4, new Date(Calendar.getInstance().getTimeInMillis()));
+			stmt.setString(4,establishment.getEmail());
+			stmt.setInt(5,establishment.getRadius());
+			stmt.setString(6,establishment.getResponsibleName());
+			stmt.setString(7,establishment.getResponsibleEmail());
+			stmt.setString(8,establishment.getResponsiblePhone());
+			stmt.setInt(9,establishment.getRate());
+			stmt.setString(10,establishment.getResponsiblePhone());
+			stmt.setLong(11,user.getUserId());
 			stmt.execute();
 
 			// get generated establishment id
@@ -34,7 +46,7 @@ public class EstablishmentDao {
 			    establishment.setId(rs.getLong(1));
 
 			// insert address
-			for(Address address: establishment.getAddress()){
+			for(Address address: (List<Address>)Util.IsEmptyList(establishment.getAddress())){
 				address.setEstablishmentId(establishment.getId());
 				address = AddressDao.InsertByEstablishment(address);
 			}
@@ -175,7 +187,6 @@ public class EstablishmentDao {
 					a.setCity(rs.getString("city"));
 					a.setState(rs.getString("state"));
 					a.setNumber(rs.getInt("number"));
-					a.setRadius(rs.getInt("radius"));
 					a.setPremise(rs.getString("premise"));
 					a.setCountry(rs.getString("country"));
 					a.setLatitude(rs.getDouble("latitude"));
@@ -225,7 +236,6 @@ public class EstablishmentDao {
 				address.setCity(rs.getString("city"));
 				address.setState(rs.getString("state"));
 				address.setNumber(rs.getInt("number"));
-				address.setRadius(rs.getInt("radius"));
 				address.setPremise(rs.getString("premise"));
 				address.setCountry(rs.getString("country"));
 				address.setLatitude(rs.getDouble("latitude"));

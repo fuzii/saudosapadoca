@@ -44,17 +44,14 @@
 		name: <input type="text" name="name"/><br />
 		alias: <input type="text" name="alias"/><br />
 		registerNumber: <input type="text" name="registerNumber"/><br />
-		zipCode: <input type="text" name="zipCode"/><br />
-		street: <input type="text" name="street"/><br />
-		city: <input type="text" name="city"/><br />
-		state: <input type="text" name="state"/><br />
-		number: <input type="text" name="number"/><br />
-		premise: <input type="text" name="premise"/><br />
-		country: <input type="text" name="country"/><br />
-		latitude: <input type="text" name="latitude"/><br />
-		longitude: <input type="text" name="longitude"/><br />
+		email: <input type="text" name="email"/><br />
+		phone: <input type="text" name="phone"/><br />
 		radius: <input type="text" name="radius"/><br />
-      <input type="submit" value="Cadastro Padaria"/>
+		responsibleName: <input type="text" name="responsibleName"/><br />
+		responsibleEmail: <input type="text" name="responsibleEmail"/><br />
+		responsiblePhone: <input type="text" name="responsiblePhone"/><br />
+		password: <input type="password" name="password" /><br />
+      <input type="submit" value="Cadastro Estabelecimento"/>
     </form>	
     <br/>
     <br/>

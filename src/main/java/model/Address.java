@@ -16,16 +16,9 @@ public class Address {
 	private String country;
 	private Double latitude;
 	private Double longitude;
-	private int radius;
 	private Calendar created;
 	
 	
-	public int getRadius() {
-		return radius;
-	}
-	public void setRadius(int radius) {
-		this.radius = radius;
-	}
 	public Double getLatitude() {
 		return latitude;
 	}

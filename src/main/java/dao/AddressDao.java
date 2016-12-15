@@ -18,7 +18,7 @@ public class AddressDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,establishment_id,premise,country,latitude,longitude,radius,number) values (?,?,?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(account_id,zipCode,street,city,state,establishment_id,premise,country,latitude,longitude,number) values (?,?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 
 			if(address.getAccountId()!=null)
 				stmt.setLong(1,address.getAccountId());
@@ -48,8 +48,7 @@ public class AddressDao {
 			else
 				stmt.setNull(10, Types.DOUBLE);
 			
-			stmt.setInt(11,address.getRadius());
-			stmt.setInt(12,address.getNumber());
+			stmt.setInt(11,address.getNumber());
 			
 			stmt.execute();
 
@@ -111,7 +110,7 @@ public class AddressDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(establishment_id,zipCode,street,city,state,number,premise,country,latitude,longitude,radius) values (?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO address(establishment_id,zipCode,street,city,state,number,premise,country,latitude,longitude) values (?,?,?,?,?,?,?,?,?,?)");
 
 			stmt.setLong(1,address.getEstablishmentId());
 			stmt.setString(2,address.getZipCode());
@@ -123,7 +122,6 @@ public class AddressDao {
 			stmt.setString(8,address.getCountry());
 			stmt.setDouble(9,address.getLatitude());
 			stmt.setDouble(10,address.getLongitude());
-			stmt.setInt(11,address.getRadius());
 			stmt.execute();
 			
 			// get generated address id
@@ -148,7 +146,7 @@ public class AddressDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("UPDATE address SET account_id=?,zipCode=?,street=?,city=?,state=?,number=?,premise=?,country=?,latitude=?,longitude=?,establishment_id=?,radius=? where id=?");
+			PreparedStatement stmt = connection.prepareStatement("UPDATE address SET account_id=?,zipCode=?,street=?,city=?,state=?,number=?,premise=?,country=?,latitude=?,longitude=?,establishment_id=? where id=?");
 
 			stmt.setLong(1,address.getAccountId());
 			stmt.setString(2,address.getZipCode());
@@ -161,8 +159,7 @@ public class AddressDao {
 			stmt.setDouble(9,address.getLatitude());
 			stmt.setDouble(10,address.getLongitude());
 			stmt.setLong(11, address.getEstablishmentId());
-			stmt.setInt(12,address.getRadius());
-			stmt.setLong(13, address.getId());
+			stmt.setLong(12, address.getId());
 			stmt.execute();
 			
 			stmt.close();
@@ -209,7 +206,6 @@ public class AddressDao {
 				address.setCity(rs.getString("city"));
 				address.setState(rs.getString("state"));
 				address.setNumber(rs.getInt("number"));
-				address.setRadius(rs.getInt("radius"));
 				address.setPremise(rs.getString("premise"));
 				address.setCountry(rs.getString("country"));
 				address.setLatitude(rs.getDouble("latitude"));
@@ -257,7 +253,6 @@ public class AddressDao {
 			address.setCity(rs.getString("city"));
 			address.setState(rs.getString("state"));
 			address.setNumber(rs.getInt("number"));
-			address.setRadius(rs.getInt("radius"));
 			address.setPremise(rs.getString("premise"));
 			address.setCountry(rs.getString("country"));
 			address.setLatitude(rs.getDouble("latitude"));

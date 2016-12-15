@@ -210,7 +210,7 @@ public class AccountDao {
 
 			while(rs.next()) {
 
-				int radius = address.getRadius();
+				int radius = 1000; //address.getRadius();
 				int distance = Geolocation.Distance(address.getLatitude(), address.getLongitude(), rs.getDouble("latitude"), rs.getDouble("longitude"));
 				
 				if(radius >= distance){
@@ -224,7 +224,6 @@ public class AccountDao {
 					a.setCity(rs.getString("city"));
 					a.setState(rs.getString("state"));
 					a.setNumber(rs.getInt("number"));
-					a.setRadius(rs.getInt("radius"));
 					a.setPremise(rs.getString("premise"));
 					a.setCountry(rs.getString("country"));
 					a.setLatitude(rs.getDouble("latitude"));

@@ -26,7 +26,6 @@ public class AddressJSON {
 			jsonAddress.put("country",address.getCountry());
 			jsonAddress.put("latitude",address.getLatitude());
 			jsonAddress.put("longitude",address.getLongitude());
-			jsonAddress.put("radius",address.getRadius());
 
 
 		} catch (JSONException e) {
