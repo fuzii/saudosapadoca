@@ -56,12 +56,13 @@
         <br/>
     <br/>
     <form action="addSchedule">
+	    	<input type="text" name="establishment_id"/><br/>
 		seg-sex<br/>
-		início: <input type="text" name="week_start_time"/> fim: <input type="text" name="week_end_time"/><br />
+		inicio: <input type="text" name="week_start_time"/> fim: <input type="text" name="week_end_time"/><br />
 		sábado<br/>
-		início: <input type="text" name="saturday_start_time"/> fim: <input type="text" name="saturday_end_time"/><br />
+		inicio: <input type="text" name="saturday_start_time"/> fim: <input type="text" name="saturday_end_time"/><br />
 		domingo<br/>
-		início: <input type="text" name="sunday_start_time"/> fim: <input type="text" name="sunday_end_time"/><br />
+		inicio: <input type="text" name="sunday_start_time"/> fim: <input type="text" name="sunday_end_time"/><br />
       <input type="submit" value="Schedule"/>
     </form>	
     
