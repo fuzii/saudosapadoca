@@ -144,9 +144,9 @@
 					//                    }
 					map.setZoom(15);
 					fetchFoursquare("https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + "&ll=" + results[0].geometry.location.lat() + "," + results[0].geometry.location.lng() + "&radius=1000&section=food&query=padaria&v=20161123");
-                                        //set lat and lng
-                                        $('#latitude').val(results[0].geometry.location.lat());
-                                        $('#longitude').val(results[0].geometry.location.lng());
+                    //set lat and lng
+                    $('#latitude').val(results[0].geometry.location.lat());
+                    $('#longitude').val(results[0].geometry.location.lng());
 				}
 				else
 					alert('Geocode error: ' + status);
@@ -215,6 +215,11 @@
 						$('#listresult').append('<div id="row_' + rowCount + '" class="row"></div>');
 					}
 				});
+			});
+		}
+		
+		function fetchEstablishments(){
+			$.getJSON('/getEstablishments', function (data) {
 			});
 		}
 	
