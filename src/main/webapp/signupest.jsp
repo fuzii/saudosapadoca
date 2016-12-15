@@ -32,13 +32,13 @@
 							</div>
 							<div class="panel-body">
 								<div class="form-group col-lg-offset-1 col-lg-11">
-									<input id="responsibleName" name="responsibleName" placeholder="Nome completo do representante" class="form-control" type="text" />
+									<input id="responsibleName" name="responsible_name" placeholder="Nome completo do representante" class="form-control" type="text" />
 								</div>
 								<div class="form-group col-lg-offset-1 col-lg-11">
-									<input id="responsibleEmail" name="responsibleEmail" placeholder="Email do representante" class="form-control" type="text" />
+									<input id="responsibleEmail" name="responsible_email" placeholder="Email do representante" class="form-control" type="text" />
 								</div>
 								<div class="form-group col-lg-offset-1 col-lg-11">
-									<input id="responsiblePhone" name="responsiblePhone" placeholder="Telefone de contato" class="form-control" type="text" />
+									<input id="responsiblePhone" name="responsible_phone" placeholder="Telefone de contato" class="form-control" type="text" />
 								</div>
 							</div>
 						</div>
@@ -55,7 +55,7 @@
 									<input id="est_name" name="alias" placeholder="Nome" class="form-control" type="text" />
 								</div>
 								<div class="form-group col-lg-offset-1 col-lg-11">
-									<input id="cnpj" name="registerNumber" placeholder="CNPJ" class="form-control" type="text" />
+									<input id="cnpj" name="register_number" placeholder="CNPJ" class="form-control" type="text" />
 								</div>
 								<div class="form-group col-lg-offset-1 col-lg-11">
 									<input id="contact_phone" name="phone" placeholder="Telefone de contato" class="form-control" type="text" />
@@ -71,7 +71,8 @@
 							<div class="panel-body">
 								<div class="form-group col-lg-4">
 									<input id="zipCode" name="zipCode" type="text" class="form-control" placeholder="CEP" maxlength="9" />
-									<input id="country" name="country" class="hidden" />
+									<input id="country" name="country" class="hidden" value="Brasil" />
+									<input id="radius" name="radius" class="hidden" value="0" />
 									<input id="latitude" name="latitude" class="hidden" />
 									<input id="longitude" name="longitude" class="hidden" />
 								</div>
