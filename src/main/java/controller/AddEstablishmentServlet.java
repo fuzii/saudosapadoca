@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
+
+import dao.AddressDao;
 import dao.EstablishmentDao;
 import json.EstablishmentJSON;
+import model.Address;
 import model.Establishment;
 import util.Util;
 
@@ -40,7 +43,38 @@ public class AddEstablishmentServlet extends HttpServlet{
 				establishment.setPhone(request.getParameter("phone"));
 			
 			establishment = EstablishmentDao.Insert(establishment);
+		
+			// address
+			Address address = new Address();
+			address.setZipCode(request.getParameter("zipCode"));
 			
+			if(!Util.IsEmpty(request.getParameter("street")))
+				address.setStreet(request.getParameter("street"));
+			
+			if(!Util.IsEmpty(request.getParameter("city")))
+				address.setCity(request.getParameter("city"));
+			
+			if(!Util.IsEmpty(request.getParameter("state")))
+				address.setState(request.getParameter("state"));			
+			
+			if(!Util.IsEmpty(request.getParameter("country")))
+				address.setCountry(request.getParameter("country"));
+			
+			if(!Util.IsEmpty(request.getParameter("latitude")))
+				address.setLatitude(Double.parseDouble(request.getParameter("latitude")));
+			
+			if(!Util.IsEmpty(request.getParameter("longitude")))
+				address.setLongitude(Double.parseDouble(request.getParameter("longitude")));
+
+			if(!Util.IsEmpty(request.getParameter("number")))
+				address.setNumber(Integer.parseInt(request.getParameter("number")));
+			
+			if(!Util.IsEmpty(request.getParameter("premise")))
+				address.setPremise(request.getParameter("premise"));
+			
+			address.setEstablishmentId(establishment.getId());
+			address = AddressDao.Insert(address);
+
 			
 			// response
 			response.addHeader("Access-Control-Allow-Origin","*");
@@ -54,6 +88,7 @@ public class AddEstablishmentServlet extends HttpServlet{
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
 			out.print(jsonMain.put("establishment",EstablishmentJSON.GetEstablishmentJSON(establishment)));
+			
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
 		}
