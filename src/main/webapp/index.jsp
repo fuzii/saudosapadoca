@@ -53,10 +53,10 @@
 		password: <input type="password" name="password" /><br />
       <input type="submit" value="Cadastro Estabelecimento"/>
     </form>	
-        <br/>
+    <br/>
     <br/>
     <form action="addSchedule">
-	    	<input type="text" name="establishment_id"/><br/>
+	    Estabelecimento Id:<input type="text" name="establishment_id"/><br/>
 		seg-sex<br/>
 		inicio: <input type="text" name="week_start_time"/> fim: <input type="text" name="week_end_time"/><br />
 		sábado<br/>
@@ -64,6 +64,15 @@
 		domingo<br/>
 		inicio: <input type="text" name="sunday_start_time"/> fim: <input type="text" name="sunday_end_time"/><br />
       <input type="submit" value="Schedule"/>
+    </form>	
+    <br/>
+    <br/>
+    <form action="addPriceList">
+		Estabelecimento Id:<input type="text" name="establishment_id"/><br/>
+		Product Id:<input type="text" name="product_id"/><br/>
+		Price:<input type="text" name="price"/><br/>
+		Unit:<input type="text" name="unit"/><br/>
+      <input type="submit" value="Price List"/>
     </form>	
     
     <br/>
