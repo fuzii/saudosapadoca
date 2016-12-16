@@ -3,23 +3,16 @@ package model;
 public class Schedule {
 
 	private Long id;
-	private Long establishmentId;
+	private Establishment establishment;
 	private String dayWeek;
 	private String startTime;
 	private String endTime;
-	
-	
+		
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public Long getEstablishmentId() {
-		return establishmentId;
-	}
-	public void setEstablishmentId(Long establishmentId) {
-		this.establishmentId = establishmentId;
 	}
 	public String getDayWeek() {
 		return dayWeek;
@@ -38,6 +31,12 @@ public class Schedule {
 	}
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+	public Establishment getEstablishment() {
+		return establishment;
+	}
+	public void setEstablishment(Establishment establishment) {
+		this.establishment = establishment;
 	}
 			
 }

@@ -144,8 +144,14 @@ public class EstablishmentDao {
 			establishment.setName(rs.getString("name"));
 			establishment.setAlias(rs.getString("alias"));
 			establishment.setRegisterNumber(rs.getLong("register_num"));
-			establishment.setAddress(GetEstablishmentAddresses(establishment));
-											
+			establishment.setEmail(rs.getString("email"));
+			establishment.setRadius(rs.getInt("radius"));
+			establishment.setResponsibleName(rs.getString("responsible_name"));
+			establishment.setResponsibleEmail(rs.getString("responsible_email"));
+			establishment.setResponsiblePhone(rs.getString("responsible_phone"));
+			establishment.setRate(rs.getInt("rate"));
+			establishment.setPhone(rs.getString("phone"));
+										
 			// created on
 			Calendar data = Calendar.getInstance();
 			data.setTime(rs.getDate("created_on"));

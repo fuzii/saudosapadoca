@@ -1,17 +1,31 @@
 package model;
 
-import java.util.Date;
-import java.util.List;
-
 public class PriceList {
 
 	private Long id;
 	private Establishment establishment;
-	private List<PriceListItem> priceListItem;
-	private Date startDate;
-	private Date entDate;
-	private String status;
-	
+	private Product product;
+	private Double price;
+	private String unit;
+		
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -23,30 +37,6 @@ public class PriceList {
 	}
 	public void setEstablishment(Establishment establishment) {
 		this.establishment = establishment;
-	}
-	public List<PriceListItem> getPriceListItem() {
-		return priceListItem;
-	}
-	public void setPriceListItem(List<PriceListItem> priceListItem) {
-		this.priceListItem = priceListItem;
-	}
-	public Date getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-	public Date getEntDate() {
-		return entDate;
-	}
-	public void setEntDate(Date entDate) {
-		this.entDate = entDate;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 		
 }

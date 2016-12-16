@@ -1,10 +1,13 @@
 package model;
 
+import java.util.Calendar;
+
 public class Product {
 
 	private Long id;
 	private String name;
-	private String type;
+	private String description;	
+	private Calendar created;
 	
 	public Long getId() {
 		return id;
@@ -18,11 +21,17 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getType() {
-		return type;
+	public String getDescription() {
+		return description;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Calendar getCreated() {
+		return created;
+	}
+	public void setCreated(Calendar created) {
+		this.created = created;
 	}	
 	
 }

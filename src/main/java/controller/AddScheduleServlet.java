@@ -1,12 +1,20 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
+
+import dao.EstablishmentDao;
 import dao.ScheduleDao;
+import json.ScheduleJSON;
+import model.Establishment;
 import model.Schedule;
 
 @WebServlet("/addSchedule")
@@ -17,8 +25,9 @@ public class AddScheduleServlet extends HttpServlet{
 		try{
 			
 			// schedule
+			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id")));
 			Schedule schedule = new Schedule(); 
-			schedule.setEstablishmentId(Long.parseLong(request.getParameter("establishment_id")));
+			schedule.setEstablishment(establishment);
 			schedule.setStartTime(request.getParameter("saturday_start_time"));
 			schedule.setEndTime(request.getParameter("saturday_end_time"));
 			schedule.setDayWeek("Sábado");
@@ -48,8 +57,13 @@ public class AddScheduleServlet extends HttpServlet{
 			response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
 			response.addHeader("Access-Control-Max-Age","3600");
 			response.addHeader("Access-Control-Allow-Headers","x-requested-with");
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
 			response.setStatus(HttpServletResponse.SC_OK);
 			
+			JSONObject jsonMain = new JSONObject();
+			PrintWriter out = response.getWriter();
+			out.print(jsonMain.put("schedule",ScheduleJSON.GetListScheduleJSON(ScheduleDao.GetSchedules(establishment))));
 	
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
