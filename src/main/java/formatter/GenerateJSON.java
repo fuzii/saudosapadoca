@@ -9,6 +9,7 @@ import model.Account;
 import model.Address;
 import model.Establishment;
 import model.PriceList;
+import model.Product;
 import model.Schedule;
 
 public class GenerateJSON {
@@ -153,6 +154,29 @@ public class GenerateJSON {
 			jsonSchedules.put(GetScheduleJSON(schedule));
 
 		return jsonSchedules;
+	
+	}
+
+	public static JSONObject GetProductJSON (Product product){
+		
+		
+		JSONObject jsonProduct = null;
+				
+		try {
+
+			// account
+			jsonProduct = new JSONObject();			
+			jsonProduct.put("id",product.getId());
+			jsonProduct.put("name",product.getName());
+			jsonProduct.put("description",product.getDescription());
+			jsonProduct.put("created",product.getCreated());
+
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return jsonProduct;
 	
 	}
 

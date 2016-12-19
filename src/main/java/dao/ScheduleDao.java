@@ -65,7 +65,7 @@ public class ScheduleDao {
 				
 				// created on
 				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("created_on"));
+				data.setTime(rs.getDate("created"));
 				establishment.setCreated(data);
 				schedules.add(schedule);
 				

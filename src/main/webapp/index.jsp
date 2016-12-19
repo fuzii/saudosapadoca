@@ -11,7 +11,6 @@
     <br/>
 	<form action="addAddress"> 
 		account_id: <input type="text" name="account_id" /><br />
-		establishment_id: <input type="text" name="establishment_id" /><br />
 		zipCode: <input type="text" name="zipCode"/><br />
 		street: <input type="text" name="street"/><br />
 		city: <input type="text" name="city"/><br />
@@ -21,7 +20,7 @@
 		country: <input type="text" name="country"/><br />
 		latitude: <input type="text" name="latitude"/><br />
 		longitude: <input type="text" name="longitude"/><br />
-		<input type="submit" value="Cadastro EndereÃ§o" />
+		<input type="submit" value="Cadastro Endere�o da Conta" />
 	</form>
     <br/>
     <br/>
@@ -51,6 +50,15 @@
 		responsibleEmail: <input type="text" name="responsible_email"/><br />
 		responsiblePhone: <input type="text" name="responsible_phone"/><br />
 		password: <input type="password" name="password" /><br />
+		zipCode: <input type="text" name="zipCode"/><br />
+		street: <input type="text" name="street"/><br />
+		city: <input type="text" name="city"/><br />
+		state: <input type="text" name="state"/><br />
+		number: <input type="text" name="number"/><br />
+		premise: <input type="text" name="premise"/><br />
+		country: <input type="text" name="country"/><br />
+		latitude: <input type="text" name="latitude"/><br />
+		longitude: <input type="text" name="longitude"/><br />
       <input type="submit" value="Cadastro Estabelecimento"/>
     </form>	
     <br/>
@@ -75,6 +83,13 @@
       <input type="submit" value="Price List"/>
     </form>	
     
+    <br/>
+    <br/>
+     <form action="addProduct">
+		name: <input type="text" name="name"/><br />
+      	description: <input type="text" name="description"/><br />
+      <input type="submit" value="Cadastro Produto" />
+    </form>
     <br/>
     <br/>
      <form action="getFoursquare">

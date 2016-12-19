@@ -48,7 +48,7 @@ public class AddScheduleServlet extends HttpServlet{
 			out.print(jsonMain.put("schedule",GenerateJSON.GetListScheduleJSON(ScheduleDao.GetSchedules(establishment))));
 	
 		} catch (Exception e) {
-			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 		
 	}

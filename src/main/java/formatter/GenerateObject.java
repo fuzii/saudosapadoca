@@ -9,6 +9,7 @@ import model.Address;
 import model.Establishment;
 import model.Lead;
 import model.PriceList;
+import model.Product;
 import model.Schedule;
 import util.Util;
 
@@ -124,4 +125,15 @@ public class GenerateObject {
 	
 	}
 
+	public static Product GetProduct (HttpServletRequest request){
+		
+		Product product = new Product(); 
+		product.setName(request.getParameter("name"));
+		product.setDescription(request.getParameter("description"));
+		
+		return product;
+	
+	}
+
+	
 }
