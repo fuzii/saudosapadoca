@@ -59,7 +59,7 @@
 	    Estabelecimento Id:<input type="text" name="establishment_id"/><br/>
 		seg-sex<br/>
 		inicio: <input type="text" name="week_start_time"/> fim: <input type="text" name="week_end_time"/><br />
-		s√°bado<br/>
+		s·bado<br/>
 		inicio: <input type="text" name="saturday_start_time"/> fim: <input type="text" name="saturday_end_time"/><br />
 		domingo<br/>
 		inicio: <input type="text" name="sunday_start_time"/> fim: <input type="text" name="sunday_end_time"/><br />
