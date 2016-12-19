@@ -16,7 +16,6 @@ import dao.ScheduleDao;
 import formatter.GenerateJSON;
 import formatter.GenerateObject;
 import model.Establishment;
-import model.Schedule;
 
 @WebServlet("/addSchedule")
 public class AddScheduleServlet extends HttpServlet{ 
@@ -26,20 +25,13 @@ public class AddScheduleServlet extends HttpServlet{
 		try{
 			
 			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id")));			
-			Schedule schedule = GenerateObject.GetSchedule(establishment, request.getParameter("saturday_start_time"), request.getParameter("saturday_end_time"), "Sábado");
-			ScheduleDao.Insert(schedule);
-			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("sunday_start_time"), request.getParameter("sunday_end_time"), "Domingo");
-			ScheduleDao.Insert(schedule);			
-			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Segunda");
-			ScheduleDao.Insert(schedule);
-			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Terça");
-			ScheduleDao.Insert(schedule);
-			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Quarta");
-			ScheduleDao.Insert(schedule);
-			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Quinta");
-			ScheduleDao.Insert(schedule);
-			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Sexta");
-			ScheduleDao.Insert(schedule);
+			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Segunda"));
+			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Terça"));
+			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Quarta"));
+			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Quinta"));
+			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Sexta"));
+			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("saturday_start_time"), request.getParameter("saturday_end_time"), "Sábado"));
+			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("sunday_start_time"), request.getParameter("sunday_end_time"), "Domingo"));			
 				
 			
 			// response
