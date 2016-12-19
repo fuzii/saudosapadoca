@@ -13,7 +13,8 @@ import org.json.JSONObject;
 
 import dao.EstablishmentDao;
 import dao.ScheduleDao;
-import json.ScheduleJSON;
+import formatter.GenerateJSON;
+import formatter.GenerateObject;
 import model.Establishment;
 import model.Schedule;
 
@@ -24,33 +25,22 @@ public class AddScheduleServlet extends HttpServlet{
 
 		try{
 			
-			// schedule
-			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id")));
-			Schedule schedule = new Schedule(); 
-			schedule.setEstablishment(establishment);
-			schedule.setStartTime(request.getParameter("saturday_start_time"));
-			schedule.setEndTime(request.getParameter("saturday_end_time"));
-			schedule.setDayWeek("Sábado");
+			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id")));			
+			Schedule schedule = GenerateObject.GetSchedule(establishment, request.getParameter("saturday_start_time"), request.getParameter("saturday_end_time"), "Sábado");
 			ScheduleDao.Insert(schedule);
-
-			schedule.setStartTime(request.getParameter("sunday_start_time"));
-			schedule.setEndTime(request.getParameter("sunday_end_time"));
-			schedule.setDayWeek("Domingo");
+			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("sunday_start_time"), request.getParameter("sunday_end_time"), "Domingo");
+			ScheduleDao.Insert(schedule);			
+			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Segunda");
 			ScheduleDao.Insert(schedule);
-			
-			schedule.setStartTime(request.getParameter("week_start_time"));
-			schedule.setEndTime(request.getParameter("week_end_time"));
-			schedule.setDayWeek("Segunda");
+			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Terça");
 			ScheduleDao.Insert(schedule);
-			schedule.setDayWeek("Terça");
+			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Quarta");
 			ScheduleDao.Insert(schedule);
-			schedule.setDayWeek("Quarta");
+			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Quinta");
 			ScheduleDao.Insert(schedule);
-			schedule.setDayWeek("Quinta");
+			schedule = GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Sexta");
 			ScheduleDao.Insert(schedule);
-			schedule.setDayWeek("Sexta");
-			ScheduleDao.Insert(schedule);
-	
+				
 			
 			// response
 			response.addHeader("Access-Control-Allow-Origin","*");
@@ -63,7 +53,7 @@ public class AddScheduleServlet extends HttpServlet{
 			
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
-			out.print(jsonMain.put("schedule",ScheduleJSON.GetListScheduleJSON(ScheduleDao.GetSchedules(establishment))));
+			out.print(jsonMain.put("schedule",GenerateJSON.GetListScheduleJSON(ScheduleDao.GetSchedules(establishment))));
 	
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());

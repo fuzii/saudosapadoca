@@ -77,7 +77,7 @@
     
     <br/>
     <br/>
-     <form action="getFoursquareServlet">
+     <form action="getFoursquare">
 		latitude: <input type="text" name="latitude"/><br />
       	longitude: <input type="text" name="longitude"/><br />
       <input type="submit" value="Foursquare" />

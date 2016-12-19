@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Address;
 import util.Foursquare;
 
-@WebServlet("/getFoursquareServlet") 
+@WebServlet("/getFoursquare") 
 public class GetFoursquareServlet extends HttpServlet{
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import dao.AccountDao;
 import dao.EstablishmentDao;
-import json.AddressJSON;
+import formatter.GenerateJSON;
 import model.Account;
 import model.Address;
 import model.Establishment;
@@ -52,7 +52,7 @@ public class Geolocation {
 				jsonEstablishment.put("name",establishment.getName());
 				jsonEstablishment.put("alias",establishment.getAlias());
 				jsonEstablishment.put("registerNumber",establishment.getRegisterNumber());
-				jsonEstablishment.put("address", AddressJSON.GetAddressJSON(a));
+				jsonEstablishment.put("address", GenerateJSON.GetAddressJSON(a));
 				jsonArrayEstablishment.put(jsonEstablishment);
 
 			}
@@ -90,7 +90,7 @@ public class Geolocation {
 				jsonAccount.put("id",account.getId());
 				jsonAccount.put("name",account.getName());
 				jsonAccount.put("email",account.getEmail());				
-				jsonAccount.put("address", AddressJSON.GetAddressJSON(a));
+				jsonAccount.put("address", GenerateJSON.GetAddressJSON(a));
 				jsonArrayAccount.put(jsonAccount);
 
 			}

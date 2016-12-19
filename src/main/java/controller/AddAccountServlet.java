@@ -7,11 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.json.JSONObject;
-
 import dao.AccountDao;
-import json.AccountJSON;
+import formatter.GenerateJSON;
+import formatter.GenerateObject;
 import model.Account;
 import util.SendGridEmail;
 
@@ -22,13 +21,7 @@ public class AddAccountServlet extends HttpServlet{
 
 		try{
 			
-			// account
-			Account account = new Account(); 
-			account.setName(request.getParameter("name"));
-			account.setEmail(request.getParameter("email"));
-			account.setPhone(request.getParameter("phone"));
-			account.setUserLogin(request.getParameter("email"));
-			account.setUserPassword(request.getParameter("password").toCharArray());			
+			Account account = GenerateObject.GetAccount(request);
 			account = AccountDao.Insert(account);
 	
 			
@@ -53,7 +46,7 @@ public class AddAccountServlet extends HttpServlet{
 			
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
-			out.print(jsonMain.put("account",AccountJSON.GetAccountJSON(account)));
+			out.print(jsonMain.put("account",GenerateJSON.GetAccountJSON(account)));
 	
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());

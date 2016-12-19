@@ -8,10 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
-import dao.EstablishmentDao;
 import dao.PriceListDao;
-import dao.ProductDao;
-import json.PriceListJSON;
+import formatter.GenerateJSON;
+import formatter.GenerateObject;
 import model.PriceList;
 
 @WebServlet("/addPriceList")
@@ -22,11 +21,7 @@ public class AddPriceListServlet extends HttpServlet{
 		try{
 			
 			// price list
-			PriceList priceList = new PriceList(); 
-			priceList.setEstablishment(EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id"))));
-			priceList.setProduct(ProductDao.GetProductById(Long.parseLong(request.getParameter("product_id"))));
-			priceList.setPrice(Double.parseDouble(request.getParameter("price")));
-			priceList.setUnit(request.getParameter("unit"));
+			PriceList priceList = GenerateObject.GetPriceList(request);
 			PriceListDao.Insert(priceList);
 	
 			
@@ -41,7 +36,7 @@ public class AddPriceListServlet extends HttpServlet{
 			
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
-			out.print(jsonMain.put("priceList",PriceListJSON.GetPriceListJSON(priceList)));
+			out.print(jsonMain.put("priceList",GenerateJSON.GetPriceListJSON(priceList)));
 			
 	
 		} catch (Exception e) {
