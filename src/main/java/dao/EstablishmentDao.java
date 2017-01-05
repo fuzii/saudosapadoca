@@ -179,7 +179,7 @@ public class EstablishmentDao {
 
 			while(rs.next()) {
 
-				int radius = rs.getInt("radius");
+				int radius = 1000;//rs.getInt("radius");
 				int distance = Geolocation.Distance(address.getLatitude(), address.getLongitude(), rs.getDouble("latitude"), rs.getDouble("longitude"));
 				
 				if(radius >= distance){
