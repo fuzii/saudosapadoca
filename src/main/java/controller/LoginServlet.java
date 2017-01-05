@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,15 @@ public class LoginServlet extends HttpServlet{
 		
 		// response
 		PrintWriter out = response.getWriter();
-		out.print(UserDao.Login(user));
+		
+		if(UserDao.Login(user)){
+			Cookie loginCookie = new Cookie("user", user.getUserLogin());
+			loginCookie.setMaxAge(30*60); //setting cookie to expiry in 30 mins
+			response.addCookie(loginCookie);
+			out.println("sucesso");
+		}else{
+			out.println("não logou");
+		}
 		
 	}
 	
