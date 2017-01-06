@@ -14,10 +14,7 @@ public class UserDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("CREATE EXTENSION pgcrypto");
-			stmt.execute();
-			
-			stmt = connection.prepareStatement("INSERT INTO user_application (login,password) VALUES (?,CRYPT(?,GEN_SALT('md5')))",Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO user_application (login,password) VALUES (?,CRYPT(?,GEN_SALT('md5')))",Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1,user.getUserLogin());
 			stmt.setString(2,user.getUserPassword().toString());
 			stmt.execute();
@@ -44,10 +41,7 @@ public class UserDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("CREATE EXTENSION pgcrypto");
-			stmt.execute();
-			
-			stmt = connection.prepareStatement("SELECT * FROM user_application WHERE login=? AND password = CRYPT(?,password)");
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM user_application WHERE login=? AND password = CRYPT(?,password)");
 			stmt.setString(1,user.getUserLogin());
 			stmt.setString(2,new String(user.getUserPassword()));
 
