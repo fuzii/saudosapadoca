@@ -3,7 +3,7 @@
 	<form action="addAccount"> 
 		name: <input type="text" name="name" /><br />
 		email: <input type="text" name="email" /><br />
-		password: <input type="password" name="password" /><br />
+		password: <input type="text" name="password" /><br />
 		phone: <input type="text" name="phone" /><br />
 		<input type="submit" value="Cadastro Conta" />
 	</form>
@@ -20,7 +20,7 @@
 		country: <input type="text" name="country"/><br />
 		latitude: <input type="text" name="latitude"/><br />
 		longitude: <input type="text" name="longitude"/><br />
-		<input type="submit" value="Cadastro EndereÁo da Conta" />
+		<input type="submit" value="Cadastro Endere√ßo da Conta" />
 	</form>
     <br/>
     <br/>
@@ -67,7 +67,7 @@
 	    Estabelecimento Id:<input type="text" name="establishment_id"/><br/>
 		seg-sex<br/>
 		inicio: <input type="text" name="week_start_time"/> fim: <input type="text" name="week_end_time"/><br />
-		s·bado<br/>
+		s√°bado<br/>
 		inicio: <input type="text" name="saturday_start_time"/> fim: <input type="text" name="saturday_end_time"/><br />
 		domingo<br/>
 		inicio: <input type="text" name="sunday_start_time"/> fim: <input type="text" name="sunday_end_time"/><br />
