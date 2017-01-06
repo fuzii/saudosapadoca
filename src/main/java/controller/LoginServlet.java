@@ -1,13 +1,15 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import dao.SessionDao;
 import dao.UserDao;
 import model.User;
 
@@ -20,19 +22,20 @@ public class LoginServlet extends HttpServlet{
 		User user = new User();
 		user.setUserLogin(request.getParameter("login"));
 		user.setUserPassword(request.getParameter("password").toCharArray());
+		user = UserDao.Login(user); 
 		
-		// response
-		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession(true);
 		
-		if(UserDao.Login(user)){
-			Cookie loginCookie = new Cookie("user", user.getUserLogin());
-			loginCookie.setMaxAge(30*60); //setting cookie to expiry in 30 mins
-			response.addCookie(loginCookie);
-			out.println("sucesso");
-		}else{
-			out.println("não logou");
+		if(user.getUserId()!=null && session.isNew()){
+			
+			// inicializa as variaveis de sessão
+			Map<String,String> map = SessionDao.GetSessionParameters(user);
+			
+			for(String key: map.keySet())
+				session.setAttribute(key, map.get(key));
+			
 		}
-		
+			
 	}
 	
 }
