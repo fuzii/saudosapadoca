@@ -41,7 +41,7 @@ public class GenerateObject {
 	public static PriceList GetPriceList (HttpServletRequest request){
 		
 		PriceList priceList = new PriceList(); 
-		priceList.setEstablishment(EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id"))));
+		priceList.setEstablishment(EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(request.getSession().getAttribute("establishment_id")))));
 		priceList.setProduct(ProductDao.GetProductById(Long.parseLong(request.getParameter("product_id"))));
 		priceList.setPrice(Double.parseDouble(request.getParameter("price")));
 		priceList.setUnit(request.getParameter("unit"));
