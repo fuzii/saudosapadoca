@@ -26,7 +26,7 @@ public class SessionDao {
 			if(!rs.next())
 				return null;
 			
-			Map<String, String> map = new HashMap<>();
+			Map<String, String> map = new HashMap<String, String>();
 			map.put("user_id", String.valueOf(rs.getLong("user_id")));
 			map.put("account_id", String.valueOf(rs.getLong("account_id")));
 			map.put("establishment_id", String.valueOf(rs.getLong("establishment_id")));
@@ -34,6 +34,7 @@ public class SessionDao {
 			rs.close();
 			stmt.close();
 			connection.close();
+			
 			return map;
 	
 		} catch (SQLException e) {
