@@ -12,7 +12,7 @@
             <a href="#">LINK</a>
         </div>
     </div>
-    <div id="planContainer" class="card-details">
+    <div id="planContainer" class="form-group card-details">
         <h3 style="padding-left: 10px">Configure seu plano</h3>
         <input type="hidden" id="monSelected" value="1" />
         <input type="hidden" id="tueSelected" value="1" />
@@ -129,6 +129,9 @@
        		</div>
        	</div>
    	</div>
+   	<div class="form-group">
+		<input type="submit" class="btn btn-success" value="Gravar" style="min-width: 150px;" />
+	</div>
 </div>
 <div class="col-xs-3 hidden-xs">
     	<div class="panel panel-default" data-spy="affix" data-offset-top="300">

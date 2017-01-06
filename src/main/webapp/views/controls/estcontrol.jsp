@@ -128,18 +128,36 @@
 		var formData = new FormData();
 		formData.append('file', file, file.name);
 		
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', '/addEstablishmentPhoto', true);
-		
-		xhr.onload = function () {
-			if(xhr.status === 200) {
-				//success
-			} 
-			else {
-				//error
+		/**Check for xhr Object**/
+		if (window.XMLHttpRequest) {
+			xhr = new XMLHttpRequest();
+		}
+		else {
+			/**Try using ActiveXObject for older ie versions..**/
+			if (window.ActiveXObject) {
+				try {
+					xhr = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				catch (e) { }
 			}
 		}
-		xhr.send(formData);
+
+		/**Now you can go ahead and use xhr*/
+		if (xhr) {
+			xhr.open('POST', '/addEstablishmentPhoto', true);
+			xhr.onload = function () {
+				if(xhr.status === 200) {
+					//success
+				} 
+				else {
+					//error
+				}
+			}
+			xhr.send(formData);
+		}
+		else {
+			//error
+		}
 		
 		return false;
 	}

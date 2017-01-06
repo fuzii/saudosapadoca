@@ -1,6 +1,7 @@
 <%@ include file="./views/master/master.jsp" %>
 <body>
 	<div class="container">
+		<%@ include file="./views/master/topmenu.jsp" %>
 		<form method="post" action="/addEstablishment" class="form-horizontal panel panel-primary">
 			<div class="panel-heading">
 				<h1 class="panel-title">Cadastro do estabelecimento</h1>

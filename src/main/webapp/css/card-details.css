@@ -1,5 +1,5 @@
 .card-details {
-  margin-top: 10px;
+  margin-bottom: 10px;
   box-sizing: border-box;
   border-radius: 2px;
   background-clip: padding-box;
@@ -156,7 +156,8 @@
 	transition: inherit;
 	display: table-cell;
 }
-.card-day-list-group .card-day-list-item .card-day-list-btn button, input[type=button]
+.card-day-list-group .card-day-list-item .card-day-list-btn button, 
+.card-day-list-group .card-day-list-item .card-day-list-btn input[type=button]
 {
 	color: #fff;
 	border-top-right-radius: inherit;
