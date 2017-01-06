@@ -22,14 +22,11 @@ public class AddPriceListServlet extends HttpServlet{
 
 		try{
 			
-			HttpSession session = request.getSession(true);			
-
+			HttpSession session = request.getSession(true);
 			if(session.isNew()){
 				request.getRequestDispatcher("login.jsp").include(request, response); 
 				return;
 			}
-			
-			request.setAttribute("establishment_id", session.getAttribute("establishment_id"));
 			
 			
 			// price list
