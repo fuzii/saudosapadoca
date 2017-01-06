@@ -15,7 +15,6 @@ public class UserDao {
 			
 			Connection connection = new ConnectionFactory().getConnection();
 			PreparedStatement stmt = connection.prepareStatement("INSERT INTO user_application (login,password) VALUES (?,CRYPT(?,GEN_SALT('md5')))",Statement.RETURN_GENERATED_KEYS);
-			//stmt.setString(1,user.getUserLogin());
 			stmt.setString(1,user.getUserLogin());
 			stmt.setString(2,String.valueOf(user.getUserPassword()));
 			stmt.execute();
@@ -37,7 +36,7 @@ public class UserDao {
 		
 	}
 
-	public static boolean Login(User user) {	
+	public static User Login(User user) {	
 		
 		try {
 			
@@ -47,13 +46,14 @@ public class UserDao {
 			stmt.setString(2,new String(user.getUserPassword()));
 
 			ResultSet rs = stmt.executeQuery();
-			boolean login = rs.next();
+			if(rs.next())
+			    user.setUserId(rs.getLong(1));
 					
 			rs.close();
 			stmt.close();
 			connection.close();
 			
-			return login;
+			return user;
 						
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
