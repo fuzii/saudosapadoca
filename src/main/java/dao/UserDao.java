@@ -16,8 +16,8 @@ public class UserDao {
 			Connection connection = new ConnectionFactory().getConnection();
 			PreparedStatement stmt = connection.prepareStatement("INSERT INTO user_application (login,password) VALUES (?,CRYPT(?,GEN_SALT('md5')))",Statement.RETURN_GENERATED_KEYS);
 			//stmt.setString(1,user.getUserLogin());
-			stmt.setString(1,user.getUserPassword().toString());
-			stmt.setString(2,user.getUserPassword().toString());
+			stmt.setString(1,user.getUserLogin());
+			stmt.setString(2,String.valueOf(user.getUserPassword()));
 			stmt.execute();
 
 			// get generated account id
