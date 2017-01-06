@@ -64,6 +64,7 @@
 			$('#userAddress').find('p').html('<span class="glyphicon glyphicon-map-marker"></span> ' + userInfo.street + ', ' + userInfo.number + ' - ' + userInfo.city);
 			if($('#searchAddress') != null) {
 				$('#searchAddress').hide();
+				$('#signup').hide();
 			}
 		}
 	}

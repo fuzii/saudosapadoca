@@ -40,7 +40,6 @@
 			$('#logradouro').val(data.logradouro);
 			$('#bairro').val(data.bairro);
 		});
-
 	}
 	
 	$("#CEP").focusout(searchCEP);

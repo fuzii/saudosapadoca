@@ -37,7 +37,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-2">
-				<label for="confirm_password" name="confirm-password" class="control-label">Confirme Senha:</label>
+				<label for="confirm_password" class="control-label">Confirme Senha:</label>
 			</div>
 			<div class="col-sm-10">
 				<input type="password" class="form-control" id="confirm_password" />

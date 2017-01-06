@@ -2,8 +2,7 @@
 <body>
 	<div class="container">
 		<%@ include file="./views/master/topmenu.jsp" %>
-		<link href="./css/site.css" type="text/css" rel="Stylesheet" />
-		<link href="./css/card.css" type="text/css" rel="Stylesheet" />
+		<link href="./css/card.css" type="text/css" rel="stylesheet" />
 	    <style type="text/css">
 			#map
 			{
@@ -112,7 +111,6 @@
 		var infoWindows;
 		var client_id = 'W4FHVCUFSIWDKKO4AS5VZ322DU1BMYNZMYCRAGCTKWXD5NTW';
 		var client_secret = 'UEZ2AWYSHAICCL4IGYPFOA3C511VW2UG4XCYZFHH0RLV1KIQ';
-		var near = "Sao%20Paulo";
 		
 		$(function () {
 			jQuery("#CEP").mask("99999-999");
@@ -160,9 +158,16 @@
 		}
 	
 		function initMap() {
+			var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+			var address = "Sao Paulo";
+			var near = "&near=" + address;
+			if(userInfo){
+				address = userInfo.street + ', ' + userInfo.number + ' ' + userInfo.city;
+				near = '&ll=' + userInfo.latitude + ',' + userInfo.longitude; 
+			}
 			geocoder = new google.maps.Geocoder();
 	
-			geocoder.geocode({ 'address': 'Sao Paulo' }, function (results, status) {
+			geocoder.geocode({ 'address': address }, function (results, status) {
 				if (status === google.maps.GeocoderStatus.OK) {
 					map = new google.maps.Map(document.getElementById('map'), {
 						zoom: 15,
@@ -172,7 +177,7 @@
 					alert('Geocode error: ' + status);
 				}
 			});
-			fetchFoursquare("https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + "&near=" + near + "&radius=1000&section=food&query=padaria&v=20161123");
+			fetchFoursquare("https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + near + "&radius=1000&section=food&query=padaria&v=20161123");
 		}
 	
 		function fetchFoursquare(urlAPI) {
@@ -220,12 +225,48 @@
 		
 		function fetchEstablishments(){
 			$.getJSON('/getEstablishments', function (data) {
+				var rowCount = 1;
+				$.getJSON(url, function (data) {
+					$.each(data.establishments, function (i, est) {
+						var mrk = new google.maps.Marker({
+							map: map,
+							position: { lat: est.address.latitude, lng: est.address.longitude },
+							animation: google.maps.Animation.DROP,
+							title: est.alias
+						});
+						
+						var contentString = '<div id="content">'+
+					      '<div id="siteNotice">'+
+					      '</div>'+
+					      '<h3 id="firstHeading" class="firstHeading">' + est.alias + '</h3>'+
+					      '<div id="bodyContent">'+
+					      '<p>' + est.address.street + ', ' + est.address.number + '</p>'+
+					      '<b><a href="#" onclick="$(&quot html,body&quot).animate({scrollTop: $(&quot#' + est.id + '&quot).offset().top}, &quot slow&quot);">Selecione</a></b>'
+					      '</div>'+
+					      '</div>';
+						var infoWindow = new google.maps.InfoWindow({
+								content: contentString
+							});
+						
+						
+						mrk.addListener('click', function (e) {
+							infoWindow.open(map, mrk);
+						});
+						infoWindows.push(infoWindow);
+						markers.push(mrk);
+						$('#row_' + rowCount).append(createCard(est.id, est.name, est.address.street + ', ' + est.address.number));
+						if((i + 1) % 2 === 0){
+							rowCount++;
+							$('#listresult').append('<div id="row_' + rowCount + '" class="row"></div>');
+						}
+					});
+				});
 			});
 		}
 	
 		function createCard(id, title, description) {
 			//return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
-			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p></div><div class="card-content-info"><p>5 KM - <span class="tag-price">10,00 R$/kg</span></p></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom: 8:00 - 12:00</p></div></div></div>'
+			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p></div><div class="card-content-info"><p>5 KM - <span class="tag-price">10,00 R$/kg</span></p></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom: 8:00 - 12:00</p></div></div></div>'
 		}
 	
 		function register() {
@@ -254,8 +295,7 @@
 				success: function (data) { },
 				error: function (data) { alert("ERROR " + data.statusText); }
 			});
-			
-			var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+			JSON.parse(localStorage.getItem('userInfo'));
 			$('#signup').hide();
 			$('#userName').html('Olá ' + userInfo.name + '!');
 			$('#userAddress').show();

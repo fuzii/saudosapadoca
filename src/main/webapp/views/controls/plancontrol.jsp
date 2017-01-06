@@ -21,201 +21,114 @@
         <input type="hidden" id="friSelected" value="1" />
         <input type="hidden" id="satSelected" value="1" />
         <input type="hidden" id="sunSelected" value="1" />
-        <!-- xs sm md lg
-        <div class="card-day-container hidden-xs hidden-sm">
-        	<div class="row">
-        		<div class="card-day">
-                 <label class="checkbox-inline"><input id="chx_mon" type="checkbox" value="" onclick="selected(this);" />Segunda</label>
-                 <input type="text" class="form-control" placeholder="Quantidade" disabled />
-                 <div class="btn-group" style="width:100%">
-                     <button id="Horario_Segunda" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
-                     <ul class="dropdown-menu">
-                         <li>08:00</li>
-                         <li>09:00</li>
-                     </ul>
-                 </div>
-             </div>
-             <div class="card-day">
-                 <label class="checkbox-inline"><input id="chx_tue" type="checkbox" value="" onclick="selected(this);" />Terça</label>
-                 <input type="text" class="form-control" placeholder="Quantidade" disabled />
-                 <div class="btn-group" style="width:100%">
-                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
-                     <ul class="dropdown-menu">
-                         <li>08:00</li>
-                         <li>08:00</li>
-                     </ul>
-                 </div>
-             </div>
-             <div class="card-day">
-                 <label class="checkbox-inline"><input id="chx_wed" type="checkbox" value="" onclick="selected(this);" />Quarta</label>
-                 <input type="text" class="form-control" placeholder="Quantidade" disabled />
-                 <div class="btn-group" style="width:100%">
-                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
-                     <ul class="dropdown-menu">
-                         <li>08:00</li>
-                         <li>08:00</li>
-                     </ul>
-                 </div>
-             </div>
-             <div class="card-day">
-                 <label class="checkbox-inline"><input id="chx_thu" type="checkbox" value="" onclick="selected(this);" />Quinta</label>
-                 <input type="text" class="form-control" placeholder="Quantidade" disabled />
-                 <div class="btn-group" style="width:100%">
-                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
-                     <ul class="dropdown-menu">
-                         <li>08:00</li>
-                         <li>08:00</li>
-                     </ul>
-                 </div>
-             </div>
-        	</div>
-            <div class="row">
-             <div class="card-day">
-                 <label class="checkbox-inline"><input id="chx_fri" type="checkbox" value="" onclick="selected(this);" />Sexta</label>
-                 <input type="text" class="form-control" placeholder="Quantidade" disabled />
-                 <div class="btn-group" style="width:100%">
-                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
-                     <ul class="dropdown-menu">
-                         <li>08:00</li>
-                         <li>08:00</li>
-                     </ul>
-                 </div>
-             </div>
-             <div class="card-day">
-                 <label class="checkbox-inline"><input id="chx_sat" type="checkbox" value="" onclick="selected(this);" />Sábado</label>
-                 <input type="text" class="form-control" placeholder="Quantidade" disabled />
-                 <div class="btn-group" style="width:100%">
-                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
-                     <ul class="dropdown-menu">
-                         <li>08:00</li>
-                         <li>08:00</li>
-                     </ul>
-                 </div>
-             </div>
-             <div class="card-day">
-                 <label class="checkbox-inline"><input id="chx_sun" type="checkbox" value="" onclick="selected(this);" />Domingo</label>
-                 <input type="text" class="form-control" placeholder="Quantidade" disabled />
-                 <div class="btn-group" style="width:100%">
-                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>Horário<span class="caret"></span></button>
-                     <ul class="dropdown-menu">
-                         <li>08:00</li>
-                         <li>08:00</li>
-                     </ul>
-                 </div>
-             </div>
-            </div>
-        </div> -->
-        <!-- xs sm -->
-        <!-- <div class="hidden-md hidden-lg" style="margin: 10px"> -->
-        	<div class="card-day-list-group">
-        		<div class="card-day-list-item">
-	        		<div class="card-day-list-content">
-	        			<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%"  />
-	        			<div class="btn-group" style="width: 50%; display: inline; float: right">
-	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
-	        				<ul class="dropdown-menu">
-	        					<li>8:00</li>
-	        					<li>9:00</li>
-	        				</ul>
-	        			</div>
-	        		</div>
-	        		<div class="card-day-list-btn">
-	        			<button id="btn_mon" onclick="btnSelectedList(this);">Segunda</button>
+       	<div class="card-day-list-group">
+       		<div class="card-day-list-item">
+        		<div class="card-day-list-content">
+        			<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%"  />
+        			<div class="btn-group" style="width: 50%; display: inline; float: right">
+        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
+        				<ul class="dropdown-menu">
+        					<li>8:00</li>
+        					<li>9:00</li>
+        				</ul>
         			</div>
         		</div>
-        		<div class="card-day-list-item">
-        			<div class="card-day-list-content">
-        				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
-	        			<div class="btn-group" style="width: 50%; display: inline; float: right">
-	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
-	        				<ul class="dropdown-menu">
-	        					<li>8:00</li>
-	        					<li>9:00</li>
-	        				</ul>
-	        			</div>
+        		<div class="card-day-list-btn">
+        			<button id="btn_mon" onclick="btnSelectedList(this);">Segunda</button>
+       			</div>
+       		</div>
+       		<div class="card-day-list-item">
+       			<div class="card-day-list-content">
+       				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
+        			<div class="btn-group" style="width: 50%; display: inline; float: right">
+        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
+        				<ul class="dropdown-menu">
+        					<li>8:00</li>
+        					<li>9:00</li>
+        				</ul>
         			</div>
-        			<div class="card-day-list-btn">
-        				<button id="btn_tue" onclick="btnSelectedList(this);">Terça</button>
+       			</div>
+       			<div class="card-day-list-btn">
+       				<button id="btn_tue" onclick="btnSelectedList(this);">Terça</button>
+       			</div>
+       		</div>
+       		<div class="card-day-list-item">
+       			<div class="card-day-list-content">
+       				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
+        			<div class="btn-group" style="width: 50%; display: inline; float: right">
+        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+        				<ul class="dropdown-menu">
+        					<li>8:00</li>
+        					<li>9:00</li>
+        				</ul>
         			</div>
-        		</div>
-        		<div class="card-day-list-item">
-        			<div class="card-day-list-content">
-        				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
-	        			<div class="btn-group" style="width: 50%; display: inline; float: right">
-	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-	        				<ul class="dropdown-menu">
-	        					<li>8:00</li>
-	        					<li>9:00</li>
-	        				</ul>
-	        			</div>
+       			</div>
+       			<div class="card-day-list-btn">
+       				<button id="btn_wed" onclick="btnSelectedList(this);">Quarta</button>
+       			</div>
+       		</div>
+       		<div class="card-day-list-item">
+       			<div class="card-day-list-content">
+       				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
+        			<div class="btn-group" style="width: 50%; display: inline; float: right">
+        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+        				<ul class="dropdown-menu">
+        					<li>8:00</li>
+        					<li>9:00</li>
+        				</ul>
         			</div>
-        			<div class="card-day-list-btn">
-        				<button id="btn_wed" onclick="btnSelectedList(this);">Quarta</button>
+       			</div>
+       			<div class="card-day-list-btn">
+       				<button id="btn_thu" onclick="btnSelectedList(this);">Quinta</button>
+      				</div>
+       		</div>
+       		<div class="card-day-list-item">
+       			<div class="card-day-list-content">
+       				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
+        			<div class="btn-group" style="width: 50%; display: inline; float: right">
+        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+        				<ul class="dropdown-menu">
+        					<li>8:00</li>
+        					<li>9:00</li>
+        				</ul>
         			</div>
-        		</div>
-        		<div class="card-day-list-item">
-        			<div class="card-day-list-content">
-        				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
-	        			<div class="btn-group" style="width: 50%; display: inline; float: right">
-	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-	        				<ul class="dropdown-menu">
-	        					<li>8:00</li>
-	        					<li>9:00</li>
-	        				</ul>
-	        			</div>
+       			</div>
+       			<div class="card-day-list-btn">
+       				<button id="btn_fri" onclick="btnSelectedList(this);">Sexta</button>
+       			</div>
+       		</div>
+       		<div class="card-day-list-item">
+       			<div class="card-day-list-content">
+       				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
+        			<div class="btn-group" style="width: 50%; display: inline; float: right">
+        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+        				<ul class="dropdown-menu">
+        					<li>8:00</li>
+        					<li>9:00</li>
+        				</ul>
         			</div>
-        			<div class="card-day-list-btn">
-        				<button id="btn_thu" onclick="btnSelectedList(this);">Quinta</button>
-       				</div>
-        		</div>
-        		<div class="card-day-list-item">
-        			<div class="card-day-list-content">
-        				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
-	        			<div class="btn-group" style="width: 50%; display: inline; float: right">
-	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-	        				<ul class="dropdown-menu">
-	        					<li>8:00</li>
-	        					<li>9:00</li>
-	        				</ul>
-	        			</div>
+       			</div>
+       			<div class="card-day-list-btn">
+       				<button id="btn_sat" onclick="btnSelectedList(this);">Sábado</button>
+       			</div>
+       		</div>
+       		<div class="card-day-list-item">
+       			<div class="card-day-list-content">
+       				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
+        			<div class="btn-group" style="width: 50%; display: inline; float: right">
+        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+        				<ul class="dropdown-menu">
+        					<li>8:00</li>
+        					<li>9:00</li>
+        				</ul>
         			</div>
-        			<div class="card-day-list-btn">
-        				<button id="btn_fri" onclick="btnSelectedList(this);">Sexta</button>
-        			</div>
-        		</div>
-        		<div class="card-day-list-item">
-        			<div class="card-day-list-content">
-        				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
-	        			<div class="btn-group" style="width: 50%; display: inline; float: right">
-	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-	        				<ul class="dropdown-menu">
-	        					<li>8:00</li>
-	        					<li>9:00</li>
-	        				</ul>
-	        			</div>
-        			</div>
-        			<div class="card-day-list-btn">
-        				<button id="btn_sat" onclick="btnSelectedList(this);">Sábado</button>
-        			</div>
-        		</div>
-        		<div class="card-day-list-item">
-        			<div class="card-day-list-content">
-        				<input type="text" class="form-control" placeholder="Quantidade" style=" display: inline; width: 48%" />
-	        			<div class="btn-group" style="width: 50%; display: inline; float: right">
-	        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-	        				<ul class="dropdown-menu">
-	        					<li>8:00</li>
-	        					<li>9:00</li>
-	        				</ul>
-	        			</div>
-        			</div>
-        			<div class="card-day-list-btn">
-        				<button id="btn_sun" onclick="btnSelectedList(this);">Domingo</button>
-        			</div>
-        		</div>
-        	</div>
-    	</div>
-   	<!-- </div> -->        
+       			</div>
+       			<div class="card-day-list-btn">
+       				<button id="btn_sun" onclick="btnSelectedList(this);">Domingo</button>
+       			</div>
+       		</div>
+       	</div>
+   	</div>
 </div>
 <div class="col-xs-3 hidden-xs">
     	<div class="panel panel-default" data-spy="affix" data-offset-top="300">
@@ -251,7 +164,7 @@
     function btnSelectedList(ctl) {
     	var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';
     	if($('#planContainer').find('#' + selectedID).val() == '0') {
-    		$(ctl).attr('style','color: #fff; background-color: #5cb85c');
+    		$(ctl).attr('style','color: #fff; background-color: #499249');
     		$(ctl).parent().parent().find('.card-day-list-content').attr('style','background-color: #5cb85c');
     		$(ctl).parent().parent().find(':input').removeAttr('disabled');
     		$('#planContainer').find('#' + selectedID).val('1');
@@ -283,6 +196,5 @@
           //$(".btn:first-child").html($(this).text() + '<span class="caret"></span>');
           //$(".btn:first-child").val($(this).text());
        });
-
     });
 </script>

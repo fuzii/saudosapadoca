@@ -2,14 +2,14 @@
 	<h3>Horário de funcionamento</h3>
 </div>
 <div class="panel-body">
-	<form method="post">
+	<form method="post" onsubmit="submitSchedule()">
 		<div class="form-inline form-group">
 			<div class="col-lg-2">
 				<label for="time_start">Segunda - Sexta: </label>
 			</div>
 			<div class="col-lg-10">
-				<input id="time_start" type="time" class="form-control" title="início" placeholder="início (ex. 08:00)"/>
-				<input id= "time_finish" type="time" class="form-control" title="fim" placeholder="fim (ex. 18:00)" />
+				<input id="week_start_time" name="week_start_time" type="time" class="form-control" title="início" placeholder="início (ex. 08:00)"/>
+				<input id= "week_end_time" name="week_end_time" type="time" class="form-control" title="fim" placeholder="fim (ex. 18:00)" />
 				<div class="checkbox"><label><input type="checkbox" title="fechado" /> Fechado</label></div>
 			</div>
 		</div>
@@ -18,8 +18,8 @@
 				<label for="">Sábado: </label>
 			</div>
 			<div class="col-lg-10">
-				<input type="time" class="form-control" title="início" placeholder="início (ex. 08:00)"/>
-				<input type="time" class="form-control" title="fim" placeholder="fim (ex. 18:00)" />
+				<input id="saturday_start_time" name="saturday_start_time" type="time" class="form-control" title="início" placeholder="início (ex. 08:00)"/>
+				<input id="saturday_end_time" name="saturday_end_time" type="time" class="form-control" title="fim" placeholder="fim (ex. 18:00)" />
 				<div class="checkbox"><label><input title="fechado" type="checkbox" /> Fechado</label></div>
 			</div>
 		</div>
@@ -28,8 +28,8 @@
 				<label for="">Domingo: </label>
 			</div>
 			<div class="col-lg-10">
-				<input type="time" class="form-control" title="início" placeholder="início (ex. 08:00)"/>
-				<input type="time" class="form-control" title="fim" placeholder="fim (ex. 18:00)" />
+				<input id="sunday_start_time" name="sunday_start_time" type="time" class="form-control" title="início" placeholder="início (ex. 08:00)"/>
+				<input id="sunday_end_time" name="sunday_end_time" type="time" class="form-control" title="fim" placeholder="fim (ex. 18:00)" />
 				<div class="checkbox"><label><input type="checkbox" title="fechado" /> Fechado</label></div>
 			</div>
 		</div>
@@ -55,4 +55,19 @@
 			}
 		});
 	});
+	
+	function submitSchedule() {
+		$.ajax({
+			type: "POST",
+			url: "/addSchedule",
+			data: { week_start_time: $("#week_start_time").val(),
+					week_end_time: $("#week_end_time").val(),
+					saturday_start_time: $("#saturday_start_time").val(),
+					sunday_start_time: $("#sunday_end_time").val()},
+			dataType: "json",
+			success: function (data) { },
+			error : function (data) { }
+		});
+		return false;
+	}
 </script>

@@ -1,6 +1,5 @@
 <%@ include file="./views/master/master.jsp" %>
 <body>
-	<link href="./css/site.css" type="text/css" rel="Stylesheet" />
 	<%@ include file="./views/master/topmenu.jsp" %>
 	<div class="container">
 		<div class="panel panel-default panel-fade">
