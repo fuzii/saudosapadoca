@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 import dao.PriceListDao;
 import formatter.GenerateJSON;
@@ -19,6 +21,16 @@ public class AddPriceListServlet extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		try{
+			
+			HttpSession session = request.getSession(true);			
+
+			if(session.isNew()){
+				request.getRequestDispatcher("login.jsp").include(request, response); 
+				return;
+			}
+			
+			request.setAttribute("establishment_id", session.getAttribute("establishment_id"));
+			
 			
 			// price list
 			PriceList priceList = GenerateObject.GetPriceList(request);
