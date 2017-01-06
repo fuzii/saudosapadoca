@@ -3,7 +3,7 @@
 	<form action="addAccount"> 
 		name: <input type="text" name="name" /><br />
 		email: <input type="text" name="email" /><br />
-		password: <input type="text" name="password" /><br />
+		password: <input type="password" name="password" /><br />
 		phone: <input type="text" name="phone" /><br />
 		<input type="submit" value="Cadastro Conta" />
 	</form>
