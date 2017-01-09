@@ -1,7 +1,7 @@
 <%@ include file="./views/master/master.jsp" %>
 <body>
-	<%@ include file="./views/master/topmenu.jsp" %>
 	<div class="container">
+		<%@ include file="./views/master/topmenu.jsp" %>
 		<div class="panel panel-default panel-fade">
 			<div class="panel-heading" style="padding-bottom: 0px;">
 				<ul class="panel-title nav nav-tabs nav-justified">
@@ -15,11 +15,11 @@
 					<div id="tab_plan" class="tab-pane fade in active">
 						<%@ include file="./views/controls/plancontrol.jsp" %>
 					</div>
-					<div id="tab_account" class="tab-pane fade" style="margin-top: 20px">
+					<div id="tab_account" class="tab-pane fade">
 						<%@ include file="./views/controls/accountcontrol.jsp" %>
 						<%@ include file="./views/controls/accountaddresscontrol.jsp" %>
 					</div>
-					<div id="tab_orders" class="tab-pane fade" style="margin-top: 20px">
+					<div id="tab_orders" class="tab-pane fade">
 						<%@ include file="./views/controls/orderscontrol.jsp" %>
 					</div>
 				</div>
