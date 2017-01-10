@@ -174,12 +174,14 @@ public class EstablishmentDao {
 			
 			List<Address> addresses = new ArrayList<Address>();
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("select * from address where establishment_id is not null");
+			PreparedStatement stmt = connection.prepareStatement("select e.radius as radius, a.* "
+																+ "from address a "
+																+ "inner join establishment e on a.establishment_id = e.id");
 			ResultSet rs = stmt.executeQuery();
 
 			while(rs.next()) {
 
-				int radius = 1000;//rs.getInt("radius");
+				int radius = rs.getInt("radius");
 				int distance = Geolocation.Distance(address.getLatitude(), address.getLongitude(), rs.getDouble("latitude"), rs.getDouble("longitude"));
 				
 				if(radius >= distance){
