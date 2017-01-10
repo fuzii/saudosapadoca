@@ -141,10 +141,11 @@
 					//                        marker.setPosition(results[0].geometry.location);
 					//                    }
 					map.setZoom(15);
-					fetchFoursquare("https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + "&ll=" + results[0].geometry.location.lat() + "," + results[0].geometry.location.lng() + "&radius=1000&section=food&query=padaria&v=20161123");
-                    //set lat and lng
-                    $('#latitude').val(results[0].geometry.location.lat());
-                    $('#longitude').val(results[0].geometry.location.lng());
+                                        //set lat and lng
+                                        $('#latitude').val(results[0].geometry.location.lat());
+                                        $('#longitude').val(results[0].geometry.location.lng());
+                                        fetchEstablishments();
+                                        //fetchFoursquare("https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + "&ll=" + results[0].geometry.location.lat() + "," + results[0].geometry.location.lng() + "&radius=1000&section=food&query=padaria&v=20161123");
 				}
 				else
 					alert('Geocode error: ' + status);
@@ -224,44 +225,42 @@
 		}
 		
 		function fetchEstablishments(){
-			$.getJSON('/getEstablishments', function (data) {
+			$.getJSON('/getEstablishments?latitude=' + $("#latitude").val() + "&longitude=" + $("#longitude").val(), function (data) {
 				var rowCount = 1;
-				$.getJSON(url, function (data) {
-					$.each(data.establishments, function (i, est) {
-						var mrk = new google.maps.Marker({
-							map: map,
-							position: { lat: est.address.latitude, lng: est.address.longitude },
-							animation: google.maps.Animation.DROP,
-							title: est.alias
-						});
-						
-						var contentString = '<div id="content">'+
-					      '<div id="siteNotice">'+
-					      '</div>'+
-					      '<h3 id="firstHeading" class="firstHeading">' + est.alias + '</h3>'+
-					      '<div id="bodyContent">'+
-					      '<p>' + est.address.street + ', ' + est.address.number + '</p>'+
-					      '<b><a href="#" onclick="$(&quot html,body&quot).animate({scrollTop: $(&quot#' + est.id + '&quot).offset().top}, &quot slow&quot);">Selecione</a></b>'
-					      '</div>'+
-					      '</div>';
-						var infoWindow = new google.maps.InfoWindow({
-								content: contentString
-							});
-						
-						
-						mrk.addListener('click', function (e) {
-							infoWindow.open(map, mrk);
-						});
-						infoWindows.push(infoWindow);
-						markers.push(mrk);
-						$('#row_' + rowCount).append(createCard(est.id, est.name, est.address.street + ', ' + est.address.number));
-						if((i + 1) % 2 === 0){
-							rowCount++;
-							$('#listresult').append('<div id="row_' + rowCount + '" class="row"></div>');
-						}
-					});
-				});
-			});
+                                $.each(data.establishments.establishment, function (i, est) {
+                                        var mrk = new google.maps.Marker({
+                                                map: map,
+                                                position: { lat: est.address.latitude, lng: est.address.longitude },
+                                                animation: google.maps.Animation.DROP,
+                                                title: est.alias
+                                        });
+
+                                        var contentString = '<div id="content">'+
+                                      '<div id="siteNotice">'+
+                                      '</div>'+
+                                      '<h3 id="firstHeading" class="firstHeading">' + est.alias + '</h3>'+
+                                      '<div id="bodyContent">'+
+                                      '<p>' + est.address.street + ', ' + est.address.number + '</p>'+
+                                      '<b><a href="#" onclick="$(&quot html,body&quot).animate({scrollTop: $(&quot#' + est.id + '&quot).offset().top}, &quot slow&quot);">Selecione</a></b>'
+                                      '</div>'+
+                                      '</div>';
+                                        var infoWindow = new google.maps.InfoWindow({
+                                                        content: contentString
+                                                });
+
+
+                                        mrk.addListener('click', function (e) {
+                                                infoWindow.open(map, mrk);
+                                        });
+                                        infoWindows.push(infoWindow);
+                                        markers.push(mrk);
+                                        $('#row_' + rowCount).append(createCard(est.id, est.name, est.address.street + ', ' + est.address.number));
+                                        if((i + 1) % 2 === 0){
+                                                rowCount++;
+                                                $('#listresult').append('<div id="row_' + rowCount + '" class="row"></div>');
+                                        }
+                                });
+                        });
 		}
 	
 		function createCard(id, title, description) {
