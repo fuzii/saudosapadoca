@@ -15,7 +15,7 @@ import model.User;
 
 @WebServlet("/login") 
 public class LoginServlet extends HttpServlet{
-
+ 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		try{ 
