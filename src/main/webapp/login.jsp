@@ -17,8 +17,8 @@
 				<div class="panel-body">
 					<form method="post" action="login" class="form">
 						<div class="form-group">
-							<input type="text" class="form-control form-group" id="email" placeholder="email" />
-							<input type="password" class="form-control form-group" id="pwd" placeholder="senha" />
+							<input type="text" class="form-control form-group" id="email" name="email" placeholder="email" />
+							<input type="password" class="form-control form-group" id="password" name="password" placeholder="senha" />
 							<input type="submit" class="btn btn-success" value="Entrar" style="width: 150px" />
 						</div>
 						<div class="form-group col-sm-6 checkbox">
