@@ -35,7 +35,7 @@ public class AddScheduleServlet extends HttpServlet{
 				response.addHeader("Access-Control-Allow-Headers","x-requested-with");
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				return;
-			}
+			} 
 			
 			//Schedule
 			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(request.getSession().getAttribute("establishment_id"))));			
