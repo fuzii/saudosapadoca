@@ -17,6 +17,7 @@ public class Address {
 	private Double latitude;
 	private Double longitude;
 	private Calendar created;
+	private int calculatedDistance;
 	
 	
 	public Double getLatitude() {
@@ -96,6 +97,12 @@ public class Address {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public int getCalculatedDistance() {
+		return calculatedDistance;
+	}
+	public void setCalculatedDistance(int calculatedDistance) {
+		this.calculatedDistance = calculatedDistance;
 	}
 	             
 }

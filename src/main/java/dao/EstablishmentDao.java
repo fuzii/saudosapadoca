@@ -200,6 +200,7 @@ public class EstablishmentDao {
 					a.setLatitude(rs.getDouble("latitude"));
 					a.setLongitude(rs.getDouble("longitude"));
 					a.setEstablishmentId(rs.getLong("establishment_id"));
+					a.setCalculatedDistance(distance);
 									
 					// created on
 					Calendar data = Calendar.getInstance();

@@ -43,7 +43,7 @@ public class ScheduleDao {
 		
 	}
 
-	public static List<Schedule> GetSchedules(Establishment establishment) {
+	public static List<Schedule> GetSchedulesByEstablishment(Establishment establishment) {
 	     
 		try {
 			

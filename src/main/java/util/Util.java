@@ -1,5 +1,7 @@
 package util;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,4 +20,11 @@ public class Util {
 
     }
 	
+    public static String CalendarToString(Calendar calendar){
+    	
+    	SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
+		return s.format(calendar.getTime());
+
+    }
+    
 }

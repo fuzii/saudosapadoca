@@ -23,8 +23,14 @@ public class AddPriceListServlet extends HttpServlet{
 		try{
 			
 			HttpSession session = request.getSession(true);
+			
 			if(session.isNew()){
-				request.getRequestDispatcher("login.jsp").include(request, response); 
+				// response nok
+				response.addHeader("Access-Control-Allow-Origin","*");
+				response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
+				response.addHeader("Access-Control-Max-Age","3600");
+				response.addHeader("Access-Control-Allow-Headers","x-requested-with");
+				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				return;
 			}
 			

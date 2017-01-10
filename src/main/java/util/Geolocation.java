@@ -4,9 +4,10 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import dao.AccountDao;
 import dao.EstablishmentDao;
+import dao.PriceListDao;
+import dao.ScheduleDao;
 import formatter.GenerateJSON;
 import model.Account;
 import model.Address;
@@ -45,13 +46,9 @@ public class Geolocation {
 			for(Address a : addresses){
 
 				Establishment establishment = EstablishmentDao.GetEstablishmentsById(a.getEstablishmentId());
-				JSONObject jsonEstablishment = new JSONObject();
-				
-				// establishment
-				jsonEstablishment.put("id",establishment.getId());
-				jsonEstablishment.put("name",establishment.getName());
-				jsonEstablishment.put("alias",establishment.getAlias());
-				jsonEstablishment.put("registerNumber",establishment.getRegisterNumber());
+				JSONObject jsonEstablishment = GenerateJSON.GetEstablishmentJSON(establishment);
+				jsonEstablishment.put("schedule", GenerateJSON.GetListScheduleJSON(ScheduleDao.GetSchedulesByEstablishment(establishment)));
+				jsonEstablishment.put("priceList", GenerateJSON.GetPriceListJSON(PriceListDao.GetPriceListByEstablishment(establishment)));
 				jsonEstablishment.put("address", GenerateJSON.GetAddressJSON(a));
 				jsonArrayEstablishment.put(jsonEstablishment);
 

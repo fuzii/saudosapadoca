@@ -11,6 +11,7 @@ import model.Establishment;
 import model.PriceList;
 import model.Product;
 import model.Schedule;
+import util.Util;
 
 public class GenerateJSON {
 	
@@ -27,7 +28,7 @@ public class GenerateJSON {
 			jsonAccount.put("name",account.getName());
 			jsonAccount.put("email",account.getEmail());
 			jsonAccount.put("phone",account.getPhone());
-			jsonAccount.put("created",account.getCreated());
+			jsonAccount.put("created",Util.CalendarToString(account.getCreated()));
 
 
 		} catch (JSONException e) {
@@ -58,7 +59,7 @@ public class GenerateJSON {
 			jsonEstablishment.put("responsibleEmail",establishment.getResponsibleEmail());
 			jsonEstablishment.put("responsiblePhone",establishment.getResponsiblePhone());
 			jsonEstablishment.put("rate",establishment.getRate());
-			jsonEstablishment.put("created",establishment.getCreated());
+			jsonEstablishment.put("created",Util.CalendarToString(establishment.getCreated()));
 			
 
 		} catch (JSONException e) {
@@ -169,7 +170,7 @@ public class GenerateJSON {
 			jsonProduct.put("id",product.getId());
 			jsonProduct.put("name",product.getName());
 			jsonProduct.put("description",product.getDescription());
-			jsonProduct.put("created",product.getCreated());
+			jsonProduct.put("created",Util.CalendarToString(product.getCreated()));
 
 
 		} catch (JSONException e) {
