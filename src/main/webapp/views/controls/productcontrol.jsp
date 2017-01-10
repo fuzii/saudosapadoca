@@ -16,11 +16,12 @@
 			<tbody>
 				<tr>
 					<td>
+                                            <input type="hidden" id="product_id" name="product_id" value="1" />
 						Pão françes
 					</td>
 					<td>
 						<div class="btn-group">
-							<button id="unit" name="unit" class="btn dropdown-toggle" data-toggle="dropdown" type="button">Unidade<span class="caret"></span></button>
+							<button id="unit" name="unit" value="Unidade" class="btn dropdown-toggle" data-toggle="dropdown" type="button">Unidade<span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li>Kg</li>
 								<li>Unidade</li>
@@ -51,8 +52,8 @@
 	function submitProduct(){
 		$.ajax({
 			type: "POST",
-			url: "/addProduct",
-			data: {unit: $("#unit").html(), price: $("#unitvalue").val() },
+			url: "/addPriceList",
+			data: {product_id: $("#product_id").val(), unit: $("#unit").html(), price: $("#unitvalue").val() },
 			dataType: "json",
 			succes: function (data) { },
 			error: function(data ) { }
