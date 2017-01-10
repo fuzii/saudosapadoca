@@ -53,7 +53,7 @@
 		$.ajax({
 			type: "POST",
 			url: "/addPriceList",
-			data: {product_id: $("#product_id").val(), unit: $("#unit").html(), price: $("#unitvalue").val() },
+			data: {product_id: $("#product_id").val(), unit: $("#unit").val(), price: $("#unitvalue").val() },
 			dataType: "json",
 			succes: function (data) { },
 			error: function(data ) { }
