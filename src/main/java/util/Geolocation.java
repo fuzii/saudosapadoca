@@ -71,7 +71,6 @@ public class Geolocation {
 		return jsonMain;
 
 	}
-
 	
 	public static JSONObject GetAccountsJSON (Address establishmentAddress){
 		
