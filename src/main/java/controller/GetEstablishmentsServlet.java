@@ -12,7 +12,7 @@ import util.Geolocation;
 
 @WebServlet("/getEstablishments") 
 public class GetEstablishmentsServlet extends HttpServlet{
-
+ 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		// request

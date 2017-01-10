@@ -12,7 +12,7 @@ import dao.AccountDao;
 import formatter.GenerateJSON;
 import formatter.GenerateObject;
 import model.Account;
-import util.SendGridEmail;
+import util.SendGridEmail; 
 
 @WebServlet("/addAccount")
 public class AddAccountServlet extends HttpServlet{ 

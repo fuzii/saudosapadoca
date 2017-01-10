@@ -17,7 +17,7 @@ import model.Establishment;
 
 @WebServlet("/addEstablishment")
 public class AddEstablishmentServlet extends HttpServlet{
-	
+	 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		try{

@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet{
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		try{
+		try{ 
 			
 			// request
 			User user = new User();

@@ -13,7 +13,7 @@ import model.Lead;
 
 @WebServlet("/addLead")
 public class AddLeadServlet extends HttpServlet{
-
+ 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {

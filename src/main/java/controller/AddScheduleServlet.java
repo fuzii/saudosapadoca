@@ -19,7 +19,7 @@ import model.Establishment;
 
 @WebServlet("/addSchedule")
 public class AddScheduleServlet extends HttpServlet{ 
-	
+	 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		try{

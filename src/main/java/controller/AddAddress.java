@@ -13,7 +13,7 @@ import formatter.GenerateJSON;
 import formatter.GenerateObject;
 import model.Address;
 
-@WebServlet("/addAddress")
+@WebServlet("/addAddress") 
 public class AddAddress extends HttpServlet{ 
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

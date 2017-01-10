@@ -43,7 +43,7 @@ public class GenerateJSON {
 		
 		
 		JSONObject jsonEstablishment = null;
-				
+			
 		try {
 
 			// establishment

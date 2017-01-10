@@ -15,7 +15,7 @@ import model.Product;
 
 @WebServlet("/addProduct")
 public class AddProduct extends HttpServlet{ 
-	
+	 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		try{

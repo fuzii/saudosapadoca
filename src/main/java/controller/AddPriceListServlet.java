@@ -17,7 +17,7 @@ import model.PriceList;
 
 @WebServlet("/addPriceList")
 public class AddPriceListServlet extends HttpServlet{ 
-	
+	 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		try{

@@ -12,7 +12,7 @@ import util.Foursquare;
 
 @WebServlet("/getFoursquare") 
 public class GetFoursquareServlet extends HttpServlet{
-
+ 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		// request
