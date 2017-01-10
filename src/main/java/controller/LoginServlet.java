@@ -1,4 +1,4 @@
-package controller;
+	package controller;
 
 import java.io.IOException;
 import java.util.Map;
@@ -36,14 +36,24 @@ public class LoginServlet extends HttpServlet{
 				for(String key: map.keySet())
 					session.setAttribute(key, map.get(key));
 				
+				// response ok
+				response.addHeader("Access-Control-Allow-Origin","*");
+				response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
+				response.addHeader("Access-Control-Max-Age","3600");
+				response.addHeader("Access-Control-Allow-Headers","x-requested-with");
+				response.setStatus(HttpServletResponse.SC_OK);
+				
+			}else{
+				
+				// response nok
+				response.addHeader("Access-Control-Allow-Origin","*");
+				response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
+				response.addHeader("Access-Control-Max-Age","3600");
+				response.addHeader("Access-Control-Allow-Headers","x-requested-with");
+				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			}
 	
-			// response
-			response.addHeader("Access-Control-Allow-Origin","*");
-			response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
-			response.addHeader("Access-Control-Max-Age","3600");
-			response.addHeader("Access-Control-Allow-Headers","x-requested-with");
-			response.setStatus(HttpServletResponse.SC_OK);
+
 	
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
