@@ -24,9 +24,9 @@ public class AddEstablishmentServlet extends HttpServlet{
 		
 			Establishment establishment = GenerateObject.GetEstablishment(request);
 			establishment = EstablishmentDao.Insert(establishment);
-			request.setAttribute("establishment_id",establishment.getId());
 			
 			Address address = GenerateObject.GetAddress(request);
+			address.setEstablishmentId(establishment.getId());
 			address = AddressDao.Insert(address);
 
 			
