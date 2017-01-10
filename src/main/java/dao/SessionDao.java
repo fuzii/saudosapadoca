@@ -15,11 +15,12 @@ public class SessionDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-	    	PreparedStatement stmt = connection.prepareStatement("select u.id as user_id, a.id as account_id, e.id as establishment_id"
-												    			+ "from user_application u"
-												    			+ "left outer join account a on u.id = a.user_id"
-												    			+ "left outer join establishment e on u.id = e.user_id"
+	    	PreparedStatement stmt = connection.prepareStatement("select u.id as user_id, a.id as account_id, e.id as establishment_id "
+												    			+ "from user_application u "
+												    			+ "left outer join account a on u.id = a.user_id "
+												    			+ "left outer join establishment e on u.id = e.user_id "
 												    			+ "where u.id=?");
+			//PreparedStatement stmt = connection.prepareStatement("select u.id as user_id from user_application u where u.id=?");
 	    	stmt.setLong(1,user.getUserId());
 	    	ResultSet rs = stmt.executeQuery();
 

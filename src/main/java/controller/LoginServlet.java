@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet{
 		
 		HttpSession session = request.getSession(true);
 		
-		if(user.getUserId()!=null && session.isNew()){
+		if(user.getUserId()!=null){
 			
 			// inicializa as variaveis de sessão
 			Map<String,String> map = SessionDao.GetSessionParameters(user);
