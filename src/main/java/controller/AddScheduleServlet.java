@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
@@ -24,7 +25,20 @@ public class AddScheduleServlet extends HttpServlet{
 
 		try{
 			
-			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id")));			
+			HttpSession session = request.getSession(true);
+			
+			if(session.isNew()){
+				// response nok
+				response.addHeader("Access-Control-Allow-Origin","*");
+				response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
+				response.addHeader("Access-Control-Max-Age","3600");
+				response.addHeader("Access-Control-Allow-Headers","x-requested-with");
+				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+				return;
+			}
+			
+			//Schedule
+			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(request.getSession().getAttribute("establishment_id"))));			
 			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Segunda"));
 			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Terça"));
 			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Quarta"));
@@ -32,8 +46,8 @@ public class AddScheduleServlet extends HttpServlet{
 			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Sexta"));
 			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("saturday_start_time"), request.getParameter("saturday_end_time"), "Sábado"));
 			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("sunday_start_time"), request.getParameter("sunday_end_time"), "Domingo"));			
-				
-			
+
+
 			// response
 			response.addHeader("Access-Control-Allow-Origin","*");
 			response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
