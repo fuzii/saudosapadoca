@@ -90,6 +90,7 @@ public class GenerateJSON {
 			jsonAddress.put("country",address.getCountry());
 			jsonAddress.put("latitude",address.getLatitude());
 			jsonAddress.put("longitude",address.getLongitude());
+			jsonAddress.put("calculatedDistance",address.getCalculatedDistance());
 
 
 		} catch (JSONException e) {
