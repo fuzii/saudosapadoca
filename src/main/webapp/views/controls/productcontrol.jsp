@@ -16,6 +16,7 @@
 			<tbody>
 				<tr>
 					<td>
+                                            <input type="hidden" id="product_id" name="product_id" value="1" />
 						Pão françes
 					</td>
 					<td>
@@ -52,7 +53,7 @@
 		$.ajax({
 			type: "POST",
 			url: "/addPriceList",
-			data: {unit: $("#unit").html(), price: $("#unitvalue").val() },
+			data: {product_id: $("#product_id").val(), unit: $("#unit").html(), price: $("#unitvalue").val() },
 			dataType: "json",
 			succes: function (data) { },
 			error: function(data ) { }
