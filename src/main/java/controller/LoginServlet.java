@@ -1,23 +1,22 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
-import util.Util;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.json.JSONObject;
-
 import dao.AccountDao;
+import dao.AddressDao;
 import dao.EstablishmentDao;
+import dao.PriceListDao;
+import dao.ScheduleDao;
 import dao.SessionDao;
 import dao.UserDao;
-import formatter.GenerateJSON;
+import model.Account;
+import model.Establishment;
 import model.User;
 
 @WebServlet("/login") 
@@ -37,31 +36,32 @@ public class LoginServlet extends HttpServlet{
 			
 			if(user.getUserId()!=null){
 				
-				// inicializa as variaveis de sessão
+				// init session ids
 				Map<String,String> map = SessionDao.GetSessionParameters(user);
-				
 				for(String key: map.keySet())
 					session.setAttribute(key, map.get(key));
+
+				// establishment session
+				if(String.valueOf(session.getAttribute("user_type"))=="establishment"){
+					Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(session.getAttribute("establishment_id")))); 
+					session.setAttribute("establishment", establishment);
+					session.setAttribute("schedule", ScheduleDao.GetSchedulesByEstablishment(establishment));
+					session.setAttribute("priceList", PriceListDao.GetPriceListByEstablishment(establishment));
+					session.setAttribute("address", AddressDao.GetAddressByEstablishment(establishment));
+
+				// account session
+				}else{
+					Account account = AccountDao.GetAccountsById(Long.parseLong(String.valueOf(session.getAttribute("account_id"))));
+					session.setAttribute("account", account);
+					session.setAttribute("address", AddressDao.GetAddressesByAccount(account));
+				}
 				
 				// response ok
 				response.addHeader("Access-Control-Allow-Origin","*");
 				response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
 				response.addHeader("Access-Control-Max-Age","3600");
 				response.addHeader("Access-Control-Allow-Headers","x-requested-with");
-				response.setContentType("application/json");
-				response.setCharacterEncoding("utf-8");
 				response.setStatus(HttpServletResponse.SC_OK);
-				
-				// response JSON
-				String establishment_id = String.valueOf(session.getAttribute("establishment_id")); 
-				String account_id = String.valueOf(session.getAttribute("account_id")); 
-				JSONObject jsonMain = new JSONObject();
-				PrintWriter out = response.getWriter();
-				out.print(jsonMain.put("user",GenerateJSON.GetUserJSON(user)));
-				if(!Util.IsEmpty(establishment_id))
-					out.print(jsonMain.put("establishment",GenerateJSON.GetEstablishmentJSON(EstablishmentDao.GetEstablishmentsById(Long.parseLong(establishment_id)))));
-				else
-					out.print(jsonMain.put("account",GenerateJSON.GetAccountJSON(AccountDao.GetAccountsById(Long.parseLong(account_id)))));
 				
 				
 			}else{

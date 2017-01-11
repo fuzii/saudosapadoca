@@ -9,7 +9,10 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import model.Account;
 import model.Address;
+import model.Establishment;
 
 public class AddressDao {
 
@@ -232,7 +235,6 @@ public class AddressDao {
 
 	}
 
-
 	public static Address GetAddressById(Long id) {
 	     
 		try {
@@ -275,5 +277,96 @@ public class AddressDao {
 
 	}
 
+	public static List<Address> GetAddressesByAccount(Account account) {
+	     
+		try {
+		
+			List<Address> addresses = new ArrayList<Address>();
+			Connection connection = new ConnectionFactory().getConnection();
+			PreparedStatement stmt = connection.prepareStatement("select * from address where account_id=?");
+			stmt.setLong(1,account.getId());
+			ResultSet rs = stmt.executeQuery();
+
+			while(rs.next()) {
+
+				Address address = new Address();
+				address.setId(rs.getLong("id"));
+				address.setAccountId(rs.getLong("account_id"));
+				address.setZipCode(rs.getString("zipCode"));
+				address.setStreet(rs.getString("street"));
+				address.setCity(rs.getString("city"));
+				address.setState(rs.getString("state"));
+				address.setNumber(rs.getInt("number"));
+				address.setPremise(rs.getString("premise"));
+				address.setCountry(rs.getString("country"));
+				address.setLatitude(rs.getDouble("latitude"));
+				address.setLongitude(rs.getDouble("longitude"));
+				address.setEstablishmentId(rs.getLong("establishment_id"));
+								
+				// created
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("created"));
+				address.setCreated(data);
+
+				addresses.add(address);
+				
+			}
+			
+			rs.close();
+			stmt.close();
+			connection.close();
+			return addresses;
 	
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	public static List<Address> GetAddressByEstablishment(Establishment establishment) {
+	     
+		try {
+		
+			List<Address> addresses = new ArrayList<Address>();
+			Connection connection = new ConnectionFactory().getConnection();
+			PreparedStatement stmt = connection.prepareStatement("select * from address where establishment_id=?");
+			stmt.setLong(1,establishment.getId());
+			ResultSet rs = stmt.executeQuery();
+
+			while(rs.next()) {
+
+				Address address = new Address();
+				address.setId(rs.getLong("id"));
+				address.setAccountId(rs.getLong("account_id"));
+				address.setZipCode(rs.getString("zipCode"));
+				address.setStreet(rs.getString("street"));
+				address.setCity(rs.getString("city"));
+				address.setState(rs.getString("state"));
+				address.setNumber(rs.getInt("number"));
+				address.setPremise(rs.getString("premise"));
+				address.setCountry(rs.getString("country"));
+				address.setLatitude(rs.getDouble("latitude"));
+				address.setLongitude(rs.getDouble("longitude"));
+				address.setEstablishmentId(rs.getLong("establishment_id"));
+								
+				// created
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("created"));
+				address.setCreated(data);
+
+				addresses.add(address);
+				
+			}
+			
+			rs.close();
+			stmt.close();
+			connection.close();
+			return addresses;
+	
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
 }

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import model.User;
+import util.Util;
 
 public class SessionDao {
 
@@ -31,6 +32,7 @@ public class SessionDao {
 			map.put("user_id", String.valueOf(rs.getLong("user_id")));
 			map.put("account_id", String.valueOf(rs.getLong("account_id")));
 			map.put("establishment_id", String.valueOf(rs.getLong("establishment_id")));
+			map.put("user_type", (Util.IsEmpty(String.valueOf(rs.getLong("establishment_id")))?"account":"establishment"));
 											
 			rs.close();
 			stmt.close();
