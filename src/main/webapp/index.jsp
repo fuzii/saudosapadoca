@@ -1,6 +1,12 @@
 <html>
-
 <body>
+<%@taglib uri="http://cloudinary.com/jsp/taglib" prefix="cl" %> 
+<cl:jsinclude base="http://your-local-host.domain/cloudinary_js/" full="true"/>
+<form>
+<cl:upload resourceType="auto" fieldName="image_id" alt="sample"/>
+</form>
+<br/>
+<br/>
 <form action="addAccount"> 
 name: <input type="text" name="name" /><br />
 email: <input type="text" name="email" /><br />
