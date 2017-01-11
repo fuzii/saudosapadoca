@@ -23,7 +23,7 @@ public class Util {
     public static String CalendarToString(Calendar calendar){
     	
     	SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
-		return s.format(calendar.getTime());
+		return calendar == null ? null : s.format(calendar.getTime());
 
     }
     

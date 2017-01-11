@@ -35,11 +35,11 @@ public class Geolocation {
 		return (deg * Math.PI / 180.0);
 	}
 	
-	public static JSONObject GetEstablishmentsJSON (Address accountAddress){
+	public static JSONObject GetEstablishmentsJSON (Address searchAddress){
 		
-		List<Address> addresses = EstablishmentDao.GetEstablishmentsAddressesByLocation(accountAddress);
+		List<Address> addresses = EstablishmentDao.GetEstablishmentsAddressesByLocation(searchAddress);
 		JSONArray jsonArrayEstablishment = new JSONArray();
-		JSONObject jsonMain = null;
+		JSONObject jsonEstablishments = null;
 		
 		try {
 
@@ -54,18 +54,14 @@ public class Geolocation {
 
 			}
 
-			JSONObject jsonEstablishments = new JSONObject();
-			jsonEstablishments.put("establishment", jsonArrayEstablishment);
-
-			jsonMain = new JSONObject();
-			jsonMain.put("establishments", jsonEstablishments);
-
+			jsonEstablishments = new JSONObject();
+			jsonEstablishments.put("establishments", jsonArrayEstablishment);
 
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
-		return jsonMain;
+		return jsonEstablishments;
 
 	}
 	

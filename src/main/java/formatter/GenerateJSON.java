@@ -17,6 +17,8 @@ public class GenerateJSON {
 	
 	public static JSONObject GetUserJSON (User user){
 		
+		if(user == null)
+			return null;
 		
 		JSONObject jsonUser = null;
 				
@@ -36,10 +38,11 @@ public class GenerateJSON {
 		return jsonUser;
 	
 	}
-
 	
 	public static JSONObject GetAccountJSON (Account account){
 		
+		if(account == null)
+			return null;
 		
 		JSONObject jsonAccount = null;
 				
@@ -64,6 +67,8 @@ public class GenerateJSON {
 	
 	public static JSONObject GetEstablishmentJSON (Establishment establishment){
 		
+		if(establishment == null)
+			return null;
 		
 		JSONObject jsonEstablishment = null;
 			
@@ -94,6 +99,9 @@ public class GenerateJSON {
 	}
 	
 	public static JSONObject GetAddressJSON (Address address){
+		
+		if(address == null)
+			return null;
 		
 		JSONObject jsonAddress = null;
 		
@@ -126,6 +134,8 @@ public class GenerateJSON {
 
 	public static JSONObject GetPriceListJSON (PriceList priceList){
 		
+		if(priceList == null)
+			return null;
 		
 		JSONObject jsonPriceList = null;
 				
@@ -150,6 +160,9 @@ public class GenerateJSON {
 
 	public static JSONObject GetScheduleJSON (Schedule schedule){
 		
+		if(schedule == null)
+			return null;
+		
 		JSONObject jsonSchedule = null;
 		
 		try {
@@ -173,6 +186,9 @@ public class GenerateJSON {
 	
 	public static JSONArray GetListScheduleJSON (List<Schedule> schedules){
 		
+		if(schedules == null)
+			return null;
+		
 		// schedules
 		JSONArray jsonSchedules = new JSONArray();
 		for(Schedule schedule : schedules)
@@ -184,7 +200,9 @@ public class GenerateJSON {
 
 	public static JSONObject GetProductJSON (Product product){
 		
-		
+		if(product == null)
+			return null;
+
 		JSONObject jsonProduct = null;
 				
 		try {
