@@ -29,6 +29,7 @@ public class Foursquare{
 		String longitude = String.valueOf(address.getLongitude());
 		
     	String url = "https://api.foursquare.com/v2/venues/search?client_id=" + System.getenv("FOURSQUARE_CLIENT_ID") + "&client_secret=" + System.getenv("FOURSQUARE_CLIENT_SECRET") + "&ll=" + latitude + "," + longitude + "&radius=" + System.getenv("FOURSQUARE_RADIUS") + "&section=food&query=padaria&v=20161123";
+
     	InputStream is = null;
     	JSONObject json = null;
     	
@@ -48,5 +49,30 @@ public class Foursquare{
 		return json;
     	
 	}
+
+	public static JSONObject GetFoursquareJSON (String near) throws IOException {
+
 	
+    	String url = "https://api.foursquare.com/v2/venues/search?client_id=" + System.getenv("FOURSQUARE_CLIENT_ID") + "&client_secret=" + System.getenv("FOURSQUARE_CLIENT_SECRET") + "&near=" + near + "&radius=" + System.getenv("FOURSQUARE_RADIUS") + "&section=food&query=padaria&v=20161123";
+
+    	InputStream is = null;
+    	JSONObject json = null;
+    	
+		try {
+
+			is = new URL(url).openStream();
+   			BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+       		String jsonText = readAll(rd);
+       		json = new JSONObject(jsonText);
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} finally {
+    		is.close();
+    	}
+		
+		return json;
+    	
+	}
+
 }
