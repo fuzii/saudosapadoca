@@ -11,9 +11,33 @@ import model.Establishment;
 import model.PriceList;
 import model.Product;
 import model.Schedule;
+import model.User;
 import util.Util;
 
 public class GenerateJSON {
+	
+	public static JSONObject GetUserJSON (User user){
+		
+		
+		JSONObject jsonUser = null;
+				
+		try {
+
+			// user
+			jsonUser = new JSONObject();			
+			jsonUser.put("id",user.getUserId());
+			jsonUser.put("login",user.getUserLogin());
+			jsonUser.put("created",Util.CalendarToString(user.getUserCreated()));
+
+　
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return jsonUser;
+	
+	}
+
 	
 	public static JSONObject GetAccountJSON (Account account){
 		
@@ -30,7 +54,7 @@ public class GenerateJSON {
 			jsonAccount.put("phone",account.getPhone());
 			jsonAccount.put("created",Util.CalendarToString(account.getCreated()));
 
-
+　
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -92,7 +116,7 @@ public class GenerateJSON {
 			jsonAddress.put("longitude",address.getLongitude());
 			jsonAddress.put("calculatedDistance",address.getCalculatedDistance());
 
-
+　
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -139,7 +163,7 @@ public class GenerateJSON {
 			jsonSchedule.put("startTime",schedule.getStartTime());
 			jsonSchedule.put("endTime",schedule.getEndTime());
 
-
+　
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -173,7 +197,7 @@ public class GenerateJSON {
 			jsonProduct.put("description",product.getDescription());
 			jsonProduct.put("created",Util.CalendarToString(product.getCreated()));
 
-
+　
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
