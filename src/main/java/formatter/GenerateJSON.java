@@ -46,7 +46,7 @@ public class GenerateJSON {
 		
 		JSONObject jsonAccount = null;
 				
-		try {
+		try { 
 
 			// account
 			jsonAccount = new JSONObject();			
