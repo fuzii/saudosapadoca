@@ -1,5 +1,16 @@
+<%@page import="util.Util"%>
+<%@page import="model.PriceList"%>
+<%@page import="model.Establishment"%>
+
 <html>
 <body>
+
+	<b>Session Access</b><br />
+	UserId: <%= session.getAttribute("user_id") %><br />
+	UserType: <%= session.getAttribute("user_type") %><br />
+	EstablishmentId: <%= session.getAttribute("establishment_id") %><br />
+	AccountId: <%= session.getAttribute("account_id") %><br />
+	<br />
 	<br />
 	<br />
 	<form action="addAccount">
