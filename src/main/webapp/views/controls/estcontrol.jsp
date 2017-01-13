@@ -34,6 +34,16 @@
 	  width: calc(100% - 130px);
 	  vertical-align: top;
 	}
+        .menu-image-progress-bar
+        {
+            margin-top: 5px;
+            background-color: #18aebd;
+            text-align: center;
+            color: #f5f5f5;
+            border-radius: 3px;
+            opacity: 0.5;
+            transition: visibility ease-in-out 0.5s;
+        }
 	@media screen and (max-width: 576px)
 	{
 		.menu-image-wrapper
@@ -88,17 +98,19 @@
 		}
 	}
 </style>
-<div class="panel-body">
-	<form onsubmit="uploadFile()">
-		<input type="file" id="est_file_image" name="est_file_image" style="visibility: hidden;">
+<div class="panel-body">    
+	<form onsubmit="uploadFile()">		
+                <input type="hidden" id="image_id" name="image_id" />
+                <input name="file" id="cloudinary_file_image" type="file" class="cloudinary-fileupload" data-cloudinary-field="image_id" style="visibility: hidden;" />
 		<div>
 			<div class="menu-image-wrapper">
 				<div id="upload_image" class="menu-image">
-					<img src="../../images/images.jpg" alt="Alterar imagem estabelecimento" />
+					<img id="img_upload_image" src="../../images/images.jpg" alt="Alterar imagem estabelecimento" />
 				</div>
 				<div class="menu-image-button">
 					<input class="btn" id="btn_upload_image" type="button" value="Alterar imagem" />
 				</div>
+                                <div class="menu-image-progress-bar" style="visibility: hidden"></div>
 			</div>
 			<div class="menu-content">
 				<h3>SAUDOSA PADOCA</h3>
@@ -107,16 +119,70 @@
 		</div>
 	</form>
 </div>
+<script src="../../scripts/jquery.cloudinary.js" type="text/javascript"></script>
+<script src='../../scripts/jquery.ui.widget.js' type='text/javascript'></script>
+<script src='../../scripts/jquery.iframe-transport.js' type='text/javascript'></script>
+<script src='../../scripts/jquery.fileupload.js' type='text/javascript'></script>
 <script type="text/javascript">
+        var entityMap = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': '&quot;',
+        "'": '&#39;',
+        "/": '&#x2F;'
+        };
+        function escapeHtml(string) {
+          return String(string).replace(/[&<>"'\/]/g, function (s) {
+            return entityMap[s];
+          });
+        }
 	$(function() {
 		$("#upload_image").click(function () {
-			$("#est_file_image").click();
-		})
+			$("#cloudinary_file_image").click();
+		});
 		$("#btn_upload_image").click(function () {
-			$("#est_file_image").click();
-		})
+			$("#cloudinary_file_image").click();
+		});
+                
+                $.ajax({
+                   url: '/addEstablishmentImage',
+                   type: "get",
+                   data: null,
+                   success: function (data) {
+                       $.cloudinary.config({"api_key": data.api_key, "cloud_name": data.cloud_name});
+                       $('.cloudinary-fileupload').cloudinary_fileupload({formData: data});
+                       $('.cloudinary-fileupload').bind('fileuploadsend', function () {
+                           $('.menu-image-progress-bar').css('visibility', 'visible');
+                       });
+                       $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) { 
+                            $('.menu-image-progress-barr').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
+                            $('.menu-image-progress-bar').html(Math.round((data.loaded * 100.0) / data.total) + '%');
+                        });
+                       $('.cloudinary-fileupload').bind('fileuploaddone', function () {
+                           $('.menu-image-progress-bar').css('visibility','hidden');
+                           $('.menu-image-progress-bar').html('');
+                       });
+                   },
+                   error: function (data) { alert("ERROR cloudinary"); }
+                });
+                
+                function survey(selector, callback) {
+                    var input = $(selector);
+                    var oldvalue = input.val();
+                    setInterval(function(){
+                       if (input.val() !== oldvalue){
+                           oldvalue = input.val();
+                           callback();
+                       }
+                    }, 100);
+                }
+                
+                survey('#image_id', function(){
+                    $("#img_upload_image").attr("src", "http://res.cloudinary.com/" + $.cloudinary.config().cloud_name + "/" + $("#image_id").val().toString().split('#')[0]);
+                }); 
 	});
-	function uploadFile() {
+	/*function uploadFile() {
 		event.preventDefault();
 		
 		var file = document.getElementById("est_file_image").files[0];
@@ -128,12 +194,12 @@
 		var formData = new FormData();
 		formData.append('file', file, file.name);
 		
-		/**Check for xhr Object**/
+		//Check for xhr Object
 		if (window.XMLHttpRequest) {
 			xhr = new XMLHttpRequest();
 		}
 		else {
-			/**Try using ActiveXObject for older ie versions..**/
+			//Try using ActiveXObject for older ie versions..
 			if (window.ActiveXObject) {
 				try {
 					xhr = new ActiveXObject("Microsoft.XMLHTTP");
@@ -142,7 +208,7 @@
 			}
 		}
 
-		/**Now you can go ahead and use xhr*/
+		//Now you can go ahead and use xhr
 		if (xhr) {
 			xhr.open('POST', '/addEstablishmentPhoto', true);
 			xhr.onload = function () {
@@ -160,5 +226,5 @@
 		}
 		
 		return false;
-	}
+	}*/
 </script>
