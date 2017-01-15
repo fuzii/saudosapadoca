@@ -51,12 +51,12 @@
 </div>
 <script type="text/javascript">
     function PriceList(obj) {
-        this.establishmentId = obj && obj.establishmentId;
-        this.productId = obj && obj.productId;
+        this.establishment_id = obj && obj.establishmentId;
+        this.product_id = obj && obj.productId;
         this.price = obj && obj.price;
         this.unit = obj && obj.unit;
-        this.setValues = function (productId, price, unit) {
-            this.productId = productId;
+        this.setValues = function (product_id, price, unit) {
+            this.product_id = product_id;
             this.price = price;
             this.unit = unit;
         };
