@@ -67,7 +67,7 @@
         //set values
         //set pricelist
         $("#establishment_id").val(priceList.establishmentId);
-        $("#product_id").val(priceList.productId);
+        $("#product_id").val(priceList.product_id);
         $("#price").val(priceList.price);
         $("#unit").val(priceList.unit);
         $('#unit').html(priceList.unit + '<span class="caret"></span>');
