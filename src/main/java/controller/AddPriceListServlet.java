@@ -32,13 +32,12 @@ public class AddPriceListServlet extends HttpServlet{
 				response.addHeader("Access-Control-Allow-Headers","x-requested-with");
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				return;
-			}
-			
+			}			
 			
 			// price list
 			PriceList priceList = GenerateObject.GetPriceList(request);
 			PriceListDao.Insert(priceList);
-	
+                        session.setAttribute("priceList", GenerateJSON.GetPriceListJSON(priceList));	
 			
 			// response
 			response.addHeader("Access-Control-Allow-Origin","*");
@@ -51,6 +50,7 @@ public class AddPriceListServlet extends HttpServlet{
 			
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
+
 			out.print(jsonMain.put("priceList",GenerateJSON.GetPriceListJSON(priceList)));
 			
 	

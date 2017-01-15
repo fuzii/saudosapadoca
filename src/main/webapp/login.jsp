@@ -22,7 +22,7 @@
 						<div class="form-group">
 							<input type="text" class="form-control form-group" id="login" name="login" placeholder="email" />
 							<input type="password" class="form-control form-group" id="password" name="password" placeholder="senha" />
-							<input type="submit" class="btn btn-success" value="Entrar" style="width: 150px" />
+							<input type="submit" id="btn_login" class="btn btn-success" value="Entrar" style="width: 150px" />
 						</div>
 						<div class="form-group col-sm-6 checkbox">
 							<label for="remember_me">
@@ -48,6 +48,7 @@
             function submitForm()
             {
                 $("#error_message").hide();
+                $('#btn_login').attr('class','btn btn-default disabled');
                 $.ajax({
                    type: "POST",
                    url: "/login",
@@ -69,6 +70,7 @@
                     $("#error_message").val("Erro no servidor: " + data.status);
                 }
                 $("#error_message").show();
+                $('#btn_login').attr('class','btn btn-success');
             }
         </script>
 </body>

@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 public class PriceList {
 
 	private Long id;
@@ -38,5 +40,4 @@ public class PriceList {
 	public void setEstablishment(Establishment establishment) {
 		this.establishment = establishment;
 	}
-		
 }

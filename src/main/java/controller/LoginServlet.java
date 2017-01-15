@@ -48,7 +48,6 @@ public class LoginServlet extends HttpServlet{
 					session.setAttribute("schedule", ScheduleDao.GetSchedulesByEstablishment(establishment));
 					session.setAttribute("priceList", PriceListDao.GetPriceListByEstablishment(establishment));
 					session.setAttribute("address", AddressDao.GetAddressByEstablishment(establishment));
-
 				// account session
 				}else{
 					Account account = AccountDao.GetAccountsById(Long.parseLong(String.valueOf(session.getAttribute("account_id"))));

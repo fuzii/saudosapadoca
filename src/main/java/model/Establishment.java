@@ -2,6 +2,7 @@ package model;
 
 import java.util.Calendar;
 import java.util.List;
+import org.json.JSONObject;
  
 public class Establishment extends User{
 
@@ -97,5 +98,4 @@ public class Establishment extends User{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
 }

@@ -45,7 +45,7 @@ public class PriceListDao {
 		try {
 			
 			Connection connection = new ConnectionFactory().getConnection();
-	    	PreparedStatement stmt = connection.prepareStatement("select * from price_list where establishment_id=?");
+	    	PreparedStatement stmt = connection.prepareStatement("select * from price_list where establishment_id=? order by created DESC");
 	    	stmt.setLong(1,establishment.getId());
 	    	ResultSet rs = stmt.executeQuery();
 

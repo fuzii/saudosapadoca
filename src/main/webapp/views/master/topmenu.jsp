@@ -49,12 +49,12 @@
 <script type="text/javascript">
 	Storage.prototype.setObject = function(key, value) {
     	this.setItem(key, JSON.stringify(value));
-	}
+	};
 	
 	Storage.prototype.getObject = function(key) {
 	    var value = this.getItem(key);
 	    return value && JSON.parse(value);
-	}
+	};
 	
 	function showAddress() {
 		if(localStorage.getItem('userInfo') != null) {

@@ -114,7 +114,7 @@
 			</div>
 			<div class="menu-content">
 				<h3>SAUDOSA PADOCA</h3>
-				<p>Endereço, número</p>
+				<p id="obj_address">Endereço, número</p>
 			</div>
 		</div>
 	</form>
@@ -137,7 +137,15 @@
             return entityMap[s];
           });
         }
+        function Address(obj) {
+            this.number = obj && obj.number;
+            this.street = obj && obj.street;
+        }
 	$(function() {
+            //set address
+            var est_address = new Address(<%= formatter.GenerateJSON.GetAddressJSON(((java.util.List<model.Address>)session.getAttribute("address")).get(0)) %>);
+            //set values
+            $('#obj_address').html(est_address.street + ', ' + est_address.number);
 		$("#upload_image").click(function () {
 			$("#cloudinary_file_image").click();
 		});

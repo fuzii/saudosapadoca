@@ -1,9 +1,14 @@
 <link href="./css/card-details.css" type="text/css" rel="Stylesheet" />
+<style type="text/css">
+    #div_pricelist_message {
+        padding: 7px;
+    }
+</style>
 <div class="panel-heading">
 	<h3>Configuração de produtos</h3>
 </div>
 <div class="panel-body">
-	<form method="post" onsubmit="submitProduct();">
+	<form method="post" onsubmit="submitPriceList(); return false;">
 		<div class="form-group">
 			<table class="table table-bordered">
 			<thead>
@@ -16,12 +21,13 @@
 			<tbody>
 				<tr>
 					<td>
-                                            <input type="hidden" id="product_id" name="product_id" value="1" />
+                                            <input type="hidden" id="establishment_id" name="establishment_id" />
+                                            <input type="hidden" id="product_id" name="product_id" />
 						Pão françes
 					</td>
 					<td>
 						<div class="btn-group">
-							<button id="unit" name="unit" value="Unidade" class="btn dropdown-toggle" data-toggle="dropdown" type="button">Unidade<span class="caret"></span></button>
+                                                    <button id="unit" name="unit" value="Unidade" class="btn dropdown-toggle" data-toggle="dropdown" type="button">Unidade<span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li>Kg</li>
 								<li>Unidade</li>
@@ -30,34 +36,70 @@
 						</div>
 					</td>
 					<td>
-						<input name="unitvalue" id="unitvalue" type="text" class="form-control" placeholder="por unidade" />
+						<input name="price" id="price" type="text" class="form-control" placeholder="por unidade" />
 					</td>
 				</tr>
 			</tbody>
 			</table>
 			<div class="form-group">
-				<input type="submit" class="btn btn-success" value="Gravar" style="min-width: 150px;" />
+				<input type="submit" id="btn_addpricelist" class="btn btn-success" value="Gravar" style="min-width: 150px;" />
+                                <div id="div_pricelist_message" style="display: none;">
+                                </div>
 			</div>
 		</div>
 	</form>
 </div>
 <script type="text/javascript">
-	$(function () {
-		$(".dropdown-menu").on('click', 'li', function(){
-	          $($(this).parent().siblings()[0]).html($(this).text() + '<span class="caret"></span>');
-	          $($(this).parent().siblings()[0]).val($(this).text());
-	       });
-	});
-	
-	function submitProduct(){
-		$.ajax({
-			type: "POST",
-			url: "/addPriceList",
-			data: {product_id: $("#product_id").val(), unit: $("#unit").val(), price: $("#unitvalue").val() },
-			dataType: "json",
-			succes: function (data) { },
-			error: function(data ) { }
-		});
-		return false;
-	}
+    function PriceList(obj) {
+        this.establishmentId = obj && obj.establishmentId;
+        this.product_id = obj && obj.product_id;
+        this.price = obj && obj.price;
+        this.unit = obj && obj.unit;
+        this.setValues = function (product_id, price, unit) {
+            this.product_id = product_id;
+            this.price = price;
+            this.unit = unit;
+        };
+    }
+
+    var priceList = new PriceList(<%= formatter.GenerateJSON.GetPriceListJSON(((model.PriceList)session.getAttribute("priceList"))) %>);
+    $(function () {
+        //set values
+        //set pricelist
+        $("#establishment_id").val(priceList.establishmentId);
+        $("#product_id").val(priceList.product_id);
+        $("#price").val(priceList.price);
+        $("#unit").val(priceList.unit);
+        $('#unit').html(priceList.unit + '<span class="caret"></span>');
+
+        $(".dropdown-menu").on('click', 'li', function(){
+          $($(this).parent().siblings()[0]).html($(this).text() + '<span class="caret"></span>');
+          $($(this).parent().siblings()[0]).val($(this).text());
+       });
+    });
+
+    function submitPriceList(e){
+        priceList.setValues($('#product_id').val(), $('#price').val(), $('#unit').val());
+        $('#btn_addpricelist').attr('class', 'btn btn-default disabled');
+        $('#div_pricelist_message').css('display', 'none');
+        $.ajax({
+                type: 'POST',
+                url: '/addPriceList',
+                data: priceList,
+                dataType: 'json',
+                success: function (data) { 
+                    $('#btn_addpricelist').attr('class', 'btn btn-success'); 
+                    $('#div_pricelist_message').attr('class', 'alert alert-success');
+                    $('#div_pricelist_message').html('Alterado com sucesso!');
+                    $('#div_pricelist_message').css('display', 'inline-block');
+                },
+                error: function(data) { 
+                $('#btn_addpricelist').attr('class', 'btn btn-success');
+                    $('#btn_addpricelist').attr('class', 'btn btn-success'); 
+                    $('#div_pricelist_message').attr('class', 'alert alert-danger');
+                    $('#div_pricelist_message').html('Erro ' + data.status);
+                    $('#div_pricelist_message').css('display', 'inline-block');
+                }
+        });
+    }
 </script>
