@@ -21,8 +21,8 @@
 			<tbody>
 				<tr>
 					<td>
-                                            <input type="hidden" id="establishment_id" name="establishment_id" />
-                                            <input type="hidden" id="product_id" name="product_id" />
+	                    <input type="hidden" id="establishment_id" name="establishment_id" />
+	                    <input type="hidden" id="product_id" name="product_id" />
 						Pão françes
 					</td>
 					<td>
@@ -43,8 +43,7 @@
 			</table>
 			<div class="form-group">
 				<input type="submit" id="btn_addpricelist" class="btn btn-success" value="Gravar" style="min-width: 150px;" />
-                                <div id="div_pricelist_message" style="display: none;">
-                                </div>
+            	<div id="div_pricelist_message" style="display: none;"></div>
 			</div>
 		</div>
 	</form>
