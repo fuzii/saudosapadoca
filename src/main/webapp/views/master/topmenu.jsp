@@ -120,7 +120,6 @@
             text-decoration: none;
             margin: 0px;
     }
-
     .navbar-minimal > .navbar-menu > li > a:last-child {
             border-bottom-width: 0px;
     }
@@ -130,11 +129,9 @@
     .navbar-minimal > .navbar-menu > li > a > .glyphicon {
             float: right;
     }
-
     .navbar-minimal.open {
             width: 320px;
     }
-
     .navbar-minimal.open > .navbar-toggler > span {
             background-position: 0 -16px;
             /*-webkit-transform: rotate(-180deg);
@@ -143,7 +140,6 @@
             -ms-transform: rotate(-180deg);*/
             transform: rotate(-180deg);
     }
-
     .navbar-minimal.open > .navbar-menu {
             visibility: visible;
             opacity: 1;
@@ -151,7 +147,6 @@
             width: 100%;
             min-height: 100%;
     }
-
     /*@media (min-width: 768px) {
         .navbar-minimal.open {
                 width: 60px;
@@ -192,7 +187,6 @@
                 opacity: 1;
         }
     }*/
-	
 </style>
 <section class="clearfix hidden-sm hidden-xs">
     <div id="header">
@@ -203,9 +197,9 @@
             </div>
             <ul id="menu">
                 <li id="signupest"><a href="../signupest.jsp">Cadastre sua padaria<span clas="glyphicon glyphicon-grain"></span></a>
+                <li><a id="userName" href="../login.jsp" class="btn btn-info"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
                 <li id="signup"><a href="../signup.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span>
                     <span class="hidden-xs hidden-sm"> Cadastrar</span></a></li>
-                <li><a id="userName" href="../login.jsp" class="btn btn-info"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
             </ul>
         </div>
     </div>
@@ -213,10 +207,7 @@
 <nav class="navbar navbar-fixed-left navbar-minimal animate hidden-lg hidden-md" role="navigation">
 	<div class="navbar-toggler animate">
 		<span class="menu-icon"></span>
-		<!-- <span class="sr-only">Menu</span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span> -->
+		<span class="sr-only">Menu</span>
 	</div>
 	<ul class="navbar-menu animate">
             <li><a id="userName" href="../login.jsp" class="animate">
