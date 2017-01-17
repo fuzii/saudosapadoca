@@ -60,8 +60,12 @@
             this.unit = unit;
         };
     }
-
-    var priceList = new PriceList(<%= formatter.GenerateJSON.GetPriceListJSON(((model.PriceList)session.getAttribute("priceList"))) %>);
+    <%  String priceListJSON = "";
+        if(!session.isNew() && session.getAttribute("priceList") != null)  {
+            priceListJSON = formatter.GenerateJSON.GetPriceListJSON(((model.PriceList)session.getAttribute("priceList"))).toString();
+        }
+    %>
+    var priceList = new PriceList(<%= priceListJSON %>);
     $(function () {
         //set values
         //set pricelist

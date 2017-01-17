@@ -44,7 +44,8 @@ public class LoginServlet extends HttpServlet{
 				// establishment session
 				if(String.valueOf(session.getAttribute("user_type"))=="establishment"){
 					Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(session.getAttribute("establishment_id")))); 
-					session.setAttribute("establishment", establishment);
+					session.setAttribute("isAuthenticated", true);
+                                        session.setAttribute("establishment", establishment);
 					session.setAttribute("schedule", ScheduleDao.GetSchedulesByEstablishment(establishment));
 					session.setAttribute("priceList", PriceListDao.GetPriceListByEstablishment(establishment));
 					session.setAttribute("address", AddressDao.GetAddressByEstablishment(establishment));

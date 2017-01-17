@@ -143,7 +143,13 @@
         }
 	$(function() {
             //set address
-            var est_address = new Address(<%= formatter.GenerateJSON.GetAddressJSON(((java.util.List<model.Address>)session.getAttribute("address")).get(0)) %>);
+            <%
+                String addressJSON = "";
+                if(!session.isNew() && session.getAttribute("address") != null) {
+                    addressJSON = formatter.GenerateJSON.GetAddressJSON(((java.util.List<model.Address>)session.getAttribute("address")).get(0)).toString(); 
+                }
+            %>
+            var est_address = new Address(<%= addressJSON %>);
             //set values
             $('#obj_address').html(est_address.street + ', ' + est_address.number);
 		$("#upload_image").click(function () {

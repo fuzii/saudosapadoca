@@ -1,4 +1,5 @@
 <%@ include file="./views/master/master.jsp" %>
+<% if(session.isNew() || session.getAttribute("isAuthenticated") == null || !(Boolean)session.getAttribute("isAuthenticated")) response.sendRedirect("/login.jsp"); %>
 <body>
 	<div class="container">
 		<%@ include file="./views/master/topmenu.jsp" %>
