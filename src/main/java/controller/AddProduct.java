@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 import dao.ProductDao;
 import formatter.GenerateJSON;
@@ -22,8 +24,7 @@ public class AddProduct extends HttpServlet{
 			
 			// product
 			Product product = GenerateObject.GetProduct(request);
-			ProductDao.Insert(product);
-	
+			ProductDao.Insert(product);	
 			
 			// response
 			response.addHeader("Access-Control-Allow-Origin","*");
@@ -38,6 +39,9 @@ public class AddProduct extends HttpServlet{
 			PrintWriter out = response.getWriter();
 			out.print(jsonMain.put("product",GenerateJSON.GetProductJSON(product)));
 			
+			// set session
+			HttpSession session = request.getSession(true);
+			session.setAttribute("product", product);
 	
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());

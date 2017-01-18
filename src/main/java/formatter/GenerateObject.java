@@ -1,13 +1,16 @@
 package formatter;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-
-import dao.EstablishmentDao;
+import dao.PriceListDao;
 import dao.ProductDao;
 import model.Account;
 import model.Address;
 import model.Establishment;
 import model.Lead;
+import model.Order;
+import model.OrderItem;
 import model.PriceList;
 import model.Product;
 import model.Schedule;
@@ -41,7 +44,7 @@ public class GenerateObject {
 	public static PriceList GetPriceList (HttpServletRequest request){
 		
 		PriceList priceList = new PriceList(); 
-		priceList.setEstablishment(EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(request.getSession().getAttribute("establishment_id")))));
+		priceList.setEstablishment((Establishment)request.getSession().getAttribute("establishment"));
 		priceList.setProduct(ProductDao.GetProductById(Long.parseLong(request.getParameter("product_id"))));
 		priceList.setPrice(Double.parseDouble(request.getParameter("price")));
 		priceList.setUnit(request.getParameter("unit"));
@@ -49,7 +52,34 @@ public class GenerateObject {
 		return priceList;
 
 	}
-	
+
+	public static Order GetOrder (HttpServletRequest request){
+		
+		Order order = new Order(); 
+		order.setEstablishment((Establishment)request.getSession().getAttribute("establishment"));
+		order.setPriceList(PriceListDao.GetPriceListByEstablishment((Establishment)request.getSession().getAttribute("establishment")));
+		order.setAccount((Account)request.getSession().getAttribute("account"));
+		order.setStatus(request.getParameter("status"));
+		
+		List<OrderItem> itens = new ArrayList<OrderItem>();
+		
+		if(!Util.IsEmpty(request.getParameter("monday_time")) && !Util.IsEmpty(request.getParameter("monday_amount"))){
+			OrderItem item = new OrderItem();
+			item.setProduct((Product)request.getSession().getAttribute("product"));
+			item.setQuantity(Integer.parseInt(request.getParameter("monday_amount")));
+			//item.setDeliveryTime(request.getParameter("monday_time"));
+			//item.setPrice(order.getPriceList().getPrice());
+			item.setDayOfWeek("segunda");
+			item.setUnit("unidade");
+			itens.add(item);
+		}
+
+		order.setOrderItem(itens);
+		
+		return order;
+
+	}
+
 	public static Address GetAddress (HttpServletRequest request){
 		
 		Address address = new Address();

@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import dao.AccountDao;
 import formatter.GenerateJSON;
@@ -20,11 +21,10 @@ public class AddAccountServlet extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		try{
-			
+						
 			Account account = GenerateObject.GetAccount(request);
 			account = AccountDao.Insert(account);
-	
-			
+
 			// send confirmation mail
 			if(System.getenv("SENDGRID_ACTIVE")=="On"){
 				String from = System.getenv("SENDGRID_FROM");
@@ -33,8 +33,8 @@ public class AddAccountServlet extends HttpServlet{
 				String to = account.getEmail();
 				SendGridEmail.Send(from, to, subject, content);
 			}
-	
-			
+
+
 			// response
 			response.addHeader("Access-Control-Allow-Origin","*");
 			response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
@@ -47,6 +47,11 @@ public class AddAccountServlet extends HttpServlet{
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
 			out.print(jsonMain.put("account",GenerateJSON.GetAccountJSON(account)));
+			
+			// set session
+			HttpSession session = request.getSession(true);
+			session.setAttribute("account", account);
+
 	
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());

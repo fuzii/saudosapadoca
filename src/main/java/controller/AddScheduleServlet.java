@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,7 @@ import dao.ScheduleDao;
 import formatter.GenerateJSON;
 import formatter.GenerateObject;
 import model.Establishment;
+import model.Schedule;
 
 @WebServlet("/addSchedule")
 public class AddScheduleServlet extends HttpServlet{ 
@@ -59,8 +61,13 @@ public class AddScheduleServlet extends HttpServlet{
 			
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
-			out.print(jsonMain.put("schedule",GenerateJSON.GetListScheduleJSON(ScheduleDao.GetSchedulesByEstablishment(establishment))));
+			List<Schedule> schedule = ScheduleDao.GetSchedulesByEstablishment(establishment);
+			out.print(jsonMain.put("schedule",GenerateJSON.GetListScheduleJSON(schedule)));
 	
+			// set session
+			session.setAttribute("schedule", schedule);
+			
+			
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
 		}

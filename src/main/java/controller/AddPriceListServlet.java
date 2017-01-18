@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.json.JSONObject;
 import dao.PriceListDao;
 import formatter.GenerateJSON;
@@ -37,7 +36,6 @@ public class AddPriceListServlet extends HttpServlet{
 			// price list
 			PriceList priceList = GenerateObject.GetPriceList(request);
 			PriceListDao.Insert(priceList);
-                        session.setAttribute("priceList", GenerateJSON.GetPriceListJSON(priceList));	
 			
 			// response
 			response.addHeader("Access-Control-Allow-Origin","*");
@@ -50,8 +48,10 @@ public class AddPriceListServlet extends HttpServlet{
 			
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
-
 			out.print(jsonMain.put("priceList",GenerateJSON.GetPriceListJSON(priceList)));
+			
+			// set session
+			session.setAttribute("priceList", priceList);	
 			
 	
 		} catch (Exception e) {

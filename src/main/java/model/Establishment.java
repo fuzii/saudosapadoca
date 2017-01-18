@@ -2,7 +2,6 @@ package model;
 
 import java.util.Calendar;
 import java.util.List;
-import org.json.JSONObject;
  
 public class Establishment extends User{
 

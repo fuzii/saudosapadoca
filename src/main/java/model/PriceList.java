@@ -1,7 +1,5 @@
 package model;
 
-import org.json.JSONObject;
-
 public class PriceList {
 
 	private Long id;

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import dao.LeadDao;
 import formatter.GenerateObject;
 import model.Address;
@@ -29,6 +30,11 @@ public class AddLeadServlet extends HttpServlet{
 			response.addHeader("Access-Control-Max-Age","3600");
 			response.addHeader("Access-Control-Allow-Headers","x-requested-with");
 			response.setStatus(HttpServletResponse.SC_OK);
+			
+			// set session
+			HttpSession session = request.getSession(true);
+			session.setAttribute("lead", lead);
+			session.setAttribute("address", address);
 
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());

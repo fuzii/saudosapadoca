@@ -96,6 +96,33 @@
 	</form>
 	<br />
 	<br />
+	<form action="addOrder">
+		status: <input type="text" name="status" /><br /> 
+		monday<br /> 
+		time: <input type="text" name="monday_time" /><br /> 
+		amount: <input type="text" name="monday_amount" /><br /> 
+		tuesday<br /> 
+		time: <input type="text" name="tuesday_time" /><br /> 
+		amount: <input type="text" name="tuesday_amount" /><br /> 
+		wednesday<br /> 
+		time: <input type="text" name="wednesday_time" /><br /> 
+		amount: <input type="text" name="wednesday_amount" /><br /> 
+		thursday<br /> 
+		time: <input type="text" name="thursday_time" /><br /> 
+		amount: <input type="text" name="thursday_amount" /><br /> 
+		friday<br /> 
+		time: <input type="text" name="friday_time" /><br /> 
+		amount: <input type="text" name="friday_amount" /><br /> 
+		saturday<br /> 
+		time: <input type="text" name="saturday_time" /><br /> 
+		amount: <input type="text" name="saturday_amount" /><br /> 
+		sunday<br /> 
+		time: <input type="text" name="sunday_time" /><br /> 
+		amount: <input type="text" name="sunday_amount" /><br /> 		
+		<input type="submit" value="Cadastro Ordem" />
+	</form>
+	<br />
+	<br />
 	<form action="getFoursquare">
 		latitude: <input type="text" name="latitude" /><br /> longitude: <input
 			type="text" name="longitude" /><br /> <input type="submit"
