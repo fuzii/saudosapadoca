@@ -38,7 +38,8 @@ public class AddScheduleServlet extends HttpServlet{
 			} 
 			
 			//Schedule
-			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(request.getSession().getAttribute("establishment_id"))));			
+			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(request.getSession().getAttribute("establishment_id"))));
+                        ScheduleDao.DeleteScheduleByEstablishmentId(establishment.getId());
 			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Segunda"));
 			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Terça"));
 			ScheduleDao.Insert(GenerateObject.GetSchedule(establishment, request.getParameter("week_start_time"), request.getParameter("week_end_time"), "Quarta"));

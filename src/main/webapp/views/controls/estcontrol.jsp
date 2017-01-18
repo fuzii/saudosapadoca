@@ -1,3 +1,9 @@
+<%
+    String addressJSON = "";
+    if(!session.isNew() && session.getAttribute("address") != null) {
+        addressJSON = formatter.GenerateJSON.GetAddressJSON(((java.util.List<model.Address>)session.getAttribute("address")).get(0)).toString(); 
+    }
+%>
 <style type="text/css">
 	.menu-image-wrapper {
 	  display: inline-block;
@@ -143,12 +149,6 @@
         }
 	$(function() {
             //set address
-            <%
-                String addressJSON = "";
-                if(!session.isNew() && session.getAttribute("address") != null) {
-                    addressJSON = formatter.GenerateJSON.GetAddressJSON(((java.util.List<model.Address>)session.getAttribute("address")).get(0)).toString(); 
-                }
-            %>
             var est_address = new Address(<%= addressJSON %>);
             //set values
             $('#obj_address').html(est_address.street + ', ' + est_address.number);
