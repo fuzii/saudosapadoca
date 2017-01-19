@@ -21,19 +21,21 @@ public class SessionDao {
 												    			+ "left outer join account a on u.id = a.user_id "
 												    			+ "left outer join establishment e on u.id = e.user_id "
 												    			+ "where u.id=?");
-			//PreparedStatement stmt = connection.prepareStatement("select u.id as user_id from user_application u where u.id=?");
 	    	stmt.setLong(1,user.getUserId());
 	    	ResultSet rs = stmt.executeQuery();
 
 			if(!rs.next())
 				return null;
 			
+			String user_type = (Util.IsEmpty(String.valueOf(rs.getLong("establishment_id"))) || String.valueOf(rs.getLong("establishment_id")).equals("0"))?"account":"establishment";
+			
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("user_id", String.valueOf(rs.getLong("user_id")));
 			map.put("account_id", String.valueOf(rs.getLong("account_id")));
 			map.put("establishment_id", String.valueOf(rs.getLong("establishment_id")));
-			map.put("user_type", (Util.IsEmpty(String.valueOf(rs.getLong("establishment_id")))?"account":"establishment"));
-											
+			map.put("user_type",user_type);
+			
+			
 			rs.close();
 			stmt.close();
 			connection.close();
