@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet{
 					session.setAttribute("isAuthenticated", true);
 					session.setAttribute("establishment", establishment);
 					session.setAttribute("schedule", ScheduleDao.GetSchedulesByEstablishment(establishment));
-					session.setAttribute("priceList", PriceListDao.GetPriceListByEstablishment(establishment));
+					session.setAttribute("priceList", PriceListDao.GetPriceListByEstablishment(establishment).get(0));
 					session.setAttribute("address", AddressDao.GetAddressByEstablishment(establishment));
 				// account session
 				}else{
