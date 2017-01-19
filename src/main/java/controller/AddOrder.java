@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
-import dao.PriceListDao;
+
+import dao.OrderDao;
 import formatter.GenerateJSON;
 import formatter.GenerateObject;
 import model.Order;
-import model.PriceList;
 
 @WebServlet("/addOrder")
 public class AddOrder extends HttpServlet{ 
@@ -36,7 +36,7 @@ public class AddOrder extends HttpServlet{
 			
 			// order
 			Order order = GenerateObject.GetOrder(request);
-			//OrderDao.Insert(order);
+			OrderDao.Insert(order);
 			
 			// response
 			response.addHeader("Access-Control-Allow-Origin","*");
@@ -49,7 +49,7 @@ public class AddOrder extends HttpServlet{
 			
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
-			//out.print(jsonMain.put("order",GenerateJSON.GetOrderJSON(order)));
+			out.print(jsonMain.put("order",GenerateJSON.GetOrderJSON(order)));
 			
 			// set session
 			session.setAttribute("order", order);	

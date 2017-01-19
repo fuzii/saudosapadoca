@@ -7,6 +7,8 @@ import org.json.JSONObject;
 import model.Account;
 import model.Address;
 import model.Establishment;
+import model.Order;
+import model.OrderItem;
 import model.PriceList;
 import model.Product;
 import model.Schedule;
@@ -14,6 +16,63 @@ import model.User;
 import util.Util;
 
 public class GenerateJSON {
+	
+	public static JSONObject GetOrderItemJSON (OrderItem orderItem){
+		
+		if(orderItem == null)
+			return null;
+		
+		JSONObject jsonOrderItem = null;
+				
+		try {
+
+			// order item
+			jsonOrderItem = new JSONObject();
+			jsonOrderItem.put("id",orderItem.getId());
+			jsonOrderItem.put("deliveryTime",orderItem.getDeliveryTime());
+			jsonOrderItem.put("dayWeek",orderItem.getDayOfWeek());
+			jsonOrderItem.put("price",orderItem.getPrice());
+			jsonOrderItem.put("product",orderItem.getProduct());
+			jsonOrderItem.put("quantity",orderItem.getQuantity());
+			jsonOrderItem.put("unit",orderItem.getUnit());
+
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return jsonOrderItem;
+	
+	}	
+
+	public static JSONObject GetOrderJSON (Order order){
+		
+		if(order == null)
+			return null;
+		
+		JSONObject jsonOrder = null;
+				
+		try {
+
+			// order
+			jsonOrder = new JSONObject();
+			jsonOrder.put("id",order.getId());
+			jsonOrder.put("status",order.getStatus());
+			
+			JSONArray jsonOrderItem = new JSONArray();
+			for(OrderItem orderItem : order.getOrderItem())
+				jsonOrderItem.put(GetOrderItemJSON(orderItem));
+
+			jsonOrder.put("orderItem", jsonOrderItem);
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return jsonOrder;
+	
+	}	
+
 	
 	public static JSONObject GetUserJSON (User user){
 		

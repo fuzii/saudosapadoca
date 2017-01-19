@@ -48,7 +48,7 @@ public class Geolocation {
 				Establishment establishment = EstablishmentDao.GetEstablishmentsById(a.getEstablishmentId());
 				JSONObject jsonEstablishment = GenerateJSON.GetEstablishmentJSON(establishment);
 				jsonEstablishment.put("schedule", GenerateJSON.GetListScheduleJSON(ScheduleDao.GetSchedulesByEstablishment(establishment)));
-				jsonEstablishment.put("priceList", GenerateJSON.GetPriceListJSON(PriceListDao.GetPriceListByEstablishment(establishment)));
+				jsonEstablishment.put("priceList", GenerateJSON.GetPriceListJSON(PriceListDao.GetPriceListByEstablishment(establishment).get(0))); //FASE 2
 				jsonEstablishment.put("address", GenerateJSON.GetAddressJSON(a));
 				jsonArrayEstablishment.put(jsonEstablishment);
 

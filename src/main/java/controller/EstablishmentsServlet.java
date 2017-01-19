@@ -14,7 +14,6 @@ import dao.EstablishmentDao;
 import dao.PriceListDao;
 import dao.ScheduleDao;
 import formatter.GenerateJSON;
-import formatter.GenerateObject;
 import model.Address;
 import model.Establishment;
 import model.PriceList;
@@ -26,7 +25,7 @@ public class EstablishmentsServlet extends HttpServlet{
 		try{		
 			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id")));
 			Address address = AddressDao.GetAddressByEstablishment(establishment).get(0);
-			PriceList priceList = PriceListDao.GetPriceListByEstablishment(establishment);
+			PriceList priceList = PriceListDao.GetPriceListByEstablishment(establishment).get(0);
 			List<Schedule> schedules = ScheduleDao.GetSchedulesByEstablishment(establishment);
 			// response
 			response.addHeader("Access-Control-Allow-Origin","*");

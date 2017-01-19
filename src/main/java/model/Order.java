@@ -8,7 +8,6 @@ public class Order {
 	private Establishment establishment;
 	private Account account;
 	private List<OrderItem> orderItem;
-	private PriceList priceList;
 	private String status;
 	
 	public Long getId() {
@@ -34,12 +33,6 @@ public class Order {
 	}
 	public void setOrderItem(List<OrderItem> orderItem) {
 		this.orderItem = orderItem;
-	}
-	public PriceList getPriceList() {
-		return priceList;
-	}
-	public void setPriceList(PriceList priceList) {
-		this.priceList = priceList;
 	}
 	public String getStatus() {
 		return status;
