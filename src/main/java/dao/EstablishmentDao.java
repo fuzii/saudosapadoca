@@ -19,7 +19,7 @@ public class EstablishmentDao {
 	@SuppressWarnings("unchecked")
 	public static Establishment Insert(Establishment establishment) {	
 		
-		try { 
+		try {  
 			
 			// insert user
 			User user = UserDao.Insert(establishment);
@@ -152,6 +152,8 @@ public class EstablishmentDao {
 			establishment.setResponsiblePhone(rs.getString("responsible_phone"));
 			establishment.setRate(rs.getInt("rate"));
 			establishment.setPhone(rs.getString("phone"));
+			establishment.setPhotoUrl(rs.getString("photo_url"));
+			
 										
 			// created on
 			Calendar data = Calendar.getInstance();

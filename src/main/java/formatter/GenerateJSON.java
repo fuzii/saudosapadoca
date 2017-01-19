@@ -88,6 +88,7 @@ public class GenerateJSON {
 			jsonEstablishment.put("responsiblePhone",establishment.getResponsiblePhone());
 			jsonEstablishment.put("rate",establishment.getRate());
 			jsonEstablishment.put("created",Util.CalendarToString(establishment.getCreated()));
+			jsonEstablishment.put("photoUrl",establishment.getPhotoUrl());
 			
 
 		} catch (JSONException e) {
@@ -113,11 +114,11 @@ public class GenerateJSON {
 			jsonAddress.put("accountId",address.getAccountId());
 			jsonAddress.put("establishmentId",address.getEstablishmentId());
 			jsonAddress.put("zipCode",address.getZipCode());
-                        jsonAddress.put("street",address.getStreet());
-                        jsonAddress.put("city",address.getCity());
-                        jsonAddress.put("state",address.getState());
+			jsonAddress.put("street",address.getStreet());
+			jsonAddress.put("city",address.getCity());
+			jsonAddress.put("state",address.getState());
 			jsonAddress.put("number",address.getNumber()); 
-                        jsonAddress.put("premise",address.getPremise());
+			jsonAddress.put("premise",address.getPremise());
 			jsonAddress.put("country",address.getCountry());
 			jsonAddress.put("latitude",address.getLatitude());
 			jsonAddress.put("longitude",address.getLongitude());
