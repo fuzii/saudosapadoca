@@ -63,7 +63,8 @@
 			type="text" name="number" /><br /> premise: <input type="text"
 			name="premise" /><br /> country: <input type="text" name="country" /><br />
 		latitude: <input type="text" name="latitude" /><br /> longitude: <input
-			type="text" name="longitude" /><br /> <input type="submit"
+			type="text" name="longitude" /><br /><br /> photo_url: <input
+			type="text" name="photo_url" /><br /> <input type="submit"
 			value="Cadastro Estabelecimento" />
 	</form>
 	<br />

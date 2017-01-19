@@ -132,6 +132,7 @@ public class GenerateObject {
 		establishment.setResponsiblePhone(request.getParameter("responsible_phone"));
 		establishment.setUserLogin(request.getParameter("email"));
 		establishment.setUserPassword(request.getParameter("password").toCharArray());			
+		establishment.setPhotoUrl(request.getParameter("photo_url"));
 		
 		if(!Util.IsEmpty(request.getParameter("rate")))
 			establishment.setRate(Integer.parseInt(request.getParameter("rate")));

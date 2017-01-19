@@ -17,8 +17,9 @@ public class Establishment extends User{
 	private String responsiblePhone;
 	private String responsibleEmail;	
 	private Calendar created;
+	private String photoUrl;
 	private List<Address> address; 
-	 
+
 	public Long getId() {
 		return id;
 	}
@@ -96,5 +97,11 @@ public class Establishment extends User{
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 }
