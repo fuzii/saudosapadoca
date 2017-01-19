@@ -24,7 +24,7 @@ import model.Schedule;
 public class EstablishmentsServlet extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try{		
-			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getAttribute("establishment_id").toString()));
+			Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id")));
 			Address address = AddressDao.GetAddressByEstablishment(establishment).get(0);
 			PriceList priceList = PriceListDao.GetPriceListByEstablishment(establishment);
 			List<Schedule> schedules = ScheduleDao.GetSchedulesByEstablishment(establishment);

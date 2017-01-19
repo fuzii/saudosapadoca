@@ -5,17 +5,34 @@
     }
 %>
 <style type="text/css">
-	#product_quantity 
+	div#product_quantity 
 	{
-		text-align: center;
-		width: 15%; 
-		display:inline-block;
-		transition: background-color 0.1s ease-in-out;
+            text-align: center;
+            width: 15%; 
+            display:inline-block;
+            transition: background-color 0.1s ease-in-out;
 	}
+        div#product_price
+        {
+            text-align: right; 
+            display:inline-block; 
+            width: 40%
+        }
+        div#cart_total
+        {
+            display: inline-block; 
+            width: 35%;
+            text-align: right;
+        }
 	.colored
 	{
 		background-color: #e4c916;
 	}
+        .affix
+        {
+            top: 0px;
+            width: 19%;
+        }
 </style>
 <link href="./css/card-details.css" type="text/css" rel="Stylesheet" />
 <div class="col-sm-9">
@@ -50,8 +67,7 @@
         			<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%"  />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
         				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
-        				<ul class="dropdown-menu monday">
-        					
+        				<ul class="dropdown-menu weekday">
         				</ul>
         			</div>
         		</div>
@@ -64,9 +80,7 @@
        				<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
         				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
-        				<ul class="dropdown-menu">
-        					<li>8:00</li>
-        					<li>9:00</li>
+        				<ul class="dropdown-menu weekday">
         				</ul>
         			</div>
        			</div>
@@ -79,9 +93,7 @@
        				<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
         				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-        				<ul class="dropdown-menu">
-        					<li>8:00</li>
-        					<li>9:00</li>
+        				<ul class="dropdown-menu weekday">
         				</ul>
         			</div>
        			</div>
@@ -94,9 +106,7 @@
        				<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
         				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-        				<ul class="dropdown-menu">
-        					<li>8:00</li>
-        					<li>9:00</li>
+        				<ul class="dropdown-menu weekday">
         				</ul>
         			</div>
        			</div>
@@ -109,9 +119,7 @@
        				<input type="text" class="form-control quantity" placeholder="Quantidade" style="display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
         				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-        				<ul class="dropdown-menu">
-        					<li>8:00</li>
-        					<li>9:00</li>
+        				<ul class="dropdown-menu weekday">
         				</ul>
         			</div>
        			</div>
@@ -124,9 +132,7 @@
        				<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
         				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-        				<ul class="dropdown-menu">
-        					<li>8:00</li>
-        					<li>9:00</li>
+        				<ul class="dropdown-menu saturday">
         				</ul>
         			</div>
        			</div>
@@ -139,9 +145,7 @@
        				<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
         				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
-        				<ul class="dropdown-menu">
-        					<li>8:00</li>
-        					<li>9:00</li>
+        				<ul class="dropdown-menu sunday">
         				</ul>
         			</div>
        			</div>
@@ -149,25 +153,25 @@
        	</div>
    	</div>
    	<div class="form-group">
-		<input type="submit" class="btn btn-success" value="Gravar" style="min-width: 150px;" />
+            <input type="submit" class="btn btn-success" value="Gravar" style="min-width: 150px;" />
 	</div>
 </div>
 <div class="col-xs-3 hidden-xs">
-    	<div class="panel panel-default" data-spy="affix" data-offset-top="300">
-    		<div class="panel-heading">
-    			<h3 class="panel-title"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</h3>
-    		</div>
-    		<div class="panel-body">
-    			<ul class="list-unstyled">
-    				<li><div id="product_quantity">0</div><div id="product_name" style="width:45%; display:inline-block"> Pão françês</div><div id="product_value" style="text-align: right; display:inline-block; width: 40%">R$ 10,00</div></li>
-    			</ul>
-    		</div>
-    		<div class="panel-footer">
-    			<div style="display: inline-block; width: 60%">Total</div>
-    			<div id="cart_total" style="display: inline-block; width: 38%; text-align: right"><strong>R$ 0,00</strong></div>
-    		</div>
-    	</div>
+    <div class="panel panel-default" data-spy="affix" data-offset-top="65">
+            <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</h3>
+            </div>
+            <div class="panel-body">
+                    <ul class="list-unstyled">
+                            <li><div id="product_quantity">0</div><div id="product_name" style="width:45%; display:inline-block"> Pão françês</div><div id="product_price">R$ 0,00</div></li>
+                    </ul>
+            </div>
+            <div class="panel-footer">
+                    <div style="display: inline-block; width: 60%">Total</div>
+                    <div id="cart_total"><strong>R$ 0,00</strong></div>
+            </div>
     </div>
+</div>
 <script type="text/javascript">
     //function selected(ctl) {
     //	var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';
@@ -200,44 +204,49 @@
     		$(ctl).parent().parent().find('.card-day-list-content').find(':input[type=button]').html('Horário<span class="caret"></span>');
     		$('#planContainer').find('#' + selectedID).val('0');
     	}
-    		
+    	calcCart();
+    }
+    function calcCart()
+    {
+        var sum = 0;
+        $('.quantity').each(function(i, ctl) {
+                if(!isNaN(parseInt($(ctl).val())))
+                        sum += parseInt($(ctl).val());
+        });
+        $('#product_quantity').html(sum);
+        //calc total
+        var total = sum * parseFloat($('#product_price').html().split(' ')[1]).toFixed(2);
+        $('#cart_total').html('<strong>R$ ' + total.toFixed(2).replace('.',',') + '</strong');
     }
     $(function() {
     	$('.quantity').keyup(function () {
-    		var sum = 0;
-    		$('.quantity').each(function(i, ctl) {
-    			if(!isNaN(parseInt($(ctl).val())))
-        			sum += parseInt($(ctl).val());
-        	});
-    		$('#product_quantity').html(sum);
-    		//calc total
-    		var total = sum * parseFloat($('#product_value').html().split(' ')[1]).toFixed(2);
-    		$('#cart_total').html('<strong>R$ ' + total.toFixed(2).replace('.',',') + '</strong');
+            calcCart();
     	});
-
-    	var initDate = new Date();
-    	var finishDate = new Date();
-    	initDate.setHours(9);
-    	initDate.setMinutes(0);
-    	finishDate.setHours(18);
-    	finishDate.setMinutes(0);
-    	
-    	var hours = initDate.getHours();
-    	while(hours < finishDate.getHours()) {
-    		$('.monday').append('<li>'+ hours + ':00</li>');
-    		hours++;
-    	}
-    	
     	$.ajax({
     		url: '/establishments',
     		type: 'get',
     		data: {establishment_id: getUrlVars()['establishment_id']},
     		dataType: 'json',
     		success: function (data) {
-    			$("#establishment_alias").html(data.establishment.alias);
-    			$("#establishment_address").html(data.address.street + ', ' + data.address.number);
+                    $("#establishment_alias").html(data.establishment.alias);
+                    $("#establishment_address").html(data.address.street + ', ' + data.address.number);
+                    $('#product_price').html('R$ ' + parseFloat(data.priceList.price).toFixed(2).replace('.',','));
+                    //set hours
+                    $.each(data.schedules, function(i, schedule){
+                        var initHour = parseInt(schedule.startTime.split(':')[0]);
+                        var endHour = parseInt(schedule.endTime.split(':')[0]);
+                        var hours = initHour;
+                        while(hours < endHour){
+                            switch(schedule.dayWeek) {
+                                case 'Segunda': $('.weekday').append('<li>'+ hours + ':00</li>'); break;
+                                case 'Sábado': $('.saturday').append('<li>'+ hours + ':00</li>'); break;
+                                case 'Domingo': $('.sunday').append('<li>'+ hours + ':00</li>'); break;
+                            }
+                            hours++;
+                        }
+                    });
     		},
-    		error: function (data) { }
+    		error: function (data) { alert("error :" + data.status); }
     	});
     	$('input[type=hidden]').each(function (i, ctl) {
     		var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';

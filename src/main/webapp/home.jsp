@@ -113,11 +113,12 @@
 		var client_secret = 'UEZ2AWYSHAICCL4IGYPFOA3C511VW2UG4XCYZFHH0RLV1KIQ';
 		
 		$(function () {
-			jQuery("#CEP").mask("99999-999");
+                    jQuery("#CEP").mask("99999-999");
 		});
-	
-		
-	
+                function cardClick(ctl)
+                {
+                    window.location.href = '/estdesc.jsp?establishment_id=' + $(ctl).attr('id');
+                }
 		function searchCEP(address) {
 			var locationReturn = null;
 			$.each(markers, function (i, marker) {
@@ -260,7 +261,7 @@
 	
 		function createCard(id, title, description) {
 			//return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
-			return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p></div><div class="card-content-info"><p>5 KM - <span class="tag-price">10,00 R$/kg</span></p></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom: 8:00 - 12:00</p></div></div></div>'
+			return '<div class="col-sm-6"><div id="' + id + '" class="card" onclick="cardClick(this);"><div class="card-image"><img src="./images/images.jpg" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p></div><div class="card-content-info"><p>5 KM - <span class="tag-price">10,00 R$/kg</span></p></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom: 8:00 - 12:00</p></div></div></div>';
 		}
 	
 		function register() {
