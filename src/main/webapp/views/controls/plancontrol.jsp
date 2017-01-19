@@ -1,6 +1,6 @@
 <%
     String establishmentJSON = "";
-    if(!session.isNew() && session.getAttribute("isAuthenticated") != null && (Boolean)session.getAttribute("isAuthenticated")) {
+    if(!session.isNew() && session.getAttribute("establishment") != null) {
     	//establishmentJSON = formatter.GenerateJSON.GetEstablishmentJSON(establishment); 
     }
 %>
@@ -41,7 +41,7 @@
             <img src="../../images/images.jpg" />
         </div>
         <div class="card-details-content">
-            <h3 id="establishment_alias">TESTE</h3>
+            <h3 id="establishment_alias">NOME</h3>
             <p id="establishment_address">Rua endereço, número</p>
         </div>
         <div class="card-details-action">
@@ -157,7 +157,7 @@
 	</div>
 </div>
 <div class="col-xs-3 hidden-xs">
-    <div class="panel panel-default" data-spy="affix" data-offset-top="65">
+    <div id="div_cart" class="panel panel-default" data-spy="affix" data-offset-top="65">
             <div class="panel-heading">
                     <h3 class="panel-title"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</h3>
             </div>
@@ -217,6 +217,9 @@
         //calc total
         var total = sum * parseFloat($('#product_price').html().split(' ')[1]).toFixed(2);
         $('#cart_total').html('<strong>R$ ' + total.toFixed(2).replace('.',',') + '</strong');
+        //highlight
+        $('#cart_total').fadeTo(100, 0.1).fadeTo(200, 1.0);
+        $('#product_quantity').fadeTo(100, 0.1).fadeTo(200, 1.0);
     }
     $(function() {
     	$('.quantity').keyup(function () {

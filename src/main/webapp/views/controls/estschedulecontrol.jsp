@@ -56,22 +56,23 @@
     var schedules = <%= schedulesJSON %>;
 	$(function () {
             //set values
-            
-            $("#establishment_id").val(schedules && schedules[0].establishmentId);
-            $.each(schedules, function (i, schedule) {
-                if(schedule.dayWeek === 'Segunda') {
-                    $("#week_start_time").val(schedule.startTime);
-                    $("#week_end_time").val(schedule.endTime);
-                }
-                else if(schedule.dayWeek === 'Sábado') {
-                    $("#saturday_start_time").val(schedule.startTime);
-                    $('#saturday_end_time').val(schedule.endTime);
-                }
-                else if(schedule.dayWeek === 'Domingo') {
-                    $("#sunday_start_time").val(schedule.startTime);
-                    $('#sunday_end_time').val(schedule.endTime); 
-                }
-            });
+            if(schedules.length > 0) {
+                $("#establishment_id").val(schedules && schedules[0].establishmentId);
+                $.each(schedules, function (i, schedule) {
+                    if(schedule.dayWeek === 'Segunda') {
+                        $("#week_start_time").val(schedule.startTime);
+                        $("#week_end_time").val(schedule.endTime);
+                    }
+                    else if(schedule.dayWeek === 'Sábado') {
+                        $("#saturday_start_time").val(schedule.startTime);
+                        $('#saturday_end_time').val(schedule.endTime);
+                    }
+                    else if(schedule.dayWeek === 'Domingo') {
+                        $("#sunday_start_time").val(schedule.startTime);
+                        $('#sunday_end_time').val(schedule.endTime); 
+                    }
+                });
+            }
             $('input[type=checkbox]').click(function () {
                     if($(this).is(':checked')) {
                             $(this).parent().parent().siblings().each(function (i, ctl){

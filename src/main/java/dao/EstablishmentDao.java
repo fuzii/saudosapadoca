@@ -64,29 +64,27 @@ public class EstablishmentDao {
 	}
 	
 	public static void Update(Establishment establishment) {	
-		
 		try {
-			
 			Connection connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = connection.prepareStatement("UPDATE establishment SET name=?,alias=?,register_num=? where id=?");
-			
-			stmt.setString(1,establishment.getName());
+			PreparedStatement stmt = connection.prepareStatement("UPDATE establishment SET name=?,alias=?,register_num=?,photo_url=? where id=?");
+                        
+                        stmt.setString(1,establishment.getName());
 			stmt.setString(2,establishment.getAlias());
 			stmt.setLong(3,establishment.getRegisterNumber());
-			stmt.setLong(4,establishment.getId());
+			stmt.setString(4, establishment.getPhotoUrl());
+                        stmt.setLong(5,establishment.getId());
 			stmt.execute();
 			
-			for(Address address: establishment.getAddress()){
-				AddressDao.Update(address);
-			}
-			
+                        if(establishment.getAddress() != null) {
+                            for(Address address: establishment.getAddress()){
+                                    AddressDao.Update(address);
+                            }
+                        }
 			stmt.close();
-			connection.close();
-			
+			connection.close();	
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-		
 	}
 	
 	public static List<Establishment> GetEstablishments() {
@@ -151,6 +149,7 @@ public class EstablishmentDao {
 			establishment.setResponsiblePhone(rs.getString("responsible_phone"));
 			establishment.setRate(rs.getInt("rate"));
 			establishment.setPhone(rs.getString("phone"));
+                        establishment.setPhotoUrl(rs.getString("photo_url"));
 										
 			// created on
 			Calendar data = Calendar.getInstance();

@@ -79,13 +79,13 @@
 								</div>
 								<div class="form-group">
 									<div class="col-lg-11">
-										<input type="text" class="form-control" id="state" name="state" placeholder="UF" disabled style="width:25%; display:inline"/>
-										<input type="text" class="form-control" id="city" name="city" placeholder="Cidade" disabled style="width:74%; display:inline" />
+										<input type="text" class="form-control" id="state" name="state" placeholder="UF" readonly style="width:25%; display:inline"/>
+                                                                                <input type="text" class="form-control" id="city" name="city" placeholder="Cidade" readonly style="width:74%; display:inline" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-lg-11">
-										<input type="text" class="form-control" id="street" name="street" placeholder="Rua, Avenida, etc" disabled style="width:74%; display:inline" />
+										<input type="text" class="form-control" id="street" name="street" placeholder="Rua, Avenida, etc" readonly style="width:74%; display:inline" />
 										<input type="text" class="form-control" id="number" name="number" placeholder="Nº" style="width:25%; display:inline" />
 									</div>
 								</div>

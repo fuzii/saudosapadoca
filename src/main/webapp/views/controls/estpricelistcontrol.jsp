@@ -28,7 +28,7 @@
 				<tr>
 					<td>
 	                    <input type="hidden" id="establishment_id" name="establishment_id" />
-	                    <input type="hidden" id="product_id" name="product_id" />
+	                    <input type="hidden" id="product_id" name="product_id" value="1" />
 						Pão françes
 					</td>
 					<td>
@@ -71,11 +71,13 @@
         //set values
         //set pricelist
         $("#establishment_id").val(priceList.establishmentId);
-        $("#product_id").val(priceList.product_id);
+        if(priceList.product_id !== undefined)
+            $("#product_id").val(priceList.product_id);
         $("#price").val(priceList.price);
-        $("#unit").val(priceList.unit);
-        $('#unit').html(priceList.unit + '<span class="caret"></span>');
-
+        if(priceList.unit !== undefined) {
+            $("#unit").val(priceList.unit);
+            $('#unit').html(priceList.unit + '<span class="caret"></span>');
+        }
         $(".dropdown-menu").on('click', 'li', function(){
           $($(this).parent().siblings()[0]).html($(this).text() + '<span class="caret"></span>');
           $($(this).parent().siblings()[0]).val($(this).text());

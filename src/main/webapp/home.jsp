@@ -219,10 +219,10 @@
 				lng = $("#longitude").val();
 			$.getJSON('/getEstablishments?latitude=' + lat + "&longitude=" + lng, function (data) {
 				var rowCount = 1;
-				if(data.establishments.establishment.length === 0)
+				if(data.establishments.length === 0)
 					fetchFoursquare("/getFoursquare" + "?latitude=" + lat + "&longitude=" + lng);
 				else {
-					$.each(data.establishments.establishment, function (i, est) {
+					$.each(data.establishments, function (i, est) {
 						var mrk = new google.maps.Marker({
 						    map: map,
 						    position: { lat: est.address.latitude, lng: est.address.longitude },
@@ -249,7 +249,7 @@
 						  });
 						  infoWindows.push(infoWindow);
 						  markers.push(mrk);
-						  $('#row_' + rowCount).append(createCard(est.id, est.name, est.address.street + ', ' + est.address.number));
+						  $('#row_' + rowCount).append(createCard(est.id, est.alias, est.address.street + ', ' + est.address.number));
 						  if((i + 1) % 2 === 0){
 						          rowCount++;
 						          $('#listresult').append('<div id="row_' + rowCount + '" class="row"></div>');
@@ -259,7 +259,7 @@
         	});			
 		}
 	
-		function createCard(id, title, description) {
+		function createCard(id, title, description, schedules, rate) {
 			//return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
 			return '<div class="col-sm-6"><div id="' + id + '" class="card" onclick="cardClick(this);"><div class="card-image"><img src="./images/images.jpg" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p></div><div class="card-content-info"><p>5 KM - <span class="tag-price">10,00 R$/kg</span></p></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom: 8:00 - 12:00</p></div></div></div>';
 		}

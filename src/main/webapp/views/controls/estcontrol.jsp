@@ -1,7 +1,11 @@
 <%
+    String establishmentJSON = "";
     String addressJSON = "";
     if(!session.isNew() && session.getAttribute("address") != null) {
         addressJSON = formatter.GenerateJSON.GetAddressJSON(((java.util.List<model.Address>)session.getAttribute("address")).get(0)).toString(); 
+    }
+    if(!session.isNew() && session.getAttribute("establishment") != null) {
+        establishmentJSON = formatter.GenerateJSON.GetEstablishmentJSON((model.Establishment)session.getAttribute("establishment")).toString();
     }
 %>
 <style type="text/css">
@@ -119,8 +123,8 @@
                                 <div class="menu-image-progress-bar" style="visibility: hidden"></div>
 			</div>
 			<div class="menu-content">
-				<h3>SAUDOSA PADOCA</h3>
-				<p id="obj_address">Endereço, número</p>
+				<h3 id="est_name">NOME</h3>
+				<p id="est_address">Endereço, número</p>
 			</div>
 		</div>
 	</form>
@@ -150,51 +154,62 @@
 	$(function() {
             //set address
             var est_address = new Address(<%= addressJSON %>);
+            var establishment = <%= establishmentJSON %>;
             //set values
-            $('#obj_address').html(est_address.street + ', ' + est_address.number);
-		$("#upload_image").click(function () {
-			$("#cloudinary_file_image").click();
-		});
-		$("#btn_upload_image").click(function () {
-			$("#cloudinary_file_image").click();
-		});
-                
+            $("#est_name").html(establishment.alias);
+            $('#est_address').html(est_address.street + ', ' + est_address.number);
+
+            $("#upload_image").click(function () {
+                    $("#cloudinary_file_image").click();
+            });
+            $("#btn_upload_image").click(function () {
+                    $("#cloudinary_file_image").click();
+            });
+
+            $.ajax({
+               url: '/addEstablishmentImage',
+               type: "get",
+               data: null,
+               success: function (data) {
+                   $.cloudinary.config({"api_key": data.api_key, "cloud_name": data.cloud_name});
+                   $('.cloudinary-fileupload').cloudinary_fileupload({formData: data});
+                   $('.cloudinary-fileupload').bind('fileuploadsend', function () {
+                       $('.menu-image-progress-bar').css('visibility', 'visible');
+                   });
+                   $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) { 
+                        $('.menu-image-progress-barr').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
+                        $('.menu-image-progress-bar').html(Math.round((data.loaded * 100.0) / data.total) + '%');
+                    });
+                   $('.cloudinary-fileupload').bind('fileuploaddone', function () {
+                       $('.menu-image-progress-bar').css('visibility','hidden');
+                       $('.menu-image-progress-bar').html('');
+                   });
+                   
+                   if(establishment.photoUrl !== null && establishment.photoUrl !== undefined)
+                       $("#img_upload_image").attr("src", "http://res.cloudinary.com/" + $.cloudinary.config().cloud_name + '/' + establishment.photoUrl);
+               },
+               error: function (data) { alert("ERROR cloudinary"); }
+            });
+            function survey(selector, callback) {
+                var input = $(selector);
+                var oldvalue = input.val();
+                setInterval(function(){
+                   if (input.val() !== oldvalue){
+                       oldvalue = input.val();
+                       callback();
+                   }
+                }, 100);
+            }
+            survey('#image_id', function(){
+                $("#img_upload_image").attr("src", "http://res.cloudinary.com/" + $.cloudinary.config().cloud_name + "/" + $("#image_id").val().toString().split('#')[0]);
                 $.ajax({
-                   url: '/addEstablishmentImage',
-                   type: "get",
-                   data: null,
-                   success: function (data) {
-                       $.cloudinary.config({"api_key": data.api_key, "cloud_name": data.cloud_name});
-                       $('.cloudinary-fileupload').cloudinary_fileupload({formData: data});
-                       $('.cloudinary-fileupload').bind('fileuploadsend', function () {
-                           $('.menu-image-progress-bar').css('visibility', 'visible');
-                       });
-                       $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) { 
-                            $('.menu-image-progress-barr').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
-                            $('.menu-image-progress-bar').html(Math.round((data.loaded * 100.0) / data.total) + '%');
-                        });
-                       $('.cloudinary-fileupload').bind('fileuploaddone', function () {
-                           $('.menu-image-progress-bar').css('visibility','hidden');
-                           $('.menu-image-progress-bar').html('');
-                       });
-                   },
-                   error: function (data) { alert("ERROR cloudinary"); }
+                    url: 'addEstablishmentImage',
+                    type: 'post',
+                    data: { photo_url: $("#image_id").val().toString().split('#')[0] },
+                    dataType: 'html',
+                    error: function (data) { alert('Error insert image url' + data.status); }
                 });
-                
-                function survey(selector, callback) {
-                    var input = $(selector);
-                    var oldvalue = input.val();
-                    setInterval(function(){
-                       if (input.val() !== oldvalue){
-                           oldvalue = input.val();
-                           callback();
-                       }
-                    }, 100);
-                }
-                
-                survey('#image_id', function(){
-                    $("#img_upload_image").attr("src", "http://res.cloudinary.com/" + $.cloudinary.config().cloud_name + "/" + $("#image_id").val().toString().split('#')[0]);
-                }); 
+            }); 
 	});
 	/*function uploadFile() {
 		event.preventDefault();

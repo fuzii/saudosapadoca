@@ -87,6 +87,7 @@ public class GenerateJSON {
 			jsonEstablishment.put("responsibleEmail",establishment.getResponsibleEmail());
 			jsonEstablishment.put("responsiblePhone",establishment.getResponsiblePhone());
 			jsonEstablishment.put("rate",establishment.getRate());
+                        jsonEstablishment.put("photoUrl", establishment.getPhotoUrl());
 			jsonEstablishment.put("created",Util.CalendarToString(establishment.getCreated()));
 			
 
