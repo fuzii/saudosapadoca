@@ -1,5 +1,6 @@
 package formatter;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -55,25 +56,110 @@ public class GenerateObject {
 
 	public static Order GetOrder (HttpServletRequest request){
 		
+		// inputs
+		Establishment establishment = (Establishment)request.getSession().getAttribute("establishment");
+		Account account = (Account)request.getSession().getAttribute("account");
+		Product product = ProductDao.GetProductById(Long.parseLong(request.getParameter("product_id"))); //FASE 2 - descer para o nível de itens
+		Double price = PriceListDao.GetPriceList(establishment, product).getPrice(); //FASE 2 - descer para o nível de itens
+		
 		Order order = new Order(); 
-		order.setEstablishment((Establishment)request.getSession().getAttribute("establishment"));
-		order.setPriceList(PriceListDao.GetPriceListByEstablishment((Establishment)request.getSession().getAttribute("establishment")));
-		order.setAccount((Account)request.getSession().getAttribute("account"));
+		order.setEstablishment(establishment);
+		order.setAccount(account);
 		order.setStatus(request.getParameter("status"));
 		
 		List<OrderItem> itens = new ArrayList<OrderItem>();
 		
+		// monday
 		if(!Util.IsEmpty(request.getParameter("monday_time")) && !Util.IsEmpty(request.getParameter("monday_amount"))){
+
 			OrderItem item = new OrderItem();
-			item.setProduct((Product)request.getSession().getAttribute("product"));
-			item.setQuantity(Integer.parseInt(request.getParameter("monday_amount")));
-			//item.setDeliveryTime(request.getParameter("monday_time"));
-			//item.setPrice(order.getPriceList().getPrice());
+			item.setProduct(product);
+			item.setPrice(price);
 			item.setDayOfWeek("segunda");
 			item.setUnit("unidade");
+			item.setDeliveryTime(Date.valueOf(request.getParameter("monday_time")));
+			item.setQuantity(Integer.parseInt(request.getParameter("monday_amount")));
 			itens.add(item);
+			
 		}
+		// tueday
+		if(!Util.IsEmpty(request.getParameter("tuesday_time")) && !Util.IsEmpty(request.getParameter("tuesday_amount"))){
 
+			OrderItem item = new OrderItem();
+			item.setProduct(product);
+			item.setPrice(price);
+			item.setDayOfWeek("terça");
+			item.setUnit("unidade");
+			item.setDeliveryTime(Date.valueOf(request.getParameter("tuesday_time")));
+			item.setQuantity(Integer.parseInt(request.getParameter("tuesday_amount")));
+			itens.add(item);
+			
+		}
+		// wednesday
+		if(!Util.IsEmpty(request.getParameter("wednesday_time")) && !Util.IsEmpty(request.getParameter("wednesday_amount"))){
+
+			OrderItem item = new OrderItem();
+			item.setProduct(product);
+			item.setPrice(price);
+			item.setDayOfWeek("quarta");
+			item.setUnit("unidade");
+			item.setDeliveryTime(Date.valueOf(request.getParameter("wednesday_time")));
+			item.setQuantity(Integer.parseInt(request.getParameter("wednesday_amount")));
+			itens.add(item);
+			
+		}		
+		// thursday
+		if(!Util.IsEmpty(request.getParameter("thursday_time")) && !Util.IsEmpty(request.getParameter("thursday_amount"))){
+
+			OrderItem item = new OrderItem();
+			item.setProduct(product);
+			item.setPrice(price);
+			item.setDayOfWeek("quinta");
+			item.setUnit("unidade");
+			item.setDeliveryTime(Date.valueOf(request.getParameter("thursday_time")));
+			item.setQuantity(Integer.parseInt(request.getParameter("thursday_amount")));
+			itens.add(item);
+			
+		}
+		// friday
+		if(!Util.IsEmpty(request.getParameter("friday_time")) && !Util.IsEmpty(request.getParameter("friday_amount"))){
+
+			OrderItem item = new OrderItem();
+			item.setProduct(product);
+			item.setPrice(price);
+			item.setDayOfWeek("sexta");
+			item.setUnit("unidade");
+			item.setDeliveryTime(Date.valueOf(request.getParameter("friday_time")));
+			item.setQuantity(Integer.parseInt(request.getParameter("friday_amount")));
+			itens.add(item);
+			
+		}		
+		// saturday
+		if(!Util.IsEmpty(request.getParameter("saturday_time")) && !Util.IsEmpty(request.getParameter("saturday_amount"))){
+
+			OrderItem item = new OrderItem();
+			item.setProduct(product);
+			item.setPrice(price);
+			item.setDayOfWeek("sábado");
+			item.setUnit("unidade");
+			item.setDeliveryTime(Date.valueOf(request.getParameter("saturday_time")));
+			item.setQuantity(Integer.parseInt(request.getParameter("saturday_amount")));
+			itens.add(item);
+			
+		}		
+		// sunday
+		if(!Util.IsEmpty(request.getParameter("sunday_time")) && !Util.IsEmpty(request.getParameter("sunday_amount"))){
+
+			OrderItem item = new OrderItem();
+			item.setProduct(product);
+			item.setPrice(price);
+			item.setDayOfWeek("domingo");
+			item.setUnit("unidade");
+			item.setDeliveryTime(Date.valueOf(request.getParameter("sunday_time")));
+			item.setQuantity(Integer.parseInt(request.getParameter("sunday_amount")));
+			itens.add(item);
+			
+		}
 		order.setOrderItem(itens);
 		
 		return order;

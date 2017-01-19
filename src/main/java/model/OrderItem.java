@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Currency;
 import java.util.Date;
 
 public class OrderItem {
@@ -11,7 +10,7 @@ public class OrderItem {
 	private Date deliveryTime;
 	private String unit;
 	private Integer quantity;
-	private Currency price;
+	private Double price;
 	
 	public Long getId() {
 		return id;
@@ -49,10 +48,10 @@ public class OrderItem {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	public Currency getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(Currency price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}	
 	

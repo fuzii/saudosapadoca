@@ -7,6 +7,8 @@ import org.json.JSONObject;
 import model.Account;
 import model.Address;
 import model.Establishment;
+import model.Order;
+import model.OrderItem;
 import model.PriceList;
 import model.Product;
 import model.Schedule;
@@ -14,6 +16,63 @@ import model.User;
 import util.Util;
 
 public class GenerateJSON {
+	
+	public static JSONObject GetOrderItemJSON (OrderItem orderItem){
+		
+		if(orderItem == null)
+			return null;
+		
+		JSONObject jsonOrderItem = null;
+				
+		try {
+
+			// order item
+			jsonOrderItem = new JSONObject();
+			jsonOrderItem.put("id",orderItem.getId());
+			jsonOrderItem.put("deliveryTime",orderItem.getDeliveryTime());
+			jsonOrderItem.put("dayWeek",orderItem.getDayOfWeek());
+			jsonOrderItem.put("price",orderItem.getPrice());
+			jsonOrderItem.put("product",orderItem.getProduct());
+			jsonOrderItem.put("quantity",orderItem.getQuantity());
+			jsonOrderItem.put("unit",orderItem.getUnit());
+
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return jsonOrderItem;
+	
+	}	
+
+	public static JSONObject GetOrderJSON (Order order){
+		
+		if(order == null)
+			return null;
+		
+		JSONObject jsonOrder = null;
+				
+		try {
+
+			// order
+			jsonOrder = new JSONObject();
+			jsonOrder.put("id",order.getId());
+			jsonOrder.put("status",order.getStatus());
+			
+			JSONArray jsonOrderItem = new JSONArray();
+			for(OrderItem orderItem : order.getOrderItem())
+				jsonOrderItem.put(GetOrderItemJSON(orderItem));
+
+			jsonOrder.put("orderItem", jsonOrderItem);
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return jsonOrder;
+	
+	}	
+
 	
 	public static JSONObject GetUserJSON (User user){
 		
@@ -89,6 +148,7 @@ public class GenerateJSON {
 			jsonEstablishment.put("rate",establishment.getRate());
                         jsonEstablishment.put("photoUrl", establishment.getPhotoUrl());
 			jsonEstablishment.put("created",Util.CalendarToString(establishment.getCreated()));
+			jsonEstablishment.put("photoUrl",establishment.getPhotoUrl());
 			
 
 		} catch (JSONException e) {
@@ -114,11 +174,11 @@ public class GenerateJSON {
 			jsonAddress.put("accountId",address.getAccountId());
 			jsonAddress.put("establishmentId",address.getEstablishmentId());
 			jsonAddress.put("zipCode",address.getZipCode());
-                        jsonAddress.put("street",address.getStreet());
-                        jsonAddress.put("city",address.getCity());
-                        jsonAddress.put("state",address.getState());
+			jsonAddress.put("street",address.getStreet());
+			jsonAddress.put("city",address.getCity());
+			jsonAddress.put("state",address.getState());
 			jsonAddress.put("number",address.getNumber()); 
-                        jsonAddress.put("premise",address.getPremise());
+			jsonAddress.put("premise",address.getPremise());
 			jsonAddress.put("country",address.getCountry());
 			jsonAddress.put("latitude",address.getLatitude());
 			jsonAddress.put("longitude",address.getLongitude());
