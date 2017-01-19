@@ -197,9 +197,8 @@
             </div>
             <ul id="menu">
                 <li id="signupest"><a href="../signupest.jsp">Cadastre sua padaria<span clas="glyphicon glyphicon-grain"></span></a>
-                <li><a id="userName" href="../login.jsp" class="btn btn-info"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
                 <li id="signup"><a href="../signup.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span>
-                    <span class="hidden-xs hidden-sm"> Cadastrar</span></a></li>
+                <li><a id="userName" href="../login.jsp" class="btn btn-info"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
             </ul>
         </div>
     </div>

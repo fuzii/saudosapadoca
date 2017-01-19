@@ -48,20 +48,19 @@ public class PriceListDao {
 		
 		try {
 			
-			List<PriceList> priceLists = new ArrayList<PriceList>();
-			Connection connection = new ConnectionFactory().getConnection();
-	    	PreparedStatement stmt = connection.prepareStatement("select * from price_list where establishment_id=? order by created DESC");
-	    	stmt.setLong(1,establishment.getId());
-			ResultSet rs = stmt.executeQuery();
+                    List<PriceList> priceLists = new ArrayList<PriceList>();
+                    Connection connection = new ConnectionFactory().getConnection();
+                    PreparedStatement stmt = connection.prepareStatement("select * from price_list where establishment_id=? order by created DESC");
+                    stmt.setLong(1,establishment.getId());
+                    ResultSet rs = stmt.executeQuery();
 
-			while(rs.next()) {
-	
-				PriceList priceList = new PriceList();
-				priceList.setEstablishment(establishment);
-				priceList.setProduct(ProductDao.GetProductById(rs.getLong("product_id")));
-				priceList.setPrice(rs.getDouble("price"));
-				priceList.setUnit(rs.getString("unit"));
-				priceLists.add(priceList);
+                    while(rs.next()) {
+                            PriceList priceList = new PriceList();
+                            priceList.setEstablishment(establishment);
+                            priceList.setProduct(ProductDao.GetProductById(rs.getLong("product_id")));
+                            priceList.setPrice(rs.getDouble("price"));
+                            priceList.setUnit(rs.getString("unit"));
+                            priceLists.add(priceList);
 			
 			}
 			
