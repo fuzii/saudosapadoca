@@ -18,7 +18,7 @@
 					</div>
 					<div id="tab_profile" class="tab-pane fade">
 						<%@ include file="./views/controls/estcontrol.jsp" %>
-						<%@ include file="./views/controls/productcontrol.jsp" %>
+						<%@ include file="./views/controls/estpricelistcontrol.jsp" %>
 						<%@ include file="./views/controls/estschedulecontrol.jsp" %>
 					</div>
 					<div id="tab_customers" class="tab-pane fade">

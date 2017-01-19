@@ -1,8 +1,15 @@
+<%
+    String schedulesJSON = "";
+    if(!session.isNew() && session.getAttribute("schedule") != null) {
+        schedulesJSON = formatter.GenerateJSON.GetListScheduleJSON((java.util.List<model.Schedule>)session.getAttribute("schedule")).toString(); 
+    }
+%>
 <div class="panel-heading">
 	<h3>Horário de funcionamento</h3>
 </div>
 <div class="panel-body">
-	<form method="post" onsubmit="submitSchedule()">
+	<form method="post" onsubmit="submitSchedule(); return false;">
+                <input type="hidden" id="establishment_id" name="establishment_id" />
 		<div class="form-inline form-group">
 			<div class="col-lg-2">
 				<label for="time_start">Segunda - Sexta: </label>
@@ -39,34 +46,63 @@
 	</form>
 </div>
 <script type="text/javascript">
+    function Schedule(obj) {
+        this.id = obj.id;
+        this.establishment_id = obj && obj.establishmentId;
+        this.dayWeek = obj && obj.dayWeek;
+        this.startTime = obj && obj.startTime;
+        this.endTime = obj && obj.endTime;
+    }
+    var schedules = <%= schedulesJSON %>;
 	$(function () {
-		$('input[type=checkbox]').click(function () {
-			if($(this).is(':checked')) {
-				$(this).parent().parent().siblings().each(function (i, ctl){
-					$(ctl).val('');
-					$(ctl).attr('disabled','');
-				});
-			}
-			else {
-				$(this).parent().parent().siblings().each(function (i, ctl){
-					$(ctl).val('');
-					$(ctl).removeAttr('disabled');
-				});
-			}
-		});
+            //set values
+            
+            $("#establishment_id").val(schedules && schedules[0].establishmentId);
+            $.each(schedules, function (i, schedule) {
+                if(schedule.dayWeek === 'Segunda') {
+                    $("#week_start_time").val(schedule.startTime);
+                    $("#week_end_time").val(schedule.endTime);
+                }
+                else if(schedule.dayWeek === 'Sábado') {
+                    $("#saturday_start_time").val(schedule.startTime);
+                    $('#saturday_end_time').val(schedule.endTime);
+                }
+                else if(schedule.dayWeek === 'Domingo') {
+                    $("#sunday_start_time").val(schedule.startTime);
+                    $('#sunday_end_time').val(schedule.endTime); 
+                }
+            });
+            $('input[type=checkbox]').click(function () {
+                    if($(this).is(':checked')) {
+                            $(this).parent().parent().siblings().each(function (i, ctl){
+                                    $(ctl).val('');
+                                    $(ctl).attr('disabled','');
+                            });
+                    }
+                    else {
+                            $(this).parent().parent().siblings().each(function (i, ctl){
+                                    $(ctl).val('');
+                                    $(ctl).removeAttr('disabled');
+                            });
+                    }
+            });
 	});
 	
 	function submitSchedule() {
 		$.ajax({
-			type: "POST",
+			type: "post",
 			url: "/addSchedule",
-			data: { week_start_time: $("#week_start_time").val(),
-					week_end_time: $("#week_end_time").val(),
-					saturday_start_time: $("#saturday_start_time").val(),
-					sunday_start_time: $("#sunday_end_time").val()},
-			dataType: "json",
-			success: function (data) { },
-			error : function (data) { }
+			data: { 
+                            week_start_time: $("#week_start_time").val(),
+                            week_end_time: $("#week_end_time").val(),
+                            saturday_start_time: $("#saturday_start_time").val(),
+                            saturday_end_time: $("#saturday_end_time").val(),
+                            sunday_start_time: $("#sunday_start_time").val(),
+                            sunday_end_time: $("#sunday_end_time").val()
+                        },
+			dataType: "html",
+			success: function (data) { alert('sucesso!');},
+			error : function (data) { alert('erro'); }
 		});
 		return false;
 	}

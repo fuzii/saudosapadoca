@@ -1,3 +1,9 @@
+<%  
+    String priceListJSON = "";
+    if(!session.isNew() && session.getAttribute("priceList") != null)  {
+        priceListJSON = formatter.GenerateJSON.GetPriceListJSON(((model.PriceList)session.getAttribute("priceList"))).toString();
+    }
+%>
 <link href="./css/card-details.css" type="text/css" rel="Stylesheet" />
 <style type="text/css">
     #div_pricelist_message {
@@ -60,11 +66,6 @@
             this.unit = unit;
         };
     }
-    <%  String priceListJSON = "";
-        if(!session.isNew() && session.getAttribute("priceList") != null)  {
-            priceListJSON = formatter.GenerateJSON.GetPriceListJSON(((model.PriceList)session.getAttribute("priceList"))).toString();
-        }
-    %>
     var priceList = new PriceList(<%= priceListJSON %>);
     $(function () {
         //set values
