@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import dao.PriceListDao;
 import dao.ProductDao;
+import java.sql.Time;
 import model.Account;
 import model.Address;
 import model.Establishment;
@@ -68,7 +69,7 @@ public class GenerateObject {
 		order.setStatus(request.getParameter("status"));
 		
 		List<OrderItem> itens = new ArrayList<OrderItem>();
-		
+		Time deliveryTime;
 		// monday
 		if(!Util.IsEmpty(request.getParameter("monday_time")) && !Util.IsEmpty(request.getParameter("monday_amount"))){
 
@@ -77,7 +78,8 @@ public class GenerateObject {
 			item.setPrice(price);
 			item.setDayOfWeek("segunda");
 			item.setUnit("unidade");
-			item.setDeliveryTime(Date.valueOf(request.getParameter("monday_time")));
+                        deliveryTime = Time.valueOf(request.getParameter("monday_time"));
+			item.setDeliveryTime(deliveryTime);
 			item.setQuantity(Integer.parseInt(request.getParameter("monday_amount")));
 			itens.add(item);
 			
@@ -90,7 +92,8 @@ public class GenerateObject {
 			item.setPrice(price);
 			item.setDayOfWeek("terça");
 			item.setUnit("unidade");
-			item.setDeliveryTime(Date.valueOf(request.getParameter("tuesday_time")));
+                        deliveryTime = Time.valueOf(request.getParameter("tuesday_time"));
+			item.setDeliveryTime(deliveryTime);
 			item.setQuantity(Integer.parseInt(request.getParameter("tuesday_amount")));
 			itens.add(item);
 			
@@ -103,7 +106,8 @@ public class GenerateObject {
 			item.setPrice(price);
 			item.setDayOfWeek("quarta");
 			item.setUnit("unidade");
-			item.setDeliveryTime(Date.valueOf(request.getParameter("wednesday_time")));
+                        deliveryTime = Time.valueOf(request.getParameter("wednesday_time"));
+			item.setDeliveryTime(deliveryTime);
 			item.setQuantity(Integer.parseInt(request.getParameter("wednesday_amount")));
 			itens.add(item);
 			
@@ -116,7 +120,8 @@ public class GenerateObject {
 			item.setPrice(price);
 			item.setDayOfWeek("quinta");
 			item.setUnit("unidade");
-			item.setDeliveryTime(Date.valueOf(request.getParameter("thursday_time")));
+                        deliveryTime = Time.valueOf(request.getParameter("thursday_time"));
+			item.setDeliveryTime(deliveryTime);
 			item.setQuantity(Integer.parseInt(request.getParameter("thursday_amount")));
 			itens.add(item);
 			
@@ -129,7 +134,8 @@ public class GenerateObject {
 			item.setPrice(price);
 			item.setDayOfWeek("sexta");
 			item.setUnit("unidade");
-			item.setDeliveryTime(Date.valueOf(request.getParameter("friday_time")));
+                        deliveryTime = Time.valueOf(request.getParameter("friday_time"));
+			item.setDeliveryTime(deliveryTime);
 			item.setQuantity(Integer.parseInt(request.getParameter("friday_amount")));
 			itens.add(item);
 			
@@ -142,7 +148,8 @@ public class GenerateObject {
 			item.setPrice(price);
 			item.setDayOfWeek("sábado");
 			item.setUnit("unidade");
-			item.setDeliveryTime(Date.valueOf(request.getParameter("saturday_time")));
+                        deliveryTime = Time.valueOf(request.getParameter("saturday_time"));
+			item.setDeliveryTime(deliveryTime);
 			item.setQuantity(Integer.parseInt(request.getParameter("saturday_amount")));
 			itens.add(item);
 			
@@ -155,7 +162,8 @@ public class GenerateObject {
 			item.setPrice(price);
 			item.setDayOfWeek("domingo");
 			item.setUnit("unidade");
-			item.setDeliveryTime(Date.valueOf(request.getParameter("sunday_time")));
+                        deliveryTime = Time.valueOf(request.getParameter("sunday_time"));
+			item.setDeliveryTime(deliveryTime);
 			item.setQuantity(Integer.parseInt(request.getParameter("sunday_amount")));
 			itens.add(item);
 			

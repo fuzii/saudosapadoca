@@ -23,8 +23,9 @@ public class AddOrder extends HttpServlet{
 		try{
 			
 			HttpSession session = request.getSession(true);
-			
-			if(session.isNew()){
+			//only account can insert orders
+			if(session.isNew() || session.getAttribute("isAuthenticated") == null || !(Boolean)session.getAttribute("isAuthenticated")
+                                || String.valueOf(session.getAttribute("user_type"))=="establishment"){
 				// response nok
 				response.addHeader("Access-Control-Allow-Origin","*");
 				response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
@@ -33,7 +34,6 @@ public class AddOrder extends HttpServlet{
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				return;
 			}			
-			
 			// order
 			Order order = GenerateObject.GetOrder(request);
 			OrderDao.Insert(order);

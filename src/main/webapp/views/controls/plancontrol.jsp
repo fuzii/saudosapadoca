@@ -49,8 +49,10 @@
             <a href="#">LINK</a>
         </div>
     </div>
+    <form type="post" onsubmit="submitOrder(); return false;">
     <div id="planContainer" class="form-group card-details">
         <h3 style="padding-left: 10px">Configure seu plano</h3>
+        <input type="hidden" name="product_id" id="product_id" value="1" />
         <input type="hidden" id="monSelected" value="1" />
         <input type="hidden" id="tueSelected" value="1" />
         <input type="hidden" id="wedSelected" value="1" />
@@ -61,12 +63,12 @@
        	<div class="card-day-list-group">
        		<div class="card-day-list-item">
        			<div class="card-day-list-btn">
-        			<button id="btn_mon" onclick="btnSelectedList(this);">Segunda</button>
+        			<button type="button" id="btn_mon" onclick="btnSelectedList(this);">Segunda</button>
        			</div>
         		<div class="card-day-list-content">
-        			<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%"  />
+        			<input type="text" name="monday_amount" id="monday_amount" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%"  />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
-        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
+        				<button class="btn btn-default dropdown-toggle" name="monday_time" id="monday_time" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
         				<ul class="dropdown-menu weekday">
         				</ul>
         			</div>
@@ -74,12 +76,12 @@
        		</div>
        		<div class="card-day-list-item">
        			<div class="card-day-list-btn">
-       				<button id="btn_tue" onclick="btnSelectedList(this);">Terça</button>
+                            <button type="button" id="btn_tue" onclick="btnSelectedList(this);">Terça</button>
        			</div>
        			<div class="card-day-list-content">
-       				<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
+       				<input type="text" name="tuesday_amount" id="tuesday_amount" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
-        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
+        				<button class="btn btn-default dropdown-toggle" name="tuesday_time" id="tuesday_time" type="button" data-toggle="dropdown" style="width: 100%" >Horário<span class="caret"></span></button>
         				<ul class="dropdown-menu weekday">
         				</ul>
         			</div>
@@ -87,12 +89,12 @@
        		</div>
        		<div class="card-day-list-item">
        			<div class="card-day-list-btn">
-       				<button id="btn_wed" onclick="btnSelectedList(this);">Quarta</button>
+       				<button type="button" id="btn_wed" onclick="btnSelectedList(this);">Quarta</button>
        			</div>
        			<div class="card-day-list-content">
-       				<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
+       				<input type="text" name="wednesday_amount" id="wednesday_amount" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
-        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+        				<button class="btn btn-default dropdown-toggle" name="wednesday_time" id="wednesday_time" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
         				<ul class="dropdown-menu weekday">
         				</ul>
         			</div>
@@ -100,12 +102,12 @@
        		</div>
        		<div class="card-day-list-item">
        			<div class="card-day-list-btn">
-       				<button id="btn_thu" onclick="btnSelectedList(this);">Quinta</button>
+       				<button type="button" id="btn_thu" onclick="btnSelectedList(this);">Quinta</button>
    				</div>
        			<div class="card-day-list-content">
-       				<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
+       				<input name="thursday_amount" id="thursday_amount" type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
-        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+        				<button class="btn btn-default dropdown-toggle" name="thursday_time" id="thursday_time" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
         				<ul class="dropdown-menu weekday">
         				</ul>
         			</div>
@@ -113,12 +115,12 @@
        		</div>
        		<div class="card-day-list-item">
        			<div class="card-day-list-btn">
-       				<button id="btn_fri" onclick="btnSelectedList(this);">Sexta</button>
+       				<button type="button" id="btn_fri" onclick="btnSelectedList(this);">Sexta</button>
        			</div>
        			<div class="card-day-list-content">
-       				<input type="text" class="form-control quantity" placeholder="Quantidade" style="display: inline; width: 48%" />
+       				<input type="text" name="friday_amount" id="friday_amount" class="form-control quantity" placeholder="Quantidade" style="display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
-        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+        				<button class="btn btn-default dropdown-toggle" name="friday_time" id="friday_time" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
         				<ul class="dropdown-menu weekday">
         				</ul>
         			</div>
@@ -126,12 +128,12 @@
        		</div>
        		<div class="card-day-list-item">
        			<div class="card-day-list-btn">
-       				<button id="btn_sat" onclick="btnSelectedList(this);">Sábado</button>
+       				<button type="button" id="btn_sat" onclick="btnSelectedList(this);">Sábado</button>
        			</div>
        			<div class="card-day-list-content">
-       				<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
+       				<input type="text" name="saturday_amount" id="saturday_amount" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
-        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+        				<button class="btn btn-default dropdown-toggle" name="saturday_time" id="saturday_time" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
         				<ul class="dropdown-menu saturday">
         				</ul>
         			</div>
@@ -139,12 +141,12 @@
        		</div>
        		<div class="card-day-list-item">
        			<div class="card-day-list-btn">
-       				<button id="btn_sun" onclick="btnSelectedList(this);">Domingo</button>
+       				<button type="button" id="btn_sun" onclick="btnSelectedList(this);">Domingo</button>
        			</div>
        			<div class="card-day-list-content">
-       				<input type="text" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
+       				<input type="text" name="sunday_amount" id="sunday_amount" class="form-control quantity" placeholder="Quantidade" style=" display: inline; width: 48%" />
         			<div class="btn-group" style="width: 50%; display: inline; float: right">
-        				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
+        				<button class="btn btn-default dropdown-toggle" name="sunday_time" id="sunday_time" type="button" data-toggle="dropdown" style="width: 100%">Horário<span class="caret"></span></button>
         				<ul class="dropdown-menu sunday">
         				</ul>
         			</div>
@@ -153,8 +155,10 @@
        	</div>
    	</div>
    	<div class="form-group">
-            <input type="submit" class="btn btn-success" value="Gravar" style="min-width: 150px;" />
+            <input id="btn_submitorder" type="submit" class="btn btn-success" value="Gravar" style="min-width: 150px;" />
+            <div id="div_submitorder_message" style="display: none;"></div>
 	</div>
+        </form>
 </div>
 <div class="col-xs-3 hidden-xs">
     <div id="div_cart" class="panel panel-default" data-spy="affix" data-offset-top="65">
@@ -173,36 +177,22 @@
     </div>
 </div>
 <script type="text/javascript">
-    //function selected(ctl) {
-    //	var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';
-    //    if ($(ctl).is(':checked')) {
-    //        $(ctl).parent().parent().attr('class', 'card-day-selected');
-    //        $(ctl).parent().parent().find(':input').removeAttr('disabled');
-    //        $('#planContainer').find('#' + selectedID).val('1');
-    //    }
-    //    else {
-    //        $(ctl).parent().parent().attr('class', 'card-day');
-    //        $(ctl).parent().parent().find(':input').attr('disabled', '');
-    //        $(ctl).removeAttr('disabled');
-    //        $('#planContainer').find('#' + selectedID).val('0');
-    //    }
-    //}
     function btnSelectedList(ctl) {
     	var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';
     	if($('#planContainer').find('#' + selectedID).val() == '0') {
-    		$(ctl).attr('style','color: #fff; background-color: #499249');
-    		$(ctl).parent().parent().find('.card-day-list-content').attr('style','background-color: #5cb85c');
-    		$(ctl).parent().parent().find(':input').removeAttr('disabled');
-    		$('#planContainer').find('#' + selectedID).val('1');
-   		}
+            $(ctl).attr('style','color: #fff; background-color: #499249');
+            $(ctl).parent().parent().find('.card-day-list-content').attr('style','background-color: #5cb85c');
+            $(ctl).parent().parent().find(':input').removeAttr('disabled');
+            $('#planContainer').find('#' + selectedID).val('1');
+        }
     	else{
-    		$(ctl).attr('style','color: #000; background-color: rgba(230,230,230,0.5);');
-    		$(ctl).parent().attr('style','background-color: rgba(230,230,230,0.5);');
-    		$(ctl).parent().parent().find('.card-day-list-content').attr('style','background-color: #fff;');
-    		$(ctl).parent().parent().find('.card-day-list-content').find(':input').attr('disabled','');
-    		$(ctl).parent().parent().find('.card-day-list-content').find(':input[type=text]').val('');
-    		$(ctl).parent().parent().find('.card-day-list-content').find(':input[type=button]').html('Horário<span class="caret"></span>');
-    		$('#planContainer').find('#' + selectedID).val('0');
+            $(ctl).attr('style','color: #000; background-color: rgba(230,230,230,0.5);');
+            $(ctl).parent().attr('style','background-color: rgba(230,230,230,0.5);');
+            $(ctl).parent().parent().find('.card-day-list-content').attr('style','background-color: #fff;');
+            $(ctl).parent().parent().find('.card-day-list-content').find(':input').attr('disabled','');
+            $(ctl).parent().parent().find('.card-day-list-content').find(':input[type=text]').val('');
+            $(ctl).parent().parent().find('.card-day-list-content').find(':input[type=button]').html('Horário<span class="caret"></span>');
+            $('#planContainer').find('#' + selectedID).val('0');
     	}
     	calcCart();
     }
@@ -220,6 +210,59 @@
         //highlight
         $('#cart_total').fadeTo(100, 0.1).fadeTo(200, 1.0);
         $('#product_quantity').fadeTo(100, 0.1).fadeTo(200, 1.0);
+    }
+    function submitOrder() {
+        $('#btn_submitorder').attr('class', 'btn btn-default disabled');
+        $('#div_submitorder_message').css('display', 'none');
+        var submitData = {
+            product_id: $('#product_id').val()
+        };
+        if($('#monSelected').val() === '1') {
+            submitData.monday_amount = $('#monday_amount').val();
+            submitData.monday_time = $('#monday_time').val() + ':00';
+        }
+        if($('#tueSelected').val() === '1') {
+            submitData.tuesday_amount = $('#tuesday_amount').val();
+            submitData.tuesday_time = $('#tuesday_time').val() + ':00';
+        }
+        if($('#wedSelected').val() === '1') {
+            submitData.wednesday_amount = $('#wednesday_amount').val();
+            submitData.wednesday_time = $('#wednesday_time').val() + ':00';
+        }
+        if($('#thuSelected').val() === '1') {
+            submitData.thursday_amount = $('#thursday_amount').val();
+            submitData.thursday_time = $('#thursday_time').val() + ':00';
+        }
+        if($('#friSelected').val() === '1') {
+            submitData.friday_amount = $('#friday_amount').val();
+            submitData.friday_time = $('#friday_time').val() + ':00';
+        }
+        if($('#satSelected').val() === '1') {
+            submitData.saturday_amount = $('#saturday_amount').val();
+            submitData.saturday_time = $('#saturday_time').val() + ':00';
+        }
+        if($('#sunSelected').val() === '1') {
+            submitData.sunday_amount = $('#sunday_amount').val();
+            submitData.sunday_time = $('#sunday_time').val() + ':00';
+        }
+        $.ajax({
+            url: '/addOrder',
+            type: 'post',
+            data: submitData,
+            dataType: 'html',
+            success: function (data) {
+                $('#btn_submitorder').attr('class', 'btn btn-success'); 
+                $('#div_submitorder_message').attr('class', 'alert alert-success');
+                $('#div_submitorder_message').html('Alterado com sucesso!');
+                $('#div_submitorder_message').css('display', 'inline-block');
+            },
+            error: function (data) {
+                $('#btn_submitorder').attr('class', 'btn btn-success'); 
+                $('#div_submitorder_message').attr('class', 'alert alert-danger');
+                $('#div_submitorder_message').html('Erro ' + data.status);
+                $('#div_submitorder_message').css('display', 'inline-block');
+            }
+        });
     }
     $(function() {
     	$('.quantity').keyup(function () {
