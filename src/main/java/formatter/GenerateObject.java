@@ -58,16 +58,24 @@ public class GenerateObject {
 	public static Order GetOrder (HttpServletRequest request){
 		
 		// inputs
-		Establishment establishment = dao.EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id")));
-		Account account = (Account)request.getSession().getAttribute("account");
-		Product product = ProductDao.GetProductById(Long.parseLong(request.getParameter("product_id"))); //FASE 2 - descer para o nível de itens
-		Double price = PriceListDao.GetPriceList(establishment, product).getPrice(); //FASE 2 - descer para o nível de itens
-		
-		Order order = new Order(); 
-		order.setEstablishment(establishment);
-		order.setAccount(account);
-		order.setStatus(request.getParameter("status"));
-		
+                Product product = ProductDao.GetProductById(Long.parseLong(request.getParameter("product_id"))); //FASE 2 - descer para o nível de itens
+                Establishment establishment;
+		Order order;
+                if(request.getSession().getAttribute("order") != null)
+                {
+                    order = (Order)request.getSession().getAttribute("order");
+                    establishment = order.getEstablishment();
+                }
+                else
+                {
+                    establishment = dao.EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id")));
+                    Account account = (Account)request.getSession().getAttribute("account");
+                    order = new Order(); 
+                    order.setEstablishment(establishment);
+                    order.setAccount(account);
+                    order.setStatus(request.getParameter("status"));
+                }
+                Double price = PriceListDao.GetPriceList(establishment, product).getPrice(); //FASE 2 - descer para o nível de itens
 		List<OrderItem> itens = new ArrayList<OrderItem>();
 		Time deliveryTime;
 		// monday

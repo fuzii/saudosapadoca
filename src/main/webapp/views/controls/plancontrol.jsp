@@ -290,7 +290,9 @@
         });
         //load page
         var order = <%= orderJSON %>;
+        var establishmentId = getUrlVars()['establishment_id'];
         if(order !== '') {
+            establishmentId = order.establishment.id;
             $('#establishment_id').val(order.establishment.id);
             $.each(order.orderItems, function(i, orderItem){
                 switch(orderItem.dayWeek) {
@@ -340,7 +342,7 @@
         $.ajax({
             url: '/establishments',
             type: 'get',
-            data: {establishment_id: getUrlVars()['establishment_id']},
+            data: {establishment_id: establishmentId},
             dataType: 'json',
             success: function (data) {
                 //set establishment

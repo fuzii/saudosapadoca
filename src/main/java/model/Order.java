@@ -10,6 +10,10 @@ public class Order {
 	private List<OrderItem> orderItem;
 	private String status;
 	
+        public Order(){
+            id = -1L;
+        }
+        
 	public Long getId() {
 		return id;
 	}

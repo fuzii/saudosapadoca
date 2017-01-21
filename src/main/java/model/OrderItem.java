@@ -11,6 +11,10 @@ public class OrderItem {
 	private String unit;
 	private Integer quantity;
 	private Double price;
+        
+        public OrderItem() {
+            id = -1L;
+        }
 	
 	public Long getId() {
 		return id;

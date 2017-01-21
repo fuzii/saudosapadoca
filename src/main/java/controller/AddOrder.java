@@ -36,7 +36,7 @@ public class AddOrder extends HttpServlet{
 			}			
 			// order
 			Order order = GenerateObject.GetOrder(request);
-			OrderDao.Insert(order);
+			OrderDao.Upsert(order);
 			
 			// response
 			response.addHeader("Access-Control-Allow-Origin","*");
