@@ -52,7 +52,7 @@ public class AddOrder extends HttpServlet{
 			out.print(jsonMain.put("order",GenerateJSON.GetOrderJSON(order)));
 			
 			// set session
-			session.setAttribute("order", order);	
+			session.setAttribute("order", order);
 			
 	
 		} catch (Exception e) {

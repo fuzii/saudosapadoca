@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import model.Order;
 import model.OrderItem;
  
@@ -40,6 +42,36 @@ public class OrderItemDao {
 			throw new RuntimeException(e);
 		}
 		
+	}
+        
+        public static List<OrderItem> GetOrderItemsByOrderId(Long id) {	
+            try {
+                Connection connection = new ConnectionFactory().getConnection();
+                PreparedStatement stmt = connection.prepareStatement("SELECT * FROM order_item WHERE order_id=?");
+                stmt.setLong(1,id);
+                ResultSet rs = stmt.executeQuery();
+
+                List<OrderItem> orderItems = new ArrayList<OrderItem>();
+                
+                while(rs.next())
+                {
+                    OrderItem orderItem = new OrderItem();
+                    orderItem.setId(rs.getLong("id"));
+                    orderItem.setDayOfWeek(rs.getString("day_week"));
+                    orderItem.setDeliveryTime(rs.getTime("delivery_time"));
+                    orderItem.setPrice(rs.getDouble("item_price"));
+                    orderItem.setUnit("Unidade");
+                    orderItem.setQuantity(rs.getInt("quantity"));
+                    orderItems.add(orderItem);
+                }
+                rs.close();
+                stmt.close();
+                connection.close();
+
+                return orderItems;	
+            } catch (SQLException e) {
+                    throw new RuntimeException(e);
+            }	
 	}
 	
 }

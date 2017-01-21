@@ -228,7 +228,9 @@
             </li>
 	</ul>
 </nav>
+<script src="../../scripts/jquery.cloudinary.js" type="text/javascript"></script>
 <script type="text/javascript">
+        $.cloudinary.config({"api_key": '134197474555447', "cloud_name": 'hasuevmrn'});
 	Storage.prototype.setObject = function(key, value) {
     	this.setItem(key, JSON.stringify(value));
 	};

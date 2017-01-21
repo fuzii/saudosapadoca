@@ -58,7 +58,7 @@ public class GenerateObject {
 	public static Order GetOrder (HttpServletRequest request){
 		
 		// inputs
-		Establishment establishment = (Establishment)request.getSession().getAttribute("establishment");
+		Establishment establishment = dao.EstablishmentDao.GetEstablishmentsById(Long.parseLong(request.getParameter("establishment_id")));
 		Account account = (Account)request.getSession().getAttribute("account");
 		Product product = ProductDao.GetProductById(Long.parseLong(request.getParameter("product_id"))); //FASE 2 - descer para o nível de itens
 		Double price = PriceListDao.GetPriceList(establishment, product).getPrice(); //FASE 2 - descer para o nível de itens

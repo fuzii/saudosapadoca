@@ -11,12 +11,14 @@ import javax.servlet.http.HttpSession;
 import dao.AccountDao;
 import dao.AddressDao;
 import dao.EstablishmentDao;
+import dao.OrderDao;
 import dao.PriceListDao;
 import dao.ScheduleDao;
 import dao.SessionDao;
 import dao.UserDao;
 import model.Account;
 import model.Establishment;
+import model.Order;
 import model.User;
 
 @WebServlet("/login") 
@@ -42,9 +44,9 @@ public class LoginServlet extends HttpServlet{
 					session.setAttribute(key, map.get(key));
 
 				// establishment session
+                                session.setAttribute("isAuthenticated", true);
 				if(String.valueOf(session.getAttribute("user_type"))=="establishment"){
 					Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(session.getAttribute("establishment_id")))); 
-					session.setAttribute("isAuthenticated", true);
 					session.setAttribute("establishment", establishment);
 					session.setAttribute("schedule", ScheduleDao.GetSchedulesByEstablishment(establishment));
 					session.setAttribute("priceList", PriceListDao.GetPriceListByEstablishment(establishment).get(0));
@@ -54,6 +56,9 @@ public class LoginServlet extends HttpServlet{
 					Account account = AccountDao.GetAccountsById(Long.parseLong(String.valueOf(session.getAttribute("account_id"))));
 					session.setAttribute("account", account);
 					session.setAttribute("address", AddressDao.GetAddressesByAccount(account));
+                                        Order order = OrderDao.GetOrderByAccountId(Long.parseLong(session.getAttribute("account_id").toString()));
+                                        if(order != null)
+                                            session.setAttribute("order", order);
 				}
 				
 				// response ok

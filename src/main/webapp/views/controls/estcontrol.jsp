@@ -1,6 +1,6 @@
 <%
-    String establishmentJSON = "";
-    String addressJSON = "";
+    String establishmentJSON = "''";
+    String addressJSON = "''";
     if(!session.isNew() && session.getAttribute("address") != null) {
         addressJSON = formatter.GenerateJSON.GetAddressJSON(((java.util.List<model.Address>)session.getAttribute("address")).get(0)).toString(); 
     }
@@ -129,7 +129,6 @@
 		</div>
 	</form>
 </div>
-<script src="../../scripts/jquery.cloudinary.js" type="text/javascript"></script>
 <script src='../../scripts/jquery.ui.widget.js' type='text/javascript'></script>
 <script src='../../scripts/jquery.iframe-transport.js' type='text/javascript'></script>
 <script src='../../scripts/jquery.fileupload.js' type='text/javascript'></script>
@@ -171,7 +170,6 @@
                type: "get",
                data: null,
                success: function (data) {
-                   $.cloudinary.config({"api_key": data.api_key, "cloud_name": data.cloud_name});
                    $('.cloudinary-fileupload').cloudinary_fileupload({formData: data});
                    $('.cloudinary-fileupload').bind('fileuploadsend', function () {
                        $('.menu-image-progress-bar').css('visibility', 'visible');

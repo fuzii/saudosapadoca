@@ -29,7 +29,7 @@ public class GenerateJSON {
 			// order item
 			jsonOrderItem = new JSONObject();
 			jsonOrderItem.put("id",orderItem.getId());
-			jsonOrderItem.put("deliveryTime",orderItem.getDeliveryTime());
+			jsonOrderItem.put("deliveryTime",orderItem.getDeliveryTime().toString().substring(0,orderItem.getDeliveryTime().toString().lastIndexOf(":")));
 			jsonOrderItem.put("dayWeek",orderItem.getDayOfWeek());
 			jsonOrderItem.put("price",orderItem.getPrice());
 			jsonOrderItem.put("product",orderItem.getProduct());
@@ -58,12 +58,13 @@ public class GenerateJSON {
 			jsonOrder = new JSONObject();
 			jsonOrder.put("id",order.getId());
 			jsonOrder.put("status",order.getStatus());
+                        jsonOrder.put("establishment", GetEstablishmentJSON(order.getEstablishment()));
 			
 			JSONArray jsonOrderItem = new JSONArray();
 			for(OrderItem orderItem : order.getOrderItem())
 				jsonOrderItem.put(GetOrderItemJSON(orderItem));
 
-			jsonOrder.put("orderItem", jsonOrderItem);
+			jsonOrder.put("orderItems", jsonOrderItem);
 
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -132,7 +133,6 @@ public class GenerateJSON {
 		JSONObject jsonEstablishment = null;
 			
 		try {
-
 			// establishment
 			jsonEstablishment = new JSONObject();			
 			jsonEstablishment.put("id",establishment.getId());
@@ -148,9 +148,6 @@ public class GenerateJSON {
 			jsonEstablishment.put("rate",establishment.getRate());
                         jsonEstablishment.put("photoUrl", establishment.getPhotoUrl());
 			jsonEstablishment.put("created",Util.CalendarToString(establishment.getCreated()));
-			jsonEstablishment.put("photoUrl",establishment.getPhotoUrl());
-			
-
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
