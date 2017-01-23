@@ -188,49 +188,15 @@
         }
     }*/
 </style>
-<section class="clearfix hidden-sm hidden-xs">
-    <div id="header">
-        <div id="menucontainer">
-            <div id="userAddress" style="display: none;">
-                    <p style="display: inline-block;"></p>
-                    <a href="home.jsp?toHome=1">Alterar endereço</a>
-            </div>
-            <ul id="menu">
-                <li id="signupest"><a href="../signupest.jsp">Cadastre sua padaria<span clas="glyphicon glyphicon-grain"></span></a>
-                <li id="signup"><a href="../signup.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span>
-                <li><a id="userName" href="../login.jsp" class="btn btn-info"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
-            </ul>
-        </div>
-    </div>
-</section>
-<nav class="navbar navbar-fixed-left navbar-minimal animate hidden-lg hidden-md" role="navigation">
-	<div class="navbar-toggler animate">
-		<span class="menu-icon"></span>
-		<span class="sr-only">Menu</span>
-	</div>
-	<ul class="navbar-menu animate">
-            <li><a id="userName" href="../login.jsp" class="animate">
-                    <span class="desc animate">Entrar</span>
-                    <span class="glyphicon glyphicon-log-in"></span>
-                </a>
-            </li>
-            <li id="signupest">
-                <a href="../signupest.jsp" class="animate">
-                    <span class="desc animate">Cadastre sua padaria</span>
-                    <span class="glyphicon glyphicon-grain"></span>
-                </a>
-            </li>
-            <li id="signup">
-                <a href="../signup.jsp" class="animate">
-                    <span class="desc animate">Cadastrar</span>
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-            </li>
-	</ul>
-</nav>
+<% if(session.isNew() || session.getAttribute("isAuthenticated") == null || !(Boolean)session.getAttribute("isAuthenticated")) {%>
+	<%@ include file="menudefault.jsp" %>
+<%} else if (session.getAttribute("user_type") == "establishment") {%>
+	<%@ include file="menuest.jsp" %>
+<%} else %>
+	<%@ include file="menuacc.jsp" %>
 <script src="../../scripts/jquery.cloudinary.js" type="text/javascript"></script>
 <script type="text/javascript">
-        $.cloudinary.config({"api_key": '134197474555447', "cloud_name": 'hasuevmrn'});
+    $.cloudinary.config({"api_key": '134197474555447', "cloud_name": 'hasuevmrn'});
 	Storage.prototype.setObject = function(key, value) {
     	this.setItem(key, JSON.stringify(value));
 	};
@@ -239,11 +205,9 @@
 	    var value = this.getItem(key);
 	    return value && JSON.parse(value);
 	};
-	
 	function showAddress() {
 		if(localStorage.getItem('userInfo') != null) {
 			var userInfo = localStorage.getObject('userInfo');
-			$('#userName').html('Olá ' + userInfo.name + '!');
 			$('#userAddress').show();
 			$('#userAddress').find('p').html('<span class="glyphicon glyphicon-map-marker"></span> ' + userInfo.street + ', ' + userInfo.number + ' - ' + userInfo.city);
 			if($('#searchAddress') != null) {
@@ -252,7 +216,6 @@
 			}
 		}
 	}
-	
 	function getUrlVars()
 	{
 	    var vars = [], hash;
@@ -265,7 +228,12 @@
 	    }
 	    return vars;
 	}
-	
+	if(getUrlVars()['toHome'] == 1) {
+		localStorage.removeItem('userInfo');
+	}
+	else {
+		showAddress();
+	}
 	$(function () {
 		$('.navbar-toggler').on('click', function(event) {
 			event.preventDefault();

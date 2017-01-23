@@ -113,12 +113,12 @@
 		var client_secret = 'UEZ2AWYSHAICCL4IGYPFOA3C511VW2UG4XCYZFHH0RLV1KIQ';
 		
 		$(function () {
-                    jQuery("#CEP").mask("99999-999");
+        	jQuery("#CEP").mask("99999-999");
 		});
-                function cardClick(ctl)
-                {
-                    window.location.href = '/estdesc.jsp?establishment_id=' + $(ctl).attr('id');
-                }
+        function cardClick(ctl)
+        {
+			window.location.href = '/estdesc.jsp?establishment_id=' + $(ctl).attr('id');
+        }
 		function searchCEP(address) {
 			var locationReturn = null;
 			$.each(markers, function (i, marker) {
@@ -153,9 +153,11 @@
 			var userInfo = JSON.parse(localStorage.getItem('userInfo'));
 			var address = "Sao Paulo";
 			var near = "&near=" + address;
-			if(userInfo){
+			if(userInfo) {
 				address = userInfo.street + ', ' + userInfo.number + ' ' + userInfo.city;
-				near = '&ll=' + userInfo.latitude + ',' + userInfo.longitude; 
+				near = '&ll=' + userInfo.latitude + ',' + userInfo.longitude;
+				$('#latitude').val(userInfo.latitude);
+				$('#longitude').val(userInfo.longitude);
 			}
 			geocoder = new google.maps.Geocoder();
 	
@@ -165,11 +167,12 @@
 						zoom: 15,
 						center: results[0].geometry.location
 					});
+					fetchFoursquare("https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + near + "&radius=1000&section=food&query=padaria&v=20161123");
+					//fetchEstablishments();
 				} else {
 					alert('Geocode error: ' + status);
 				}
 			});
-			fetchFoursquare("https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + near + "&radius=1000&section=food&query=padaria&v=20161123");
 		}
 	
 		function fetchFoursquare(urlAPI) {
@@ -259,9 +262,16 @@
         	});			
 		}
 	
-		function createCard(id, title, description, schedules, rate) {
+		function createCard(id, title, description, photourl, price, unit, distance, schedules, rate) {
+			//rate = rate + '<span class="glyphicon glyphicon-star"></span>';
+			photourl = './images/images.jpg';
+			rate = 'NOVO!';
+			price = '1,00';
+			unit = 'Kg';
+			schedules = { weekday: '8:00 - 23:00', saturday: '8:00 - 14:00', sunday: '10:00 - 18:00'};
+			distance = '5 KM';
 			//return '<div class="col-sm-6"><div id="' + id + '" class="card"><div class="card-image"><img src="./images/images.jpg" style="width:122px; height:122px" /></div><div class="card-content"><h4 class="card-title">' + title + '</h4><p>' + description + '</p></div><div class="card-action"><a href="#">LINK</a></div></div></div>';
-			return '<div class="col-sm-6"><div id="' + id + '" class="card" onclick="cardClick(this);"><div class="card-image"><img src="./images/images.jpg" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval"><span class="glyphicon glyphicon-star"></span> 4,0</span></div><div class="card-content-info"><p>'+ description + '</p></div><div class="card-content-info"><p>5 KM - <span class="tag-price">10,00 R$/kg</span></p></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">8:00 - 23:00</span></p><p>Sáb: 8:00 - 14:00</p><p>Dom: 8:00 - 12:00</p></div></div></div>';
+			return '<div class="col-sm-6"><div id="' + id + '" class="card" onclick="cardClick(this);"><div class="card-image"><img src="'+ photourl +'" /></div><div class="card-content"><div class="card-content-header"><h4 class="card-title">' + title +'</h4><span class="tag-eval">' + rate + '</span></div><div class="card-content-info"><p>'+ description + '</p></div><div class="card-content-info"><p>' + distance + ' - <span class="tag-price">' + price + ' R$/' + unit + '</span></p></div><div class="card-content-func"><p>Seg - Sex: <span style="text-align: right">' + schedules.weekday + '</span></p><p>Sáb: ' + schedules.saturday + '</p><p>Dom: ' + schedules.sunday + '</p></div></div></div>';
 		}
 	
 		function register() {
