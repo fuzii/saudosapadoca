@@ -178,14 +178,16 @@
     </div>
 </div>
 <script type="text/javascript">
-    function setDayItemEnabled(ctl, isAvailable) {
+    function setDayItemEnabled(ctl, isAvailable, isEnabled) {
         if(isAvailable !== undefined && isAvailable)
             $(ctl).removeAttr('disabled','');
-        $(ctl).attr('style','color: #fff; background-color: #499249');
-        $(ctl).parent().parent().find('.card-day-list-content').attr('style','background-color: #5cb85c');
-        $(ctl).parent().parent().find(':input').removeAttr('disabled');
-        var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';
-        $('#planContainer').find('#' + selectedID).val('1');
+        if (isEnabled === undefined || isEnabled) {
+            $(ctl).attr('style','color: #fff; background-color: #499249');
+            $(ctl).parent().parent().find('.card-day-list-content').attr('style','background-color: #5cb85c');
+            $(ctl).parent().parent().find(':input').removeAttr('disabled');
+            var selectedID = $(ctl).attr('id').split('_')[1] + 'Selected';
+            $('#planContainer').find('#' + selectedID).val('1');
+        }
     }
     function setDayItemDisabled(ctl, isAvailable) {
         if(isAvailable !== undefined && !isAvailable)
@@ -297,42 +299,42 @@
             $.each(order.orderItems, function(i, orderItem){
                 switch(orderItem.dayWeek) {
                     case 'segunda':
-                        setDayItemEnabled('#btn_mon', true);
+                        setDayItemEnabled('#btn_mon', true, true);
                         $('#monday_amount').val(orderItem.quantity);
                         $('#monday_time').val(orderItem.deliveryTime);
                         $('#monday_time').html(orderItem.deliveryTime +'<span class="caret"></span>');
                         break;
                     case 'terça':
-                        setDayItemEnabled('#btn_tue', true);
+                        setDayItemEnabled('#btn_tue', true, true);
                         $('#tuesday_amount').val(orderItem.quantity);
                         $('#tuesday_time').val(orderItem.deliveryTime);
                         $('#tuesday_time').html(orderItem.deliveryTime +'<span class="caret"></span>');
                         break;
                     case 'quarta':
-                        setDayItemEnabled('#btn_wed', true);
+                        setDayItemEnabled('#btn_wed', true, true);
                         $('#wednesday_amount').val(orderItem.quantity);
                         $('#wednesday_time').val(orderItem.deliveryTime);
                         $('#wednesday_time').html(orderItem.deliveryTime +'<span class="caret"></span>');
                         break;
                     case 'quinta':
-                        setDayItemEnabled('#btn_thu', true);
+                        setDayItemEnabled('#btn_thu', true, true);
                         $('#thursday_amount').val(orderItem.quantity);
                         $('#thursday_time').val(orderItem.deliveryTime);
                         $('#thursday_time').html(orderItem.deliveryTime +'<span class="caret"></span>');
                         break;
                     case 'sexta':
-                        setDayItemEnabled('#btn_fri', true);
+                        setDayItemEnabled('#btn_fri', true, true);
                         $('#friday_amount').val(orderItem.quantity);
                         $('#friday_time').val(orderItem.deliveryTime);
                         $('#friday_time').html(orderItem.deliveryTime +'<span class="caret"></span>');
                         break;
                     case 'sábado':
-                        setDayItemEnabled('#btn_sat', true);
+                        setDayItemEnabled('#btn_sat', true, true);
                         $('#saturday_amount').val(orderItem.quantity);
                         $('#saturday_time').val(orderItem.deliveryTime);
                         $('#saturday_time').html(orderItem.deliveryTime +'<span class="caret"></span>');
                     case 'domingo':
-                        setDayItemEnabled('#btn_sun', true);
+                        setDayItemEnabled('#btn_sun', true, true);
                         $('#sunday_amount').val(orderItem.quantity);
                         $('#sunday_time').val(orderItem.deliveryTime);
                         $('#sunday_time').html(orderItem.deliveryTime +'<span class="caret"></span>');
@@ -359,9 +361,9 @@
                     var hours = initHour;
                     while(hours < endHour){
                         switch(schedule.dayWeek) {
-                            case 'Segunda': $('.weekday').append('<li>'+ hours + ':00</li>'); $('.btn-week').each(function(i, btn){setDayItemEnabled('#'+btn.id, true);}); break;
-                            case 'Sábado': $('.saturday').append('<li>'+ hours + ':00</li>'); setDayItemEnabled('#btn_sat', true); break;
-                            case 'Domingo': $('.sunday').append('<li>'+ hours + ':00</li>'); setDayItemEnabled('#btn_sun', true); break;
+                            case 'Segunda': $('.weekday').append('<li>'+ hours + ':00</li>'); $('.btn-week').each(function(i, btn){setDayItemEnabled('#'+btn.id, true, false);}); break;
+                            case 'Sábado': $('.saturday').append('<li>'+ hours + ':00</li>'); setDayItemEnabled('#btn_sat', true, false); break;
+                            case 'Domingo': $('.sunday').append('<li>'+ hours + ':00</li>'); setDayItemEnabled('#btn_sun', true, false); break;
                         }
                         hours++;
                     }

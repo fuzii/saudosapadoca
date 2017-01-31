@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Order {
@@ -9,6 +11,7 @@ public class Order {
 	private Account account;
 	private List<OrderItem> orderItem;
 	private String status;
+        private Date created;
 	
         public Order(){
             id = -1L;
@@ -29,6 +32,9 @@ public class Order {
 	public Account getAccount() {
 		return account;
 	}
+        public Date getCreated() {
+            return created;
+        }
 	public void setAccount(Account account) {
 		this.account = account;
 	}
@@ -44,5 +50,7 @@ public class Order {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+        public void setCreated(Date created) {
+            this.created = created;
+        }
 }

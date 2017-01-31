@@ -23,68 +23,54 @@ import model.User;
 
 @WebServlet("/login") 
 public class LoginServlet extends HttpServlet{
- 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try{
+            // request
+            User user = new User();
+            user.setUserLogin(request.getParameter("login"));
+            user.setUserPassword(request.getParameter("password").toCharArray());
+            user = UserDao.Login(user); 
 
-		try{ 
-			
-			// request
-			User user = new User();
-			user.setUserLogin(request.getParameter("login"));
-			user.setUserPassword(request.getParameter("password").toCharArray());
-			user = UserDao.Login(user); 
-			
-			HttpSession session = request.getSession(true);
-			
-			if(user.getUserId()!=null){
-				
-				// init session ids
-				Map<String,String> map = SessionDao.GetSessionParameters(user);
-				for(String key: map.keySet())
-					session.setAttribute(key, map.get(key));
+            HttpSession session = request.getSession(true);
 
-				// establishment session
-                                session.setAttribute("isAuthenticated", true);
-				if(String.valueOf(session.getAttribute("user_type"))=="establishment"){
-					Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(session.getAttribute("establishment_id")))); 
-					session.setAttribute("establishment", establishment);
-					session.setAttribute("schedule", ScheduleDao.GetSchedulesByEstablishment(establishment));
-					session.setAttribute("priceList", PriceListDao.GetPriceListByEstablishment(establishment).get(0));
-					session.setAttribute("address", AddressDao.GetAddressByEstablishment(establishment));
-				// account session
-				}else{
-					Account account = AccountDao.GetAccountsById(Long.parseLong(String.valueOf(session.getAttribute("account_id"))));
-					session.setAttribute("account", account);
-					session.setAttribute("address", AddressDao.GetAddressesByAccount(account));
-                                        Order order = OrderDao.GetOrderByAccountId(Long.parseLong(session.getAttribute("account_id").toString()));
-                                        if(order != null)
-                                            session.setAttribute("order", order);
-				}
-				
-				// response ok
-				response.addHeader("Access-Control-Allow-Origin","*");
-				response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
-				response.addHeader("Access-Control-Max-Age","3600");
-				response.addHeader("Access-Control-Allow-Headers","x-requested-with");
-				response.setStatus(HttpServletResponse.SC_OK);
-				
-				
-			}else{
-				
-				// response nok
-				response.addHeader("Access-Control-Allow-Origin","*");
-				response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
-				response.addHeader("Access-Control-Max-Age","3600");
-				response.addHeader("Access-Control-Allow-Headers","x-requested-with");
-				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-			}
-	
-
-	
-		} catch (Exception e) {
-			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
-		}
-			
-	}
-	
+            if(user.getUserId()!=null){
+                // init session ids
+                Map<String,String> map = SessionDao.GetSessionParameters(user);
+                for(String key: map.keySet())
+                    session.setAttribute(key, map.get(key));
+                // establishment session
+                session.setAttribute("isAuthenticated", true);
+                if(String.valueOf(session.getAttribute("user_type"))=="establishment"){
+                        Establishment establishment = EstablishmentDao.GetEstablishmentsById(Long.parseLong(String.valueOf(session.getAttribute("establishment_id")))); 
+                        session.setAttribute("establishment", establishment);
+                        session.setAttribute("schedule", ScheduleDao.GetSchedulesByEstablishment(establishment));
+                        session.setAttribute("priceList", PriceListDao.GetPriceListByEstablishment(establishment).get(0));
+                        session.setAttribute("address", AddressDao.GetAddressByEstablishment(establishment));
+                // account session
+                }else{
+                        Account account = AccountDao.GetAccountsById(Long.parseLong(String.valueOf(session.getAttribute("account_id"))));
+                        session.setAttribute("account", account);
+                        session.setAttribute("address", AddressDao.GetAddressesByAccount(account));
+                        Order order = OrderDao.GetOrderByAccountId(Long.parseLong(session.getAttribute("account_id").toString()));
+                        if(order != null)
+                            session.setAttribute("order", order);
+                }
+                // response ok
+                response.addHeader("Access-Control-Allow-Origin","*");
+                response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
+                response.addHeader("Access-Control-Max-Age","3600");
+                response.addHeader("Access-Control-Allow-Headers","x-requested-with");
+                response.setStatus(HttpServletResponse.SC_OK);
+            }else {
+                // response nok
+                response.addHeader("Access-Control-Allow-Origin","*");
+                response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
+                response.addHeader("Access-Control-Max-Age","3600");
+                response.addHeader("Access-Control-Allow-Headers","x-requested-with");
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            }
+        } catch (Exception e) {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
+        }		
+    }
 }

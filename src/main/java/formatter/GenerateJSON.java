@@ -59,6 +59,7 @@ public class GenerateJSON {
 			jsonOrder.put("id",order.getId());
 			jsonOrder.put("status",order.getStatus());
                         jsonOrder.put("establishment", GetEstablishmentJSON(order.getEstablishment()));
+                        jsonOrder.put("created", order.getCreated());
 			
 			JSONArray jsonOrderItem = new JSONArray();
 			for(OrderItem orderItem : order.getOrderItem())
@@ -72,9 +73,22 @@ public class GenerateJSON {
 
 		return jsonOrder;
 	
-	}	
+	}
+        
+        public static JSONArray GetListOrderJSON (List<Order> orders){
+		
+		if(orders == null)
+			return null;
+		
+		// schedules
+		JSONArray jsonOrders = new JSONArray();
+		for(Order order : orders)
+			jsonOrders.put(GetOrderJSON(order));
 
+		return jsonOrders;
 	
+	}
+
 	public static JSONObject GetUserJSON (User user){
 		
 		if(user == null)

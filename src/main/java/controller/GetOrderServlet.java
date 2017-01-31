@@ -23,8 +23,7 @@ public class GetOrderServlet extends HttpServlet{
 			
 			HttpSession session = request.getSession(true);
 			//only account can insert orders
-			if(session.isNew() || session.getAttribute("isAuthenticated") == null || !(Boolean)session.getAttribute("isAuthenticated")
-                                || String.valueOf(session.getAttribute("user_type"))=="establishment"){
+			if(session.isNew() || session.getAttribute("isAuthenticated") == null || !(Boolean)session.getAttribute("isAuthenticated")){
 				// response nok
 				response.addHeader("Access-Control-Allow-Origin","*");
 				response.addHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
@@ -48,11 +47,10 @@ public class GetOrderServlet extends HttpServlet{
 			JSONObject jsonMain = new JSONObject();
 			PrintWriter out = response.getWriter();
 			out.print(jsonMain.put("order",GenerateJSON.GetOrderJSON(order)));
-			
 			// set session
-			session.setAttribute("order", order);	
-			
-	
+                        if(String.valueOf(session.getAttribute("user_type")) != "establishment")
+                            session.setAttribute("order", order);	
+                        
 		} catch (Exception e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
 		}

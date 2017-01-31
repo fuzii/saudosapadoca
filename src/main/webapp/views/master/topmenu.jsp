@@ -192,8 +192,9 @@
 	<%@ include file="menudefault.jsp" %>
 <%} else if (session.getAttribute("user_type") == "establishment") {%>
 	<%@ include file="menuest.jsp" %>
-<%} else %>
+<%} else {%>
 	<%@ include file="menuacc.jsp" %>
+<% } %>
 <script src="../../scripts/jquery.cloudinary.js" type="text/javascript"></script>
 <script type="text/javascript">
     $.cloudinary.config({"api_key": '134197474555447', "cloud_name": 'hasuevmrn'});

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import model.Order;
 import model.OrderItem;
@@ -83,7 +84,7 @@ public class OrderDao {
         public static Order GetOrderByAccountId(Long id) {	
             try {
                 Connection connection = new ConnectionFactory().getConnection();
-                PreparedStatement stmt = connection.prepareStatement("SELECT * FROM order_entry WHERE account_id=?");
+                PreparedStatement stmt = connection.prepareStatement("SELECT * FROM order_entry WHERE account_id=? ORDER BY created DESC");
                 stmt.setLong(1,id);
                 ResultSet rs = stmt.executeQuery();
 
@@ -102,6 +103,68 @@ public class OrderDao {
                 connection.close();
                 
                 return order;
+
+            } catch (SQLException e) {
+                    throw new RuntimeException(e);
+            }
+	}
+        
+        public static List<Order> GetOrdersByAccountId(Long id) {	
+            try {
+                Connection connection = new ConnectionFactory().getConnection();
+                PreparedStatement stmt = connection.prepareStatement("SELECT * FROM order_entry WHERE account_id=? ORDER BY created DESC");
+                stmt.setLong(1,id);
+                ResultSet rs = stmt.executeQuery();
+
+                List<Order> orders = new ArrayList<Order>();
+                while(rs.next()) {
+                    Order order = new Order();
+                    order.setId(rs.getLong(1));
+                    order.setAccount(dao.AccountDao.GetAccountsById(id));
+                    order.setEstablishment(dao.EstablishmentDao.GetEstablishmentsById(rs.getLong("establishment_id")));
+                    List<OrderItem> orderItems = dao.OrderItemDao.GetOrderItemsByOrderId(order.getId());
+                    order.setOrderItem(orderItems);
+                    order.setStatus(rs.getString("status"));
+                    order.setCreated(rs.getDate("created"));
+                    orders.add(order);
+                }
+                
+                rs.close();
+                stmt.close();
+                connection.close();
+                
+                return orders;
+
+            } catch (SQLException e) {
+                    throw new RuntimeException(e);
+            }
+	}
+        
+        public static List<Order> GetOrdersByEstablishmentId(Long id) {	
+            try {
+                Connection connection = new ConnectionFactory().getConnection();
+                PreparedStatement stmt = connection.prepareStatement("SELECT * FROM order_entry WHERE establishment_id=? ORDER BY created DESC");
+                stmt.setLong(1,id);
+                ResultSet rs = stmt.executeQuery();
+
+                List<Order> orders = new ArrayList<Order>();
+                while(rs.next()) {
+                    Order order = new Order();
+                    order.setId(rs.getLong(1));
+                    order.setAccount(dao.AccountDao.GetAccountsById(rs.getLong("account_id")));
+                    order.setEstablishment(dao.EstablishmentDao.GetEstablishmentsById(id));
+                    List<OrderItem> orderItems = dao.OrderItemDao.GetOrderItemsByOrderId(order.getId());
+                    order.setOrderItem(orderItems);
+                    order.setStatus(rs.getString("status"));
+                    order.setCreated(rs.getDate("created"));
+                    orders.add(order);
+                }
+                
+                rs.close();
+                stmt.close();
+                connection.close();
+                
+                return orders;
 
             } catch (SQLException e) {
                     throw new RuntimeException(e);

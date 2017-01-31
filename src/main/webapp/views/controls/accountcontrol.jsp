@@ -1,8 +1,15 @@
+<%
+    String accountJSON = "''";
+    if(!session.isNew() && session.getAttribute("account") != null) {
+    	accountJSON = formatter.GenerateJSON.GetAccountJSON((model.Account)session.getAttribute("account")).toString(); 
+    }
+%>
 <form method="post" action="addAccount" class="form-horizontal panel panel-primary">
 	<div class="panel-heading">
 		<h2 class="panel-title">Cadasro de usuário</h2>
 	</div>
 	<div class="panel-body">
+            <input type="hidden" name="id" id="id" />
 		<div class="form-group">
 			<div class="col-sm-2">
 				<label for="name" class="control-label">Nome: </label>
@@ -50,3 +57,15 @@
 		</div>
 	</div>
 </form>
+<script type="text/javascript">
+    $(function () {
+        var account = <%= accountJSON %>;
+        if(account !== '') {
+            $('#id').val(account.id);
+            $('#name').val(account.name);
+            $('#email').val(account.email);
+            $('#email').attr('disabled', '');
+            $('#phone').val(account.phone);
+        }
+    });
+</script>

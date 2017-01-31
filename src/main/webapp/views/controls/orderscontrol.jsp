@@ -87,14 +87,27 @@
 	</div>
 </div>
 <script type="text/javascript">
-	$(function () {
-		$('#tbl_orders > tbody > tr').click(
-			function () {
-				$(this).siblings().removeAttr('class');
-				$(this).attr('class','active');
-				$('#order_details').hide();
-				$('#order_details').fadeIn('slow');
-			}
-		);
-	});
+    $(function () {
+        $('#tbl_orders > tbody > tr').click(
+            function () {
+                $(this).siblings().removeAttr('class');
+                $(this).attr('class','active');
+                $('#order_details').hide();
+                $('#order_details').fadeIn('slow');
+            }
+        );
+        $.ajax({
+            url: '/getOrdersHistory',
+            type: 'get',
+            data: null,
+            dataType: 'json',
+            success: function (data) {
+                $.each(data.orders, function(i, order) {
+                    var tr_order = '<tr><td>' + order.id + '</td><td>' + order.created + '</td><td>TOTAL</td><td>' + order.status + '</td></tr>';
+                    $('#tbl_orders > tbody').append(tr_order);
+                });
+            },
+            error: function (data) {}
+        });
+    });
 </script>

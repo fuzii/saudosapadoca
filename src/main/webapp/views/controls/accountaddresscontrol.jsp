@@ -1,3 +1,9 @@
+<% 
+    String addressJSON = "''";
+    if(!session.isNew() && session.getAttribute("address") != null && ((java.util.List<model.Address>)session.getAttribute("address")).size() > 0) {
+        addressJSON = formatter.GenerateJSON.GetAddressJSON(((java.util.List<model.Address>)session.getAttribute("address")).get(0)).toString();
+    }
+%>
 <form class="form-horizontal panel panel-primary">
 	<div class="panel-heading">
 		<h2 class="panel-title">Endereço</h2>
@@ -8,7 +14,7 @@
 				<label for="CEP" class="control-label">CEP: </label>
 			</div>
 			<div class="col-sm-3">
-				<input id="CEP" type="text" class="form-control" maxlength="9" />
+				<input id="CEP" name="zipCode" type="text" class="form-control" maxlength="9" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -29,18 +35,27 @@
 		</div>
 	</div>
 </form>
-<script type="text/javascript">
-	jQuery("#CEP").mask("99999-999");
-	
-	function searchCEP()
-	{
-		$.getJSON('http://api.postmon.com.br/v1/cep/' + $('#CEP').val(), function (data) {
-			$('#uf').val(data.estado);
-			$('#cidade').val(data.cidade);
-			$('#logradouro').val(data.logradouro);
-			$('#bairro').val(data.bairro);
-		});
-	}
-	
-	$("#CEP").focusout(searchCEP);
+<script type="text/javascript">	
+    function searchCEP()
+    {
+        $.getJSON('http://api.postmon.com.br/v1/cep/' + $('#CEP').val(), function (data) {
+            $('#uf').val(data.estado);
+            $('#cidade').val(data.cidade);
+            $('#logradouro').val(data.logradouro);
+            $('#bairro').val(data.bairro);
+        });
+    }
+    $(function () {
+        jQuery("#CEP").mask("99999-999");
+        $("#CEP").focusout(searchCEP);
+        //load page
+        var address = '';
+        if(address !== '') {
+            $('#CEP').val(address.zipCode);
+            $('#uf').val(address.state);
+            $('#cidade').val(address.city);
+            $('#logradouro').val(address.street);
+            $('#numero').val(address.number);
+        }
+    });
 </script>
