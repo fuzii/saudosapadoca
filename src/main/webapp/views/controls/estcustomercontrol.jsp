@@ -10,39 +10,6 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>
-				Felipe
-			</td>
-			<td>
-				49,90
-			</td>
-			<td>
-				10/10/2016
-			</td>
-		</tr>
-		<tr>
-			<td>
-				Fuzii
-			</td>
-			<td>
-				1,99
-			</td>
-			<td>
-				10/01/2016
-			</td>
-		</tr>
-		<tr>
-			<td>
-				Herbert
-			</td>
-			<td>
-				5,00
-			</td>
-			<td>
-				05/06/2010
-			</td>
-		</tr>
 	</tbody>
 </table>
 <div class="panel panel-default">
@@ -144,6 +111,19 @@
 	}
 	
 	$(function () {
-		makeSortable(document.getElementById("tbl_customers"));
-	})
+                $.ajax({
+                    url: '/getAccounts',
+                    type: 'get',
+                    data: null,
+                    dataType: 'json',
+                    success: function (data) {
+                        $.each(data, function(i, account) {
+                            var tr_account = '<tr><td>' + account.name + '</td><td>VALOR</td><td>' + account.created + '</td></tr>';
+                            $('#tbl_customers > tbody').append(tr_account);
+                        });
+                        makeSortable(document.getElementById("tbl_customers"));
+                    },
+                    error: function (data) {}
+                });
+	});
 </script>

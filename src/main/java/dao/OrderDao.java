@@ -81,6 +81,34 @@ public class OrderDao {
             }
 	}
         
+        public static Order GetOrderById(Long id) {	
+            try {
+                Connection connection = new ConnectionFactory().getConnection();
+                PreparedStatement stmt = connection.prepareStatement("SELECT * FROM order_entry WHERE id=?");
+                stmt.setLong(1,id);
+                ResultSet rs = stmt.executeQuery();
+
+                if(rs.next())
+                    return null;
+                
+                Order order = new Order();
+                order.setId(rs.getLong(1));
+                order.setAccount(dao.AccountDao.GetAccountById(rs.getLong("account_id")));
+                order.setEstablishment(dao.EstablishmentDao.GetEstablishmentsById(rs.getLong("establishment_id")));
+                List<OrderItem> orderItems = dao.OrderItemDao.GetOrderItemsByOrderId(order.getId());
+                order.setOrderItem(orderItems);
+
+                rs.close();
+                stmt.close();
+                connection.close();
+                
+                return order;
+
+            } catch (SQLException e) {
+                    throw new RuntimeException(e);
+            }
+	}
+        
         public static Order GetOrderByAccountId(Long id) {	
             try {
                 Connection connection = new ConnectionFactory().getConnection();
@@ -93,7 +121,7 @@ public class OrderDao {
                 
                 Order order = new Order();
                 order.setId(rs.getLong(1));
-                order.setAccount(dao.AccountDao.GetAccountsById(id));
+                order.setAccount(dao.AccountDao.GetAccountById(id));
                 order.setEstablishment(dao.EstablishmentDao.GetEstablishmentsById(rs.getLong("establishment_id")));
                 List<OrderItem> orderItems = dao.OrderItemDao.GetOrderItemsByOrderId(order.getId());
                 order.setOrderItem(orderItems);
@@ -120,7 +148,7 @@ public class OrderDao {
                 while(rs.next()) {
                     Order order = new Order();
                     order.setId(rs.getLong(1));
-                    order.setAccount(dao.AccountDao.GetAccountsById(id));
+                    order.setAccount(dao.AccountDao.GetAccountById(id));
                     order.setEstablishment(dao.EstablishmentDao.GetEstablishmentsById(rs.getLong("establishment_id")));
                     List<OrderItem> orderItems = dao.OrderItemDao.GetOrderItemsByOrderId(order.getId());
                     order.setOrderItem(orderItems);
@@ -151,7 +179,7 @@ public class OrderDao {
                 while(rs.next()) {
                     Order order = new Order();
                     order.setId(rs.getLong(1));
-                    order.setAccount(dao.AccountDao.GetAccountsById(rs.getLong("account_id")));
+                    order.setAccount(dao.AccountDao.GetAccountById(rs.getLong("account_id")));
                     order.setEstablishment(dao.EstablishmentDao.GetEstablishmentsById(id));
                     List<OrderItem> orderItems = dao.OrderItemDao.GetOrderItemsByOrderId(order.getId());
                     order.setOrderItem(orderItems);

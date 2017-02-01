@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Order;
 import model.OrderItem;
+import dao.ProductDao;
  
 public class OrderItemDao {
 
@@ -107,6 +108,7 @@ public class OrderItemDao {
                     OrderItem orderItem = new OrderItem();
                     orderItem.setId(rs.getLong("id"));
                     orderItem.setDayOfWeek(rs.getString("day_week"));
+                    orderItem.setDeliveryDate(rs.getDate("delivery_date"));
                     orderItem.setDeliveryTime(rs.getTime("delivery_time"));
                     orderItem.setPrice(rs.getDouble("item_price"));
                     orderItem.setUnit("Unidade");
@@ -118,6 +120,35 @@ public class OrderItemDao {
                 connection.close();
 
                 return orderItems;	
+            } catch (SQLException e) {
+                    throw new RuntimeException(e);
+            }	
+	}
+        
+        public static OrderItem GetOrderItemById(Long id) {	
+            try {
+                Connection connection = new ConnectionFactory().getConnection();
+                PreparedStatement stmt = connection.prepareStatement("SELECT * FROM order_item WHERE id=?");
+                stmt.setLong(1,id);
+                ResultSet rs = stmt.executeQuery();
+                
+                if(!rs.next())
+                    return null;
+                
+                OrderItem orderItem = new OrderItem();
+                orderItem.setId(rs.getLong("id"));
+                orderItem.setDayOfWeek(rs.getString("day_week"));
+                orderItem.setDeliveryDate(rs.getDate("delivery_date"));
+                orderItem.setDeliveryTime(rs.getTime("delivery_time"));
+                orderItem.setPrice(rs.getDouble("item_price"));
+                orderItem.setUnit("Unidade");
+                orderItem.setQuantity(rs.getInt("quantity"));
+                orderItem.setProduct(dao.ProductDao.GetProductById(rs.getLong("product_id")));
+                rs.close();
+                stmt.close();
+                connection.close();
+
+                return orderItem;	
             } catch (SQLException e) {
                     throw new RuntimeException(e);
             }	

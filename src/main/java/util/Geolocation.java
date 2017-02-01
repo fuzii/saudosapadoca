@@ -75,7 +75,7 @@ public class Geolocation {
 
 			for(Address a : addresses){
 
-				Account account = AccountDao.GetAccountsById(a.getAccountId());
+				Account account = AccountDao.GetAccountById(a.getAccountId());
 				JSONObject jsonAccount = new JSONObject();
 				
 				// establishment

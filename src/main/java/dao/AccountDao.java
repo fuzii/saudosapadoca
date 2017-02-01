@@ -118,8 +118,38 @@ public class AccountDao {
 		}
 		
 	}
+        
+        public static List<Account> GetAccountsByEstablishmentId(Long id) {	  
+            try {			
+                List<Account> accounts = new ArrayList<Account>();
+                Connection connection = new ConnectionFactory().getConnection();
+	    	PreparedStatement stmt = connection.prepareStatement("select * from account as acc inner join order_entry as ord on acc.id = ord.account_id where ord.establishment_id = ?");
+                stmt.setLong(1, id);
+                ResultSet rs = stmt.executeQuery();
 
-	public static Account GetAccountsById(Long id) {
+                while(rs.next()) {
+                        Account account = new Account();
+                        account.setId(rs.getLong("id"));
+                        account.setName(rs.getString("name"));
+                        account.setEmail(rs.getString("email"));
+                        account.setAddress(GetAccountAddresses(account));
+                        // montando a data através do Calendar
+                        Calendar data = Calendar.getInstance();
+                        data.setTime(rs.getDate("created"));
+                        account.setCreated(data);
+                        accounts.add(account);
+                }
+
+                rs.close();
+                stmt.close();
+                connection.close();
+                return accounts;
+            } catch (SQLException e) {
+                    throw new RuntimeException(e);
+            }	
+	}
+
+	public static Account GetAccountById(Long id) {
 	     
 		try {
 			

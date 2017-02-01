@@ -29,10 +29,11 @@ public class GenerateJSON {
 			// order item
 			jsonOrderItem = new JSONObject();
 			jsonOrderItem.put("id",orderItem.getId());
+                        jsonOrderItem.put("deliveryDate", orderItem.getDeliveryDate());
 			jsonOrderItem.put("deliveryTime",orderItem.getDeliveryTime().toString().substring(0,orderItem.getDeliveryTime().toString().lastIndexOf(":")));
 			jsonOrderItem.put("dayWeek",orderItem.getDayOfWeek());
 			jsonOrderItem.put("price",orderItem.getPrice());
-			jsonOrderItem.put("product",orderItem.getProduct());
+			jsonOrderItem.put("product",GetProductJSON(orderItem.getProduct()));
 			jsonOrderItem.put("quantity",orderItem.getQuantity());
 			jsonOrderItem.put("unit",orderItem.getUnit());
 
@@ -137,6 +138,16 @@ public class GenerateJSON {
 
 		return jsonAccount;
 	
+	}
+        
+        public static JSONArray GetAccountsJSON (List<Account> accounts){
+            if(accounts == null)
+                return null;
+            // schedules
+            JSONArray jsonAccounts = new JSONArray();
+            for(Account account : accounts)
+                    jsonAccounts.put(GetAccountJSON(account));
+            return jsonAccounts;
 	}
 	
 	public static JSONObject GetEstablishmentJSON (Establishment establishment){

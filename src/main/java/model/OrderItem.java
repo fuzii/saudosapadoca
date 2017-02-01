@@ -8,6 +8,7 @@ public class OrderItem {
 	private Product product;
 	private String dayOfWeek;
 	private Date deliveryTime;
+        private Date deliveryDate;
 	private String unit;
 	private Integer quantity;
 	private Double price;
@@ -34,6 +35,12 @@ public class OrderItem {
 	public void setDayOfWeek(String dayOfWeek) {
 		this.dayOfWeek = dayOfWeek;
 	}
+        public Date getDeliveryDate() {
+            return deliveryDate;
+        }
+        public void setDeliveryDate(Date deliveryDay) {
+            this.deliveryDate = deliveryDay;
+        }
 	public Date getDeliveryTime() {
 		return deliveryTime;
 	}
